@@ -34,6 +34,8 @@ Identify
 
 ## Unused (Off topic)
 
+1) Print function
+
 1) Register a new Patient
    - Timetable
    - Prescriptions
@@ -45,6 +47,4 @@ Identify
 3) Register new Locations (Clinic)
 4) Access Rights
 5) Patient data encryption
-
-
 1) Distributed Architecture

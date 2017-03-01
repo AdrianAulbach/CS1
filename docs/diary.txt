@@ -1,0 +1,26 @@
+Project Journal
+------------------------------
+#Title: Kick-off Meeting
+	- Date: 28.2.2017
+	- Absent: S.Egger
+
+# Agenda
+	* Task01
+		- Stephan takes one for the team and will be responsible for our first presentation (5") CS1:task01
+		- Notes are available in docs/Task02.md
+	* Task02
+		- Flo goes second and will prepare a presentation on CS1:Task02
+		- Notes are available in docs/Task02.md
+	* Project decision: We will use GIT as version control system
+
+# Key decisions
+	* GIT as Version Control
+	* Adrian has Project Lead until further notice
+
+# ToDo
+	* Everybody reviews Task01 and Task02 until 2.3.2017 ~18:00
+		-> Don't forget to commit your repo^^
+	* Stephan will open a Slack group to help coordinating team communication
+	* Everybody configures GIT Repository
+	* Ali provides a 15" hands on GIT workshop in KW10/KW11
+-----------------------------

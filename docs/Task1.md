@@ -19,8 +19,9 @@ Identify
 
 ## 2) Identify key features
 
-1. Register and manage Patients, Timetables and Locations
-2. Report Statistics
+1. Register and manage Patients
+2. Timetables and Locations Management
+3. Report Statistics
 
 ## 3) Identify Critical success factors
 

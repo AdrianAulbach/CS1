@@ -19,9 +19,15 @@ Identify
 
 ## 2) Identify key features
 
-1. Register and manage Patients
-2. Timetables and Locations Management
-3. Report Statistics
+1.Data Recording
+    - Health/Treatment history
+    - Appointments and Timetables
+    - Prescriptions
+    - General Informations
+    - Location Management
+2. Reporting (for Management)
+    - statistical reports
+    - financial reports
 
 ## 3) Identify Critical success factors
 

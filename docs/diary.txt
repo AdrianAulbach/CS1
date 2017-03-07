@@ -24,3 +24,13 @@ Project Journal
 	* Everybody configures GIT Repository
 	* Ali provides a 15" hands on GIT workshop in KW10/KW11
 -----------------------------
+
+#Title: Task 1-3 CS2
+	- Date: 28.2.2017
+	- Absent: S.Egger, Ali, Stephan
+	
+# Agenda / Tasks
+	* Use Case diagram
+	* Use Case description
+	* UML Activity Diagram
+

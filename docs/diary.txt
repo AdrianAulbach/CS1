@@ -47,7 +47,7 @@ Project Journal
 
 #Title: Task 1-3 CS2
 	- Date: 14.3.2017
-	- Absent: non
+	- Absent: none
 	
 # Agenda / Tasks
 	- Design Thinking (First iteration)

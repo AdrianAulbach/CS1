@@ -25,3 +25,20 @@ They tend to be stubborn, pessimistic and resentful as well. They teeter between
 The self-destructive borderline engages in self-destructive behavior. At times they may or may not even be aware of its destructive nature. They are bitter and self-loathing. They have no sense of self and are terrified of being abandoned. They may hurt themselves in an effort to feel something. A self-destructive borderline is most likely to engage in risky behavior like reckless driving and degrading sexual acts.
 
 _Source: http://www.optimumperformanceinstitute.com/bpd-program/bpd-symptoms-examined/_
+
+
+
+### Random Research Notes:
+http://www.icd9data.com/2015/Volume1/290-319/300-316/301/301.83.htm
+http://apps.who.int/classifications/icd10/browse/2016/en#/F60.3
+https://www.nimh.nih.gov/health/topics/borderline-personality-disorder/index.shtml
+Types of psychotherapy used to treat BPD include:
+
+    Cognitive Behavioral Therapy (CBT): CBT can help people with BPD identify and change core beliefs and/or behaviors that underlie inaccurate perceptions of themselves and others and problems interacting with others. CBT may help reduce a range of mood and anxiety symptoms and reduce the number of suicidal or self-harming behaviors.
+    Dialectical Behavior Therapy (DBT): This type of therapy utilizes the concept of mindfulness, or being aware of and attentive to the current situation and moods. DBT also teaches skills to control intense emotions, reduce self-destructive behaviors, and improve relationships. DBT differs from CBT in that it integrates traditional CBT elements with mindfulness, acceptance, and techniques to improve a person’s ability to tolerate stress and control his or her emotions. DBT recognizes the dialectical tension between the need for acceptance and the need for change.
+    Schema-Focused Therapy: This type of therapy combines elements of CBT with other forms of psychotherapy that focus on reframing schemas, or the ways people view themselves. This approach is based on the idea that BPD stems from a dysfunctional self-image—possibly brought on by negative childhood experiences—that affects how people react to their environment, interact with others, and cope with problems or stress.
+    Systems Training for Emotional Predictability and Problem Solving (STEPPS) is a type of group therapy that aims to educate family members, significant others, and health care professionals about BPD and gives them guidance on how to interact consistently with the person with the disorder using the STEPPS approach and terminology. STEPPS is designed to supplement other treatments the patient may be receiving, such as medication or individual psychotherapy.
+
+Families of people with BPD may also benefit from therapy. The challenges of dealing with a loved one with BPD on a daily basis can be very stressful, and family members may unknowingly act in ways that worsen their relative's symptoms. Some therapies include family members in treatment sessions. These types of programs help families develop skills to better understand and support a relative with BPD. Other therapies focus on the needs of family members and help them understand the obstacles and strategies for caring for a loved one with BPD. Although more research is needed to determine the effectiveness of family therapy in BPD, studies on other mental disorders suggest that including family members can help in a person's treatment.
+
+Other types of psychotherapy may be helpful for some people with BPD. Therapists often adapt psychotherapy to better meet a person's needs. Therapists may also switch from one type of psychotherapy to another, mix techniques from different therapies, or use a combination of psychotherapies. For more information, please see the NIMH webpage on Psychotherapies.

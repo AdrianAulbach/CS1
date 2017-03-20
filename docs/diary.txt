@@ -24,3 +24,13 @@ Project Journal
 	* Everybody configures GIT Repository
 	* Ali provides a 15" hands on GIT workshop in KW10/KW11
 -----------------------------
+
+-----------------------------
+
+  - Date: 17.2.2017
+  - Absent: Florian, Rolf
+    Stephan is absent too but doing the Interview
+    
+  * Task3 CS2
+    - Stephan is doing the Interview
+    - Continue research

@@ -25,12 +25,54 @@ Project Journal
 	* Ali provides a 15" hands on GIT workshop in KW10/KW11
 -----------------------------
 
+#Title: Task 1-3 CS2
+	- Date: 28.2.2017
+	- Absent: S.Egger, Ali, Stephan
+	
+# Agenda / Tasks
+	* Use Case diagram
+	* Use Case description
+	* UML Activity Diagrams
+
 -----------------------------
 
-  - Date: 17.2.2017
+#Title: Task 1-3 CS2
+	- Date: 13.3.2017
+	- Absent: -
+	
+# Decisions
+	- Ali & Stephan will do an interview together with a doctor 
+
+-----------------------------
+
+#Title: Task 3 CS1
+	- Date: 14.3.2017
+	- Absent: none
+	
+# Agenda / Tasks
+	- Design Thinking (First iteration)
+		- Scoping
+		- Research
+		- Syntesis
+		- Design
+
+-----------------------------
+
+  - Date: 17.3.2017
   - Absent: Florian, Rolf
     Stephan is absent too but doing the Interview
     
   * Task3 CS2
     - Stephan is doing the Interview
     - Continue research
+
+-----------------------------
+
+#Title: Task 3 CS1
+	- Date: 20.3.2017
+	- Absent: Stephan
+	
+# Agenda / Tasks
+	- Design Thinking (First iteration)
+		- Prototyping
+		

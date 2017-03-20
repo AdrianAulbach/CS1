@@ -32,5 +32,26 @@ Project Journal
 # Agenda / Tasks
 	* Use Case diagram
 	* Use Case description
-	* UML Activity Diagram
+	* UML Activity Diagrams
 
+-----------------------------
+
+#Title: Task 1-3 CS2
+	- Date: 13.3.2017
+	- Absent: -
+	
+# Decisions
+	- Ali & Stephan will do an interview together with a doctor 
+
+-----------------------------
+
+#Title: Task 1-3 CS2
+	- Date: 14.3.2017
+	- Absent: non
+	
+# Agenda / Tasks
+	- Design Thinking (First iteration)
+		- Scoping
+		- Research
+		- Syntesis
+		- Design

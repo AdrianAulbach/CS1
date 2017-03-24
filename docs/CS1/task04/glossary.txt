@@ -1,0 +1,9 @@
+Glossary
+  SOAP Simple Object Access Protocol is a protocol to exchange data between different systems over a network
+  REST Representational State Transfer is a principle often applied on APIs which means that the same address always referst to the same dataset
+  API an Application Programming Interface is used to offer some of a programs functionality to other programs/services 
+  frontend what the end user sees and what he interacts with
+  backend what's going on behind the scenes (frontend), not visible for the user
+  WSDL Web Services Description Language describes a SOAP interface
+  DMZ (demilitarized zone) is a subnetwork used for the servers that link requests from the outside to the local servers without exposing them to the public
+  

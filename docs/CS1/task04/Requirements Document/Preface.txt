@@ -1,9 +1,0 @@
-Version History
-
-Purpose of the document
-
-This Requirements specifications document defines the system and user requirements of the MHC-PMS application. It is used to verify if the user's requirements where well interpreted by the development team, to estimate the efforts to realize the project, and to track the progress of the Project's realisation.
-
-Use of the Document
-
-This document is addressed to the Management team, all developers who work on the project, and the users who will be working with the final product.

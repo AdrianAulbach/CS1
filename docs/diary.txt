@@ -85,9 +85,15 @@ Project Journal
   Adrian will do the presentation (on friday)
 -----------------------------
 
-# Title: Task CS1, Task 5 CS1
-  - Date 24.03.2017
+# Title: Task 4 CS1, Task 5 CS1
+  - Date: 24.03.2017
   - Absent: Stephan, Samuel
   Presentation, then finishing task 4.3 (which was due today)
   Discuss collaboration in the group and how we'll do Task 5 over the weekend since it was already late
+-----------------------------  
   
+# Title: Task 5 & 6 CS1
+  - Date: 27.03.2017
+  - Absent: Florian (sick), Stephan
+  Merging what we did individually for Task 5
+  Begin Task 6

@@ -105,3 +105,5 @@ Florian:
 	- KW 15(Oster Fereien): Ganze Woche
 	- KW 16: Ganze Woche
 	- KW 19: Ganze Woche
+Adrian:
+  - KW 10: 3.4.2017

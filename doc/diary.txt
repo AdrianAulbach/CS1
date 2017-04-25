@@ -1,0 +1,117 @@
+Project Journal
+------------------------------
+#Title: Kick-off Meeting
+	- Date: 28.2.2017
+	- Absent: S.Egger
+
+# Agenda
+	* Task01
+		- Stephan takes one for the team and will be responsible for our first presentation (5") CS1:task01
+		- Notes are available in docs/Task02.md
+	* Task02
+		- Flo goes second and will prepare a presentation on CS1:Task02
+		- Notes are available in docs/Task02.md
+	* Project decision: We will use GIT as version control system
+
+# Key decisions
+	* GIT as Version Control
+	* Adrian has Project Lead until further notice
+
+# ToDo
+	* Everybody reviews Task01 and Task02 until 2.3.2017 ~18:00
+		-> Don't forget to commit your repo^^
+	* Stephan will open a Slack group to help coordinating team communication
+	* Everybody configures GIT Repository
+	* Ali provides a 15" hands on GIT workshop in KW10/KW11
+-----------------------------
+
+#Title: Task 1-3 CS2
+	- Date: 28.2.2017
+	- Absent: S.Egger, Ali, Stephan
+	
+# Agenda / Tasks
+	* Use Case diagram
+	* Use Case description
+	* UML Activity Diagrams
+
+-----------------------------
+
+#Title: Task 1-3 CS2
+	- Date: 13.3.2017
+	- Absent: -
+	
+# Decisions
+	- Ali & Stephan will do an interview together with a doctor 
+
+-----------------------------
+
+#Title: Task 3 CS1
+	- Date: 14.3.2017
+	- Absent: none
+	
+# Agenda / Tasks
+	- Design Thinking (First iteration)
+		- Scoping
+		- Research
+		- Syntesis
+		- Design
+
+-----------------------------
+
+  - Date: 17.3.2017
+  - Absent: Florian, Rolf
+    Stephan is absent too but doing the Interview
+    
+  * Task3 CS2
+    - Stephan is doing the Interview
+    - Continue research
+
+-----------------------------
+
+#Title: Task 3 CS1
+	- Date: 20.3.2017
+	- Absent: Stephan
+	
+# Agenda / Tasks
+	- Design Thinking (First iteration)
+		- Prototyping
+-----------------------------		
+		
+# Title: Task 4 CS1
+  - Date 21.03.2017
+  - Absent: Stephan, Florian
+  
+  * Task 4.1-4.2
+  Adrian will do the presentation (on friday)
+-----------------------------
+
+# Title: Task 4 CS1, Task 5 CS1
+  - Date: 24.03.2017
+  - Absent: Stephan, Samuel
+  Presentation, then finishing task 4.3 (which was due today)
+  Discuss collaboration in the group and how we'll do Task 5 over the weekend since it was already late
+-----------------------------  
+  
+# Title: Task 5 & 6 CS1
+  - Date: 27.03.2017
+  - Absent: Florian (sick), Stephan
+  Merging what we did individually for Task 5
+  Begin Task 6
+
+  
+## Planed Absences
+Florian: 
+	- KW 14: 7.4.2017
+	- KW 15(Oster Fereien): Ganze Woche
+	- KW 16: Ganze Woche
+	- KW 19: Ganze Woche
+Adrian:
+  - KW 10: 3.4.2017
+  
+Stephan:
+ - KW 14: 7.4.2017
+ 
+ Aleistar
+ 
+ - KW 13: Freitag
+ - KW 14: Montag, Dienstag, Freitag

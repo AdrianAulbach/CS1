@@ -97,7 +97,17 @@ Project Journal
   - Absent: Florian (sick), Stephan
   Merging what we did individually for Task 5
   Begin Task 6
+-----------------------------
 
+# Title: Task 9 CS1
+  - Date: 28.04.2017
+  - Absent: Samual, Adrian, Rolf, Stephan
+  Migrated Project to maven project
+  Task09 - component & deployment model -> Florian will do presentation 1.5.2017
+	
+	ToDo: 	- UML Class diagram
+			- finalize deployment & component diagram
+ 
   
 ## Planed Absences
 Florian: 

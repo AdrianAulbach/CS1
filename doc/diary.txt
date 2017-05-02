@@ -107,6 +107,13 @@ Project Journal
 	
 	ToDo: 	- UML Class diagram
 			- finalize deployment & component diagram
+-----------------------------
+
+# Title: Task 10 CS1
+  - Date: 02.05.2017
+  - Absent: Stephan
+  Created product backlog and first sprint backlog
+-----------------------------
  
   
 ## Planed Absences

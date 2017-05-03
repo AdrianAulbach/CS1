@@ -5,3 +5,5 @@ target/*
 stefan ;-)
 # More...
 /target/
+.idea/
+*.iml

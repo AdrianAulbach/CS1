@@ -1,7 +1,0 @@
-#surefire
-#Mon May 01 19:09:05 CEST 2017
-maven.ext.class.path=C\:\\Program Files\\NetBeans 8.1\\java\\maven-nblib\\netbeans-eventspy.jar
-user.dir=C\:\\_github\\mhcpms\\mhcpms-ui
-file.encoding=UTF-8
-localRepository=C\:\\Users\\se_000\\.m2\\repository
-basedir=C\:\\_github\\mhcpms\\mhcpms-ui

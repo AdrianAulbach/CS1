@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms;
 
-import java.io.File;
-
 import javax.servlet.annotation.WebServlet;
 
 import org.apache.log4j.Logger;
@@ -9,15 +7,22 @@ import org.apache.log4j.PropertyConfigurator;
 
 import com.vaadin.annotations.Theme;
 import com.vaadin.annotations.VaadinServletConfiguration;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.server.VaadinServlet;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.controls.NavigatorUI;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MainView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.StartView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.util.FileTools;
 
 /**
@@ -32,8 +37,30 @@ public class MyUI extends UI
 {
 	static final Logger log = Logger.getRootLogger();
 
+
+	private static Navigator navigator = null;
+	
 	@Override
 	protected void init(VaadinRequest vaadinRequest)
+	{
+		// Init log4j properties
+		PropertyConfigurator.configure(FileTools.getApplicationPath()+"\\log4j.properties");
+		
+		log.info("Session started for client "+vaadinRequest.getRemoteHost());
+		
+        getPage().setTitle("MHC-PMS Application");
+
+        // Create a navigator to control the views
+        navigator = new Navigator(this, this);
+
+        // Create and register the views
+        navigator.addView("", new StartView(navigator));
+        navigator.addView(NavigatorUI.MAIN_VIEW, new MainView(navigator));
+        log.debug("View established.");
+	}
+	
+	
+	private void oldInit()
 	{
 		// Init log4j properties
 		PropertyConfigurator.configure(FileTools.getApplicationPath()+"\\log4j.properties");
@@ -58,8 +85,6 @@ public class MyUI extends UI
 		});
 
 		layout.addComponents(name, button);
-
-		setContent(layout);
 	}
 
 	@WebServlet(urlPatterns = "/*", name = "MyUIServlet", asyncSupported = true)

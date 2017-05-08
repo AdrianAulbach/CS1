@@ -14,7 +14,6 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.declarative.Design;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.controls.NavigatorUI;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.PatientPanel;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.TimetablePanel;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.WelcomePanel;
@@ -26,7 +25,7 @@ public class MainView extends VerticalLayout implements View
 	static final Logger log = Logger.getRootLogger();
 
 	// TODO outsource to constants file?
-	public static final String MAIN_VIEW = "main";
+	public static final String REF_URL = "main";
 	
 	// Menu navigation button listener
 	class ButtonNavigationListener implements ClickListener
@@ -43,7 +42,7 @@ public class MainView extends VerticalLayout implements View
 		public void buttonClick(ClickEvent event)
 		{
 			// Navigate to a specific state
-			mNavigator.navigateTo(NavigatorUI.MAIN_VIEW + "/" + mMenuItem);
+			mNavigator.navigateTo(MainView.REF_URL + "/" + mMenuItem);
 		}
 	}
 
@@ -68,6 +67,10 @@ public class MainView extends VerticalLayout implements View
 	}
 	
 
+	/**
+	 * Where the application's navigation is managed: on request the
+	 * panel can be created/loaded and displayed.
+	 */
 	@Override
 	public void enter(ViewChangeEvent event)
 	{

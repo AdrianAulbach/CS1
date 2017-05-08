@@ -8,8 +8,6 @@ import com.vaadin.ui.Button;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.controls.NavigatorUI;
-
 public class StartView extends VerticalLayout implements View
 {
 	/**
@@ -26,7 +24,7 @@ public class StartView extends VerticalLayout implements View
 		setSizeFull();
 
 		// TODO member
-		Button button = new Button("Go to Main View", (event) -> mNavigator.navigateTo(NavigatorUI.MAIN_VIEW));
+		Button button = new Button("Go to Main View", (event) -> mNavigator.navigateTo(MainView.REF_URL));
 		addComponent(button);
 		setComponentAlignment(button, Alignment.MIDDLE_CENTER);
 	}

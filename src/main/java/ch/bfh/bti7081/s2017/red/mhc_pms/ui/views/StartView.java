@@ -3,10 +3,8 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.ui.Alignment;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.server.Page;
+import com.vaadin.ui.*;
 
 public class StartView extends VerticalLayout implements View
 {
@@ -15,6 +13,8 @@ public class StartView extends VerticalLayout implements View
 	 */
 	private static final long serialVersionUID = 1L;
 
+	// TODO outsource to constants file?
+	public static final String REF_URL = "";
 	Navigator mNavigator;
 
 	public StartView(Navigator aNavigator)
@@ -26,7 +26,40 @@ public class StartView extends VerticalLayout implements View
 		// TODO member
 		Button button = new Button("Go to Main View", (event) -> mNavigator.navigateTo(MainView.REF_URL));
 		addComponent(button);
-		setComponentAlignment(button, Alignment.MIDDLE_CENTER);
+		setComponentAlignment(button, Alignment.TOP_RIGHT);
+
+		// Username field
+		TextField username = new TextField("Username");
+		addComponent(username);
+		setComponentAlignment(username, Alignment.MIDDLE_CENTER);
+
+		// Password field
+		PasswordField passwordField = new PasswordField("Password");
+		addComponent(passwordField);
+		setComponentAlignment(passwordField, Alignment.MIDDLE_CENTER);
+
+		// Login Button
+		Button loginButton = new Button("Login");
+		loginButton.addClickListener(e ->{
+		// Check Login credential
+		if(checkLoginCredentials(username.getValue(),passwordField.getValue()))
+		{
+			mNavigator.navigateTo(MainView.REF_URL);
+		}
+		else
+		{
+			new Notification("Error on Login", "The enterd password or username is WRONG", Notification.Type.HUMANIZED_MESSAGE, true).show(Page.getCurrent());
+		}
+
+		});
+
+		addComponent(loginButton);
+		setComponentAlignment(loginButton, Alignment.MIDDLE_CENTER);
+	}
+
+	private boolean checkLoginCredentials(String username, String password){
+		// TODO implement password check
+		return true;
 	}
 
 	@Override

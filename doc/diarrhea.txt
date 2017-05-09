@@ -115,7 +115,34 @@ Project Journal
   Created product backlog and first sprint backlog
 -----------------------------
  
+
+-----------------------------
+
+# Title: Task 10 CS1
+  - Date: 05.05.2017
+  - Absent: Stephan, Rolf, Samuel
+  Daily Scrum, briefing, getting familiar with Vaadin
+-----------------------------
+
+
+-----------------------------
+
+# Title: Task 10 CS1
+  - Date: 08.05.2017
+  - Absent: Stephan, Ali, Adrian, Florian
+  Daily Scrum, getting started with hibernate, ui navigation
+-----------------------------
   
+
+-----------------------------
+
+# Title: Task 10 CS1
+  - Date: 09.05.2017
+  - Absent: Stephan, Florian
+  Daily Scrum, update sprint backlog, working on tasks
+-----------------------------
+
+
 ## Planed Absences
 Florian: 
 	- KW 14: 7.4.2017

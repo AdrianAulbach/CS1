@@ -140,6 +140,9 @@ Project Journal
   - Date: 09.05.2017
   - Absent: Stephan, Florian
   Daily Scrum, update sprint backlog, working on tasks
+ 
+# Key decisions
+  - Work with single module project
 -----------------------------
 
 

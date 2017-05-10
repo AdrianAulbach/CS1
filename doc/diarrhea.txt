@@ -140,6 +140,9 @@ Project Journal
   - Date: 09.05.2017
   - Absent: Stephan, Florian
   Daily Scrum, update sprint backlog, working on tasks
+ 
+# Key decisions
+  - Work with single module project
 -----------------------------
 
 
@@ -153,9 +156,11 @@ Adrian:
   - KW 10: 3.4.2017
   
 Stephan:
- - KW 14: 7.4.2017
+ - Always
  
  Aleistar
- 
  - KW 13: Freitag
  - KW 14: Montag, Dienstag, Freitag
+ 
+ Samuel:
+ 	- KW 20: Tuesday

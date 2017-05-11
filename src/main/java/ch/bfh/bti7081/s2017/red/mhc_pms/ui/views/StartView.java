@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoyUserService;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
@@ -8,6 +10,10 @@ import com.vaadin.ui.*;
 
 public class StartView extends VerticalLayout implements View
 {
+
+
+	private UserService userService;
+
 	/**
 	 * 
 	 */
@@ -19,6 +25,9 @@ public class StartView extends VerticalLayout implements View
 
 	public StartView(Navigator aNavigator)
 	{
+		userService = new InMemoyUserService();
+
+
 		mNavigator = aNavigator;
 
 		setSizeFull();
@@ -58,8 +67,7 @@ public class StartView extends VerticalLayout implements View
 	}
 
 	private boolean checkLoginCredentials(String username, String password){
-		// TODO implement password check
-		return true;
+		return userService.checkPassword(username,password);
 	}
 
 	@Override

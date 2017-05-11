@@ -14,9 +14,9 @@ public class InMemoyUserService implements UserService {
     
     static {
         // initialize list with dummy data for testing
-        User user = new User();
-        user.setId(5l);
-        users.add(user);
+        User rolf = new User("Rolf", "password1", "rolf_237@hotmail.com", true);
+
+        users.add(rolf);
     }
     
     /**
@@ -26,5 +26,45 @@ public class InMemoyUserService implements UserService {
     public User findUserById(int userId) {
         throw new UnsupportedOperationException();
     }
-    
+
+    @Override
+    public List<User> findUserByFilter(String filter) {
+        return null;
+    }
+
+    @Override
+    public User getUserByName(String name) {
+
+        for(User u: users){
+            if(u.getUsername().equals(name)){
+                return u;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void createOrUpdateUser(User user) {
+
+    }
+
+    @Override
+    public void deleteUser(int userID) {
+
+    }
+
+    @Override
+    public boolean checkPassword(String userName, String password) {
+
+        User userTestPassword = getUserByName(userName);
+
+        //test if the password matches the specified user
+        // Todo implemnt hash
+        String enteredPasswordHash = password;
+        if(userTestPassword.getPasswordHash().equals(enteredPasswordHash)){
+            return true;
+        }
+        return false;
+    }
+
 }

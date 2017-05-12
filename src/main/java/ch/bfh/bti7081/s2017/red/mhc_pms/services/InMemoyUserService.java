@@ -33,7 +33,7 @@ public class InMemoyUserService implements UserService {
     }
 
     @Override
-    public User getUserByName(String name) {
+    public User getUserByUserName(String name) {
 
         for(User u: users){
             if(u.getUsername().equals(name)){
@@ -56,7 +56,7 @@ public class InMemoyUserService implements UserService {
     @Override
     public boolean checkPassword(String userName, String password) {
 
-        User userTestPassword = getUserByName(userName);
+        User userTestPassword = getUserByUserName(userName);
 
         //test if the password matches the specified user
         // Todo implemnt hash

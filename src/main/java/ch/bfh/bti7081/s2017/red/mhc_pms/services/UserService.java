@@ -31,7 +31,7 @@ public interface UserService {
      * @param name the user name
      * @return a boolean, true if user exists
      */
-    User getUserByName(String name);
+    User getUserByUserName(String name);
 
     /**
      * Creates or updates a user

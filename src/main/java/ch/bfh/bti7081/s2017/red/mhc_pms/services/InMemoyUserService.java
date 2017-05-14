@@ -15,8 +15,10 @@ public class InMemoyUserService implements UserService {
     static {
         // initialize list with dummy data for testing
         User rolf = new User("Rolf", "password1", "rolf_237@hotmail.com", true);
+        User admin = new User("admin", "1", "support.mhcpms@redware.com", true);
 
         users.add(rolf);
+        users.add(admin);
     }
     
     /**

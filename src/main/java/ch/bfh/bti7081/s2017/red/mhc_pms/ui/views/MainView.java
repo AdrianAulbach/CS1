@@ -17,6 +17,7 @@ import com.vaadin.ui.declarative.Design;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.PatientPanel;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.TimetablePanel;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.WelcomePanel;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.IconButton;
 
 @DesignRoot
 public class MainView extends VerticalLayout implements View
@@ -57,9 +58,9 @@ public class MainView extends VerticalLayout implements View
 		Design.read(this);
 
 		mNavigator = aNavigator;
-		menuContent.addComponent(new Button("Welcome", new ButtonNavigationListener("welcome")));
-		menuContent.addComponent(new Button("Patients", new ButtonNavigationListener("patients")));
-		menuContent.addComponent(new Button("Timetable", new ButtonNavigationListener("timetable")));
+		menuContent.addComponent(new IconButton("button_welcome.png", new ButtonNavigationListener("welcome")));
+		menuContent.addComponent(new IconButton("button_patients.png", new ButtonNavigationListener("patients")));
+		menuContent.addComponent(new IconButton("button_timetable.png", new ButtonNavigationListener("timetable")));
 		menuContent.addComponent(new Button("Dummy", new ButtonNavigationListener("dummy")));
 
 		// Allow going back to the start

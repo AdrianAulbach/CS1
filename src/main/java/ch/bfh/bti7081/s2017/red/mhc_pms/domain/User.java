@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
 
+import java.security.SecureRandom;
+
 /**
  * @author Rolf Zurbrügg
  */
@@ -7,17 +9,20 @@ public class User extends PersistentObject {
 
     private String username = null;
     private String passwordHash = null;
-    private String salt = null;
+    private byte[] salt = null;
     private String eMail = null;
     private String resetEmailToken = null;
     private boolean aktive = false;
+    private final SecureRandom random;
 
     public User(String username, String password, String eMail, boolean aktive) {
         //ToDo implement hash
         String passwordHash = password;
 
-        //ToDo implement salt
-        String salt ="1234";
+        //ToDo implement salt // https://stackoverflow.com/questions/2860943/how-can-i-hash-a-password-in-java#2861125
+        salt = new byte[16];
+        this.random = new SecureRandom();
+        random.nextBytes(salt);
 
         //ToDo implement reset email token
         String resetEmailToken = "abc";
@@ -28,6 +33,11 @@ public class User extends PersistentObject {
         this.eMail = eMail;
         this.resetEmailToken = resetEmailToken;
         this.aktive = aktive;
+    }
+    // creates empty user.
+    public User(){
+
+        random = null;
     }
 
     public String getUsername() {
@@ -46,13 +56,11 @@ public class User extends PersistentObject {
         this.passwordHash = passwordHash;
     }
 
-    public String getSalt() {
+    public byte[] getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
-        this.salt = salt;
-    }
+
 
     public String geteMail() {
         return eMail;

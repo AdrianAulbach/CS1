@@ -49,16 +49,17 @@ public class StartView extends VerticalLayout implements View
 
 		// Login Button
 		Button loginButton = new Button("Login");
-		loginButton.addClickListener(e ->{
+		loginButton.addClickListener(e  ->{
 		// Check Login credential
-		if(checkLoginCredentials(username.getValue(),passwordField.getValue()))
-		{
-			mNavigator.navigateTo(MainView.REF_URL);
-		}
-		else
-		{
-			new Notification("Error on Login", "The enterd password or username is WRONG", Notification.Type.HUMANIZED_MESSAGE, true).show(Page.getCurrent());
-		}
+			try {
+				if(checkLoginCredentials(username.getValue(),passwordField.getValue()))
+                {
+                    mNavigator.navigateTo(MainView.REF_URL);
+                }
+
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
 
 		});
 
@@ -66,8 +67,14 @@ public class StartView extends VerticalLayout implements View
 		setComponentAlignment(loginButton, Alignment.MIDDLE_CENTER);
 	}
 
-	private boolean checkLoginCredentials(String username, String password){
-		return userService.checkPassword(username,password);
+	private boolean checkLoginCredentials(String username, String password) throws Exception {
+		try {
+			return userService.checkPassword(username,password);
+		} catch (Exception e) {
+			Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);
+		} finally {
+			return false;
+		}
 	}
 
 	@Override

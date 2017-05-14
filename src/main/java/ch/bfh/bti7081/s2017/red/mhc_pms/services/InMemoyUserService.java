@@ -35,14 +35,20 @@ public class InMemoyUserService implements UserService {
     }
 
     @Override
-    public User getUserByUserName(String name) {
+    public User getUserByUserName(String name) throws Exception  {
 
-        for(User u: users){
-            if(u.getUsername().equals(name)){
-                return u;
+        try {
+            for(User u: users){
+                if(u.getUsername().equals(name)){
+                    return u;
+                }
             }
+            return null;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            return new User();
         }
-        return null;
     }
 
     @Override
@@ -56,7 +62,7 @@ public class InMemoyUserService implements UserService {
     }
 
     @Override
-    public boolean checkPassword(String userName, String password) {
+    public boolean checkPassword(String userName, String password) throws Exception {
 
         User userTestPassword = getUserByUserName(userName);
 

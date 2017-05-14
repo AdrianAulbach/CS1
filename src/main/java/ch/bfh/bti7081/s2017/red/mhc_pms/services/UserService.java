@@ -31,7 +31,7 @@ public interface UserService {
      * @param name the user name
      * @return a boolean, true if user exists
      */
-    User getUserByUserName(String name);
+    User getUserByUserName(String name) throws Exception;
 
     /**
      * Creates or updates a user
@@ -51,7 +51,7 @@ public interface UserService {
      * @param password the users password
      * @return
      */
-    public boolean checkPassword(String userName, String password);
+    public boolean checkPassword(String userName, String password) throws Exception;
 
 
 

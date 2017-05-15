@@ -14,4 +14,6 @@ public interface PasswordService {
      * @return returns the (password+slat) hash.
      */
     byte[] returnPasswordHashSalted(String password, byte[] salt);
+
+    byte[] createSalt();
 }

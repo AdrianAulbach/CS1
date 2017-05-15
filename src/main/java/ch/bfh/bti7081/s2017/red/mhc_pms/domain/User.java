@@ -1,11 +1,5 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
 
-import javax.crypto.SecretKeyFactory;
-import javax.crypto.spec.PBEKeySpec;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.spec.InvalidKeySpecException;
-import java.security.spec.KeySpec;
 
 /**
  * @author Rolf Zurbrügg
@@ -19,37 +13,8 @@ public class User extends PersistentObject {
     private String resetEmailToken = null;
     private boolean aktive = false;
 
-    // Needed for Salt generation.
-    private final SecureRandom random;
-    private static final int SALT_LENGTH = 32;
-    private PasswordService passwordService;
 
-
-    public User(String username, String password, String eMail, boolean aktive) throws NoSuchAlgorithmException, InvalidKeySpecException {
-
-
-        // create hasch for user  https://stackoverflow.com/questions/2860943/how-can-i-hash-a-password-in-java#2861125
-        salt = new byte[SALT_LENGTH];
-        this.random = new SecureRandom();
-        random.nextBytes(salt);
-
-        // crate password hash for user using password and hash.
-        this.passwordHash = passwordService.returnPasswordHashSalted(password,salt).toString();
-
-
-
-        //ToDo implement reset email token
-        String resetEmailToken = "abc";
-
-        this.username = username;
-        this.eMail = eMail;
-        this.resetEmailToken = resetEmailToken;
-        this.aktive = aktive;
-    }
-    // creates empty user.
-    public User(){
-
-        random = null;
+    public User() {
     }
 
     public String getUsername() {
@@ -72,9 +37,11 @@ public class User extends PersistentObject {
         return salt;
     }
 
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
 
-
-    public String geteMail() {
+    public String getEmail() {
         return eMail;
     }
 
@@ -94,7 +61,7 @@ public class User extends PersistentObject {
         return aktive;
     }
 
-    public void setAktive(boolean aktive) {
-        this.aktive = aktive;
+    public void setActive(boolean active) {
+        this.aktive = active;
     }
 }

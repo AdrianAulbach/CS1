@@ -1,7 +1,10 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 
+import java.security.NoSuchAlgorithmException;
+import java.security.spec.InvalidKeySpecException;
 import java.util.List;
 
 /**
@@ -10,6 +13,7 @@ import java.util.List;
  * @author Rolf Zurbrügg
  */
 public interface UserService {
+
 
     /**
      * Finds a user with the given id.
@@ -31,7 +35,7 @@ public interface UserService {
      * @param name the user name
      * @return a boolean, true if user exists
      */
-    User getUserByUserName(String name) throws Exception;
+    User getUserByUserName(String name);
 
     /**
      * Creates or updates a user
@@ -51,8 +55,11 @@ public interface UserService {
      * @param password the users password
      * @return
      */
-    public boolean checkPassword(String userName, String password) throws Exception;
-
+    public boolean checkPassword(String userName, String password);
 
 
 }
+
+
+
+

@@ -1,7 +1,9 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Sha1PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
+import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -15,15 +17,23 @@ import java.util.List;
 public class InMemoyUserService implements UserService {
 
     private final static List<User> users = new ArrayList<>();
-    private PasswordService passwordService;
+    private static UserManagementPresenter userManagementPresenter = new UserManagementPresenter();
+    private static PasswordService passwordService = new Sha1PasswordService();
+
     
     static {
         // initialize list with dummy data for testing
         User rolf = null;
         User admin = null;
         try {
-            rolf = new User("Rolf", "password1", "rolf_237@hotmail.com", true);
-            admin = new User("admin", "1", "support.mhcpms@redware.com", true);
+            rolf = new User();
+            rolf.setPasswordHash("e9mLE/mItY03LmCBw7NUtkVZmTXHURvXhMj6uYFJWbE="); // is password1 hashed with salt and base64
+
+                    userManagementPresenter.createNewUser("Rolf", "password1", "rolf_237@hotmail.com", true);
+            admin = userManagementPresenter.createNewUser("admin", "1", "support.mhcpms@redware.com", true);
+            System.out.println("Rolfs Sha1PasswordService hash: "+rolf.getPasswordHash());
+
+
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         } catch (InvalidKeySpecException e) {
@@ -48,7 +58,7 @@ public class InMemoyUserService implements UserService {
     }
 
     @Override
-    public User getUserByUserName(String name) throws Exception  {
+    public User getUserByUserName(String name)   {
 
         try {
             for(User u: users){
@@ -75,14 +85,13 @@ public class InMemoyUserService implements UserService {
     }
 
     @Override
-    public boolean checkPassword(String userName, String password) throws Exception {
+    public boolean checkPassword(String userName, String password) {
 
         User userTestPassword = getUserByUserName(userName);
         byte[] userSalt = userTestPassword.getSalt();
         String enteredPasswordHash = passwordService.returnPasswordHashSalted(password,userSalt).toString();
 
         //test if the password matches the specified user
-        // Todo implemnt hash
 
         if(userTestPassword.getPasswordHash().equals(enteredPasswordHash)){
             return true;

@@ -42,8 +42,8 @@ public class StartView extends VerticalLayout implements View
 		addComponent(username);
 		setComponentAlignment(username, Alignment.MIDDLE_CENTER);
 
-		// Password field
-		PasswordField passwordField = new PasswordField("Password");
+		// Sha1PasswordService field
+		PasswordField passwordField = new PasswordField("Sha1PasswordService");
 		addComponent(passwordField);
 		setComponentAlignment(passwordField, Alignment.MIDDLE_CENTER);
 
@@ -54,7 +54,7 @@ public class StartView extends VerticalLayout implements View
 			try {
 				if(checkLoginCredentials(username.getValue(),passwordField.getValue()))
                 {
-                    mNavigator.navigateTo(MainView.REF_URL);
+					mNavigator.navigateTo(MainView.REF_URL);
                 }
 
 			} catch (Exception e1) {
@@ -67,11 +67,11 @@ public class StartView extends VerticalLayout implements View
 		setComponentAlignment(loginButton, Alignment.MIDDLE_CENTER);
 	}
 
-	private boolean checkLoginCredentials(String username, String password) throws Exception {
+	private boolean checkLoginCredentials(String username, String password) {
 		try {
 			return userService.checkPassword(username,password);
 		} catch (Exception e) {
-			Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);
+			Notification.show("Wrong Username or Sha1PasswordService", Notification.Type.ERROR_MESSAGE);
 		} finally {
 			return false;
 		}

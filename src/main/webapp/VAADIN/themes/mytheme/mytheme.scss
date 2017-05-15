@@ -33,6 +33,11 @@
 
 @mixin mytheme {
   @include valo;
+  
+  // TODO why doesn't it work???
+	.iconbutton {
+	    cursor: pointer;
+	}
 
   // Insert your own theme rules here
 }

@@ -4,6 +4,7 @@ import java.io.File;
 
 import javax.servlet.annotation.WebServlet;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoyUserService;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
@@ -51,7 +52,7 @@ public class MyUI extends UI
         navigator = new Navigator(this, this);
 
         // Create and register the views
-        navigator.addView("", new StartView(navigator));
+        navigator.addView("", new StartView(navigator, new InMemoyUserService()));
         navigator.addView(MainView.REF_URL, new MainView(navigator));
         log.debug("All views established.");
 	}

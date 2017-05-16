@@ -5,7 +5,7 @@
  */
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.NewUserManagementPanel;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.*;
 import org.apache.log4j.Logger;
 
 import com.vaadin.annotations.DesignRoot;
@@ -20,9 +20,6 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.PatientPanel;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.TimetablePanel;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.WelcomePanel;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.IconButton;
 
 /**
@@ -145,7 +142,10 @@ public class MainView extends VerticalLayout implements View
 					getContentPanel().setContent(new TimetablePanel());
 					break;
 				case "users":
-					getContentPanel().setContent(new NewUserManagementPanel());
+					getContentPanel().setContent(new UserManagementPanel(mNavigator));
+					break;
+				case "newUsers":
+					getContentPanel().setContent(new NewUserCreatePanel(mNavigator));
 					break;
 				case "dummy":
 					getContentPanel().setContent(new Label("Hello Nävigeischön!"));
@@ -248,6 +248,8 @@ public class MainView extends VerticalLayout implements View
 			hlNavigationPanel.addComponent(new IconButton("button_home.png", new ButtonNavigationListener("welcome")));
 			hlNavigationPanel.addComponent(new IconButton("button_patients.png", new ButtonNavigationListener("patients")));
 			hlNavigationPanel.addComponent(new IconButton("button_timetable.png", new ButtonNavigationListener("timetable")));
+			hlNavigationPanel.addComponent(new IconButton("button_timetable.png", new ButtonNavigationListener("users")));
+			hlNavigationPanel.addComponent(new IconButton("button_timetable.png", new ButtonNavigationListener("newUsers")));
 			
 		}
 		

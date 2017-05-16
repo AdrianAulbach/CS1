@@ -10,12 +10,16 @@ import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.server.Page;
 import com.vaadin.ui.*;
+import org.apache.log4j.Logger;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 
 public class StartView extends VerticalLayout implements View
 {
+
+	/** The Constant log. */
+	static final Logger log = Logger.getRootLogger();
 
 
 	private UserService userService;
@@ -29,9 +33,10 @@ public class StartView extends VerticalLayout implements View
 	public static final String REF_URL = "";
 	Navigator mNavigator;
 
-	public StartView(Navigator aNavigator)
+	public StartView(Navigator aNavigator, UserService userService)
 	{
 		mNavigator = aNavigator;
+		this.userService = userService;
 
 		setSizeFull();
 
@@ -54,14 +59,11 @@ public class StartView extends VerticalLayout implements View
 		Button loginButton = new Button("Login");
 		loginButton.addClickListener(e  ->{
 		// Check Login credential
-			try {
-				if(checkLoginCredentials(username.getValue(),passwordField.getValue()))
-                {
-					mNavigator.navigateTo(MainView.REF_URL);
-                }
+			log.debug("clicked login");
+			if(checkLoginCredentials(username.getValue(),passwordField.getValue()))
+			{
 
-			} catch (Exception e1) {
-				e1.printStackTrace();
+				mNavigator.navigateTo(MainView.REF_URL);
 			}
 
 		});
@@ -72,10 +74,11 @@ public class StartView extends VerticalLayout implements View
 
 	private boolean checkLoginCredentials(String username, String password) {
 		try {
+			log.debug("checking password");
 			return userService.checkPassword(username,password);
 		} catch (Exception e) {
-			Notification.show("Wrong Username or Sha1PasswordService", Notification.Type.ERROR_MESSAGE);
-		} finally {
+			log.error(e);
+			Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);
 			return false;
 		}
 	}

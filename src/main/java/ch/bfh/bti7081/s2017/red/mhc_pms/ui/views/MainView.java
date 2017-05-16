@@ -9,12 +9,12 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.NewUserManagementPanel;
 import org.apache.log4j.Logger;
 
 import com.vaadin.annotations.DesignRoot;
-import com.vaadin.event.MouseEvents.ClickEvent;
-import com.vaadin.event.MouseEvents.ClickListener;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Button.ClickEvent;
+import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
@@ -72,12 +72,9 @@ public class MainView extends VerticalLayout implements View
 		{
 			this.mMenuItem = aMenuItem;
 		}
-
-		/* (non-Javadoc)
-		 * @see com.vaadin.event.MouseEvents.ClickListener#click(com.vaadin.event.MouseEvents.ClickEvent)
-		 */
+		
 		@Override
-		public void click(ClickEvent event)
+		public void buttonClick(ClickEvent event)
 		{
 			log.debug("Click event received. Menu item: " + mMenuItem);
 
@@ -248,7 +245,7 @@ public class MainView extends VerticalLayout implements View
 		{
 			hlNavigationPanel = new HorizontalLayout();
 			hlNavigationPanel.setMargin(true);
-			hlNavigationPanel.addComponent(new IconButton("button_welcome.png", new ButtonNavigationListener("welcome")));
+			hlNavigationPanel.addComponent(new IconButton("button_home.png", new ButtonNavigationListener("welcome")));
 			hlNavigationPanel.addComponent(new IconButton("button_patients.png", new ButtonNavigationListener("patients")));
 			hlNavigationPanel.addComponent(new IconButton("button_timetable.png", new ButtonNavigationListener("timetable")));
 			

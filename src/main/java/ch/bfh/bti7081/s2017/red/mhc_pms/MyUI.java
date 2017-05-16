@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms;
 
+import java.io.File;
+
 import javax.servlet.annotation.WebServlet;
 
 import org.apache.log4j.Logger;
@@ -39,7 +41,7 @@ public class MyUI extends UI
 	protected void init(VaadinRequest vaadinRequest)
 	{
 		// Init log4j properties
-		PropertyConfigurator.configure(FileTools.getApplicationPath()+"\\log4j.properties");
+		PropertyConfigurator.configure(FileTools.getApplicationPath()+File.separator+"log4j.properties");
 		
 		log.info("Session started for client "+vaadinRequest.getRemoteHost());
 		
@@ -58,7 +60,7 @@ public class MyUI extends UI
 	protected void oldInit()
 	{
 		// Init log4j properties
-		PropertyConfigurator.configure(FileTools.getApplicationPath()+"\\log4j.properties");
+		PropertyConfigurator.configure(FileTools.getApplicationPath());
 		
 		Logger.getRootLogger().debug("Hello Debugger");
 		

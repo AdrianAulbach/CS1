@@ -4,10 +4,9 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoyUserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import com.vaadin.ui.Button;
-import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.ui.*;
+import org.apache.log4j.Logger;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -15,29 +14,32 @@ import java.security.spec.InvalidKeySpecException;
 /**
  * Created by Rolf on 15/05/17.
  */
-public class NewUserManagementPanel extends VerticalLayout {
+public class NewUserCreatePanel extends VerticalLayout {
 
     private TextField userNameField;
-    private TextField passwordField;
+    private PasswordField passwordField;
     private CheckBox active; // True if a user is active, false if a user is deactivated
     private UserManagementPresenter presenter;
     private UserService userService = new InMemoyUserService();
+    private Navigator navigator;
 
-    public NewUserManagementPanel(){
+
+    /** The Constant log. */
+    static final Logger log = Logger.getRootLogger();
+
+    public NewUserCreatePanel(Navigator navigator){
+
         presenter = new UserManagementPresenter(this);
+        this.navigator = navigator;
 
         this.addComponent(userNameField = new TextField("User Name"));
-        this.addComponent(passwordField = new TextField("Password"));
+        this.addComponent(passwordField = new PasswordField("Password"));
         this.addComponent(active = new CheckBox("Aktive"));
         this.addComponent(new Button("Create User", e -> {
-            try {
                 User newUsesr = presenter.createNewUser(getUserName(),getPassword(),stateUser());
                 userService.addUser(newUsesr);
-            } catch (NoSuchAlgorithmException e1) {
-                e1.printStackTrace();
-            } catch (InvalidKeySpecException e1) {
-                e1.printStackTrace();
-            }
+                Notification.show("User created");
+                log.debug("User created");
 
         }));
     }

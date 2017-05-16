@@ -5,6 +5,7 @@
  */
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.NewUserManagementPanel;
 import org.apache.log4j.Logger;
 
 import com.vaadin.annotations.DesignRoot;
@@ -18,7 +19,6 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.ui.declarative.Design;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.PatientPanel;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.TimetablePanel;
@@ -146,6 +146,9 @@ public class MainView extends VerticalLayout implements View
 					break;
 				case "timetable":
 					getContentPanel().setContent(new TimetablePanel());
+					break;
+				case "users":
+					getContentPanel().setContent(new NewUserManagementPanel());
 					break;
 				case "dummy":
 					getContentPanel().setContent(new Label("Hello Nävigeischön!"));

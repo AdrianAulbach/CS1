@@ -57,6 +57,8 @@ public interface UserService {
      */
     public boolean checkPassword(String userName, String password);
 
+    void addUser(User newUser);
+
 
 }
 

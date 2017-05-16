@@ -4,7 +4,8 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Sha1PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.NewUserCreatePanel;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.NewUserCreateView;
+
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class InMemoyUserService implements UserService {
             }
             return null;
         } catch (Exception e) {
-            e.printStackTrace();
+        	log.error("Exception while getting user name", e);
             return null;
         }
     }
@@ -66,11 +67,17 @@ public class InMemoyUserService implements UserService {
     @Override
     public boolean checkPassword(String userName, String password) {
 
-        log.debug("checking password for:" + userName);
+        log.debug("checking password for: " + userName);
 
         User userTestPassword = getUserByUserName(userName);
+        if(userTestPassword==null)
+        {
+        	log.info("User '"+userName+"' was not found.");
+        	return false;
+        }
+        	
         log.debug("got user:" +userTestPassword.getUsername());
-
+        
         byte[] userSalt = userTestPassword.getSalt();
         log.debug("user salt "+ userSalt);
         byte[] passwordHash = passwordService.returnPasswordHashSalted(password,userSalt);

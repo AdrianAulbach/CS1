@@ -3,8 +3,9 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.presenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Sha1PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.NewUserCreatePanel;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.UserManagementPanel;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.NewUserCreateView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
+
 import org.apache.log4j.Logger;
 
 import java.security.NoSuchAlgorithmException;
@@ -17,15 +18,15 @@ public class UserManagementPresenter {
     /** The Constant log. */
     static final Logger log = Logger.getRootLogger();
 
-    private NewUserCreatePanel view = null;
-    private UserManagementPanel view2 = null;
+    private NewUserCreateView view = null;
+    private UserManagementView view2 = null;
     private PasswordService passwordService = new Sha1PasswordService();
 
-    public UserManagementPresenter(NewUserCreatePanel view){
+    public UserManagementPresenter(NewUserCreateView view){
         this.view = view;
     }
 
-    public UserManagementPresenter(UserManagementPanel view2){
+    public UserManagementPresenter(UserManagementView view2){
         this.view2 =view2;
     }
 

@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
@@ -14,7 +14,7 @@ import java.security.spec.InvalidKeySpecException;
 /**
  * Created by Rolf on 15/05/17.
  */
-public class NewUserCreatePanel extends VerticalLayout {
+public class NewUserCreateView extends VerticalLayout {
 
     private TextField userNameField;
     private PasswordField passwordField;
@@ -27,7 +27,7 @@ public class NewUserCreatePanel extends VerticalLayout {
     /** The Constant log. */
     static final Logger log = Logger.getRootLogger();
 
-    public NewUserCreatePanel(Navigator navigator){
+    public NewUserCreateView(Navigator navigator){
 
         presenter = new UserManagementPresenter(this);
         this.navigator = navigator;

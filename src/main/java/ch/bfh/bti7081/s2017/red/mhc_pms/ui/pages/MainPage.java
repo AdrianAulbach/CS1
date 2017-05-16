@@ -3,9 +3,8 @@
  *
  * @author Aleistar Markóczy
  */
-package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.panels.*;
 import org.apache.log4j.Logger;
 
 import com.vaadin.annotations.DesignRoot;
@@ -20,13 +19,20 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.IconButton;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.NavigationIconButton;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.NewUserCreateView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PatientView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.TimetableView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.WelcomeView;
 
 /**
  * The Class MainView.
  */
 @DesignRoot
-public class MainView extends VerticalLayout implements View
+public class MainPage extends VerticalLayout implements View
 {
 	
 	/** The Constant serialVersionUID. */
@@ -34,10 +40,6 @@ public class MainView extends VerticalLayout implements View
 	
 	/** The Constant log. */
 	static final Logger log = Logger.getRootLogger();
-
-	/** The Constant REF_URL. */
-	// TODO outsource to constants file?
-	public static final String REF_URL = "main";
 
 	/**
 	 * The listener interface for receiving buttonNavigation events.
@@ -76,7 +78,7 @@ public class MainView extends VerticalLayout implements View
 			log.debug("Click event received. Menu item: " + mMenuItem);
 
 			// Navigate to a specific state
-			mNavigator.navigateTo(MainView.REF_URL + "/" + mMenuItem);
+			mNavigator.navigateTo(Strings.REF_URL_MAIN_PAGE + "/" + mMenuItem);
 		}
 	}
 
@@ -106,7 +108,7 @@ public class MainView extends VerticalLayout implements View
 	 *
 	 * @param aNavigator the a navigator
 	 */
-	public MainView(Navigator aNavigator)
+	public MainPage(Navigator aNavigator)
 	{
 		mNavigator = aNavigator;
 		initUI();
@@ -132,20 +134,20 @@ public class MainView extends VerticalLayout implements View
 			switch (event.getParameters())
 			{
 				case "":
-				case "welcome":
-					getContentPanel().setContent(new WelcomePanel());
+				case "home":
+					getContentPanel().setContent(new WelcomeView());
 					break;
 				case "patients":
-					getContentPanel().setContent(new PatientPanel());
+					getContentPanel().setContent(new PatientView());
 					break;
 				case "timetable":
-					getContentPanel().setContent(new TimetablePanel());
+					getContentPanel().setContent(new TimetableView());
 					break;
 				case "users":
-					getContentPanel().setContent(new UserManagementPanel(mNavigator));
+					getContentPanel().setContent(new UserManagementView(mNavigator));
 					break;
-				case "newUsers":
-					getContentPanel().setContent(new NewUserCreatePanel(mNavigator));
+				case "createuser":
+					getContentPanel().setContent(new NewUserCreateView(mNavigator));
 					break;
 				case "dummy":
 					getContentPanel().setContent(new Label("Hello Nävigeischön!"));
@@ -245,11 +247,11 @@ public class MainView extends VerticalLayout implements View
 		{
 			hlNavigationPanel = new HorizontalLayout();
 			hlNavigationPanel.setMargin(true);
-			hlNavigationPanel.addComponent(new IconButton("button_home.png", new ButtonNavigationListener("welcome")));
-			hlNavigationPanel.addComponent(new IconButton("button_patients.png", new ButtonNavigationListener("patients")));
-			hlNavigationPanel.addComponent(new IconButton("button_timetable.png", new ButtonNavigationListener("timetable")));
-			hlNavigationPanel.addComponent(new IconButton("button_timetable.png", new ButtonNavigationListener("users")));
-			hlNavigationPanel.addComponent(new IconButton("button_timetable.png", new ButtonNavigationListener("newUsers")));
+			hlNavigationPanel.addComponent(new NavigationIconButton("home", "button_home.png", "Home", mNavigator));
+			hlNavigationPanel.addComponent(new NavigationIconButton("patients", "button_patients.png", "Manage Patients", mNavigator));
+			hlNavigationPanel.addComponent(new NavigationIconButton("timetable", "button_timetable.png", "Timetable", mNavigator));
+			hlNavigationPanel.addComponent(new NavigationIconButton("users", "button_manageuser.png", "Manage Users", mNavigator));
+			hlNavigationPanel.addComponent(new NavigationIconButton("createuser", "button_createuser.png", "Create new User", mNavigator));
 			
 		}
 		

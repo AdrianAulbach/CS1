@@ -56,8 +56,7 @@ public class StartPage extends VerticalLayout implements View
 		// Sha1PasswordService field
 		PasswordField passwordField = new PasswordField("Sha1PasswordService");
 		layout.addComponent(passwordField);
-		addComponent(layout);
-		setComponentAlignment(layout, Alignment.MIDDLE_CENTER);
+		
 
 		// Login Button
 		Button loginButton = new Button("Login");
@@ -72,8 +71,10 @@ public class StartPage extends VerticalLayout implements View
 
 		});
 
-		addComponent(loginButton);
-		setComponentAlignment(loginButton, Alignment.MIDDLE_CENTER);
+		layout.addComponent(new Label("")); // Hacky but works ;-)
+		layout.addComponent(loginButton);
+		
+		addComponent(layout);
 	}
 
 	private boolean checkLoginCredentials(String username, String password) {

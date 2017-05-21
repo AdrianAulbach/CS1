@@ -25,7 +25,7 @@ public class InMemoyUserService implements UserService {
     private static PasswordService passwordService = new Sha1PasswordService();
     
     /**
-     * {@inheritDoc} 
+     * {@inheritDoc}
      */
     @Override
     public User findUserById(int userId) {
@@ -34,7 +34,21 @@ public class InMemoyUserService implements UserService {
 
     @Override
     public List<User> findUserByFilter(String filter) {
-        return null;
+        if(filter.contains("*")) {
+            log.debug("List containing all users returned");
+            return users;
+        }
+        //ToDo implement proper filter handeling, allowing for wild cards
+
+        log.debug("searching for users");
+        List<User> userList = new ArrayList<>();
+        for(User u: users){
+            if(u.getUsername().toLowerCase().contains(filter.toLowerCase())){
+                userList.add(u);
+                log.debug("Added user: "+ u.getUsername() +" to list");
+            }
+        }
+        return userList;
     }
 
     @Override

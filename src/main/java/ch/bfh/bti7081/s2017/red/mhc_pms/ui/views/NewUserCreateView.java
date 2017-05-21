@@ -47,7 +47,7 @@ public class NewUserCreateView extends VerticalLayout {
     public String getUserName(){
         return userNameField.getValue();
     }
-     public String getPassword(){
+    public String getPassword(){
          return passwordField.getValue();
      }
     public boolean stateUser(){

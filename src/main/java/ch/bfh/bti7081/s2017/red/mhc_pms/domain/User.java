@@ -1,9 +1,14 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 
 /**
  * @author Rolf Zurbrügg
  */
+@Entity
+@Table(name = "users")
 public class User extends PersistentObject {
 
     private String username = null;

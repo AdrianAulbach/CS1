@@ -41,7 +41,7 @@ public interface UserService {
      * Creates or updates a user
      * @param user a user object containing the delta
      */
-    void createOrUpdateUser(User user);
+    void saveOrUpdateUser(User user);
 
     /**
      * deletes the user specified by the userId

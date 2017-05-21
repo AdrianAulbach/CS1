@@ -3,6 +3,8 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.presenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Sha1PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.NewUserCreateView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
 
@@ -21,6 +23,7 @@ public class UserManagementPresenter {
     private NewUserCreateView view = null;
     private UserManagementView view2 = null;
     private PasswordService passwordService = new Sha1PasswordService();
+    private UserService userService = new UserServiceImpl();
 
     public UserManagementPresenter(NewUserCreateView view){
         this.view = view;
@@ -49,6 +52,8 @@ public class UserManagementPresenter {
             //ToDo implement reset email token
             String resetEmailToken = "abc";
 
+            userService.saveOrUpdateUser(newUser);
+            
             return newUser;
         }catch (Exception e){
             throw new RuntimeException(e);

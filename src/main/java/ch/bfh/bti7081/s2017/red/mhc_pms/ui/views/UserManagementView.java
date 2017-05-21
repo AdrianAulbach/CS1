@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.*;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import com.vaadin.ui.VerticalLayout;
 import org.apache.log4j.Logger;
 
@@ -20,7 +21,7 @@ public class UserManagementView extends VerticalLayout {
     static final Logger log = Logger.getRootLogger();
 
 
-    private UserService userService = new InMemoyUserService();
+    private UserService userService = new UserServiceImpl();
     private UserManagementPresenter presenter;
     private Navigator navigator;
 
@@ -31,7 +32,7 @@ public class UserManagementView extends VerticalLayout {
         Grid<User> userGrid = new Grid("Users");
         Button createNewUser = new Button("Create New User");
         createNewUser.addClickListener(e -> {
-            //ToDo chang panel to NewUserCreatePanel
+            presenter.createNewUser("test", "test", true);
         });
 
         TextField username = new TextField("Username");

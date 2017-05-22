@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.util;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import java.util.Properties;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;

@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 /**
  * Base class for all persistent objects.
@@ -11,6 +13,7 @@ import javax.persistence.Id;
  * @author Samuel Egger
  */
 @Entity
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 public abstract class PersistentObject  implements Serializable {
 
     @Id

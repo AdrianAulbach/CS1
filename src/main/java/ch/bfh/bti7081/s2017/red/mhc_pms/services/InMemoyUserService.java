@@ -1,8 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.NewUserCreateView;
 
 import org.apache.log4j.Logger;
 
@@ -26,7 +24,7 @@ public class InMemoyUserService implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public User findUserById(int userId) {
+    public User findUserById(long userId) {
         throw new UnsupportedOperationException();
     }
 
@@ -72,7 +70,7 @@ public class InMemoyUserService implements UserService {
     }
 
     @Override
-    public void deleteUser(int userID) {
+    public void deleteUser(long userID) {
 
     }
 
@@ -106,7 +104,7 @@ public class InMemoyUserService implements UserService {
         return false;
     }
 
-    @Override
+    // @Override
     public void addUser(User newUser) {
         users.add(newUser);
         log.debug("User added in memory userS: U name: " + newUser.getUsername() + "\npw:" + newUser.getPasswordHash());

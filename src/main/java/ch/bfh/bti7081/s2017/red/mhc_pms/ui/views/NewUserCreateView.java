@@ -37,7 +37,7 @@ public class NewUserCreateView extends VerticalLayout {
         this.addComponent(active = new CheckBox("Aktive"));
         this.addComponent(new Button("Create User", e -> {
                 User newUsesr = presenter.createNewUser(getUserName(),getPassword(),stateUser());
-                userService.addUser(newUsesr);
+                // userService.addUser(newUsesr); TODO
                 Notification.show("User created");
                 log.debug("User created");
 

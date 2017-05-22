@@ -20,7 +20,7 @@ public interface UserService {
      * @param userId the user id
      * @return a user object or null
      */
-    User findUserById(int userId);
+    User findUserById(long userId);
 
     /**
      * Finds users which match the input filter
@@ -46,7 +46,7 @@ public interface UserService {
      * deletes the user specified by the userId
      * @param userID the user id
      */
-    void deleteUser(int userID);
+    void deleteUser(long userID);
 
     /**
      * checks if username and password match, returns true if there is a match
@@ -55,10 +55,6 @@ public interface UserService {
      * @return
      */
     public boolean checkPassword(String userName, String password);
-
-    void addUser(User newUser);
-
-
 }
 
 

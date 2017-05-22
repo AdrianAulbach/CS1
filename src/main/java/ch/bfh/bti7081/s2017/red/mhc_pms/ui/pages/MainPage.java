@@ -5,6 +5,7 @@
  */
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingView;
 import org.apache.log4j.Logger;
 
 import com.vaadin.annotations.DesignRoot;
@@ -149,6 +150,9 @@ public class MainPage extends VerticalLayout implements View
 				case "createuser":
 					getContentPanel().setContent(new NewUserCreateView(mNavigator));
 					break;
+				case "bills":
+					getContentPanel().setContent(new BillingView(mNavigator));
+					break;
 				case "dummy":
 					getContentPanel().setContent(new Label("Hello Nävigeischön!"));
 					break;
@@ -252,7 +256,7 @@ public class MainPage extends VerticalLayout implements View
 			hlNavigationPanel.addComponent(new NavigationIconButton("timetable", "button_timetable.png", "Timetable", mNavigator));
 			hlNavigationPanel.addComponent(new NavigationIconButton("users", "button_manageuser.png", "Manage Users", mNavigator));
 			hlNavigationPanel.addComponent(new NavigationIconButton("createuser", "button_createuser.png", "Create new User", mNavigator));
-			
+			hlNavigationPanel.addComponent(new NavigationIconButton("bills", "button_patients.png", "See bills", mNavigator));
 		}
 		
 		return hlNavigationPanel;

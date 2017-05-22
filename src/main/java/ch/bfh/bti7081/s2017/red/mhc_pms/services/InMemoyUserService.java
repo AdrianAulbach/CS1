@@ -1,7 +1,5 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Sha1PasswordService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.NewUserCreateView;

@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
+package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;

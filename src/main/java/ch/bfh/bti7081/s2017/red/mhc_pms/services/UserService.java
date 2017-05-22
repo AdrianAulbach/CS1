@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 
 import java.security.NoSuchAlgorithmException;

@@ -21,9 +21,8 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.IconButton;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.NavigationIconButton;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.NewUserCreateView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PatientView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.TimetableView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
@@ -148,7 +147,7 @@ public class MainPage extends VerticalLayout implements View
 					getContentPanel().setContent(new UserManagementView(mNavigator));
 					break;
 				case "createuser":
-					getContentPanel().setContent(new NewUserCreateView(mNavigator));
+					getContentPanel().setContent(new UserDetailView(mNavigator));
 					break;
 				case "bills":
 					getContentPanel().setContent(new BillingView(mNavigator));

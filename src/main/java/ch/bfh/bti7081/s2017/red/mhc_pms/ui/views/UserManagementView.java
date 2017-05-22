@@ -1,10 +1,9 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoyUserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.*;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserDetailPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import com.vaadin.ui.VerticalLayout;
 import org.apache.log4j.Logger;
@@ -22,11 +21,11 @@ public class UserManagementView extends VerticalLayout {
 
 
     private UserService userService = new UserServiceImpl();
-    private UserManagementPresenter presenter;
+    private UserDetailPresenter presenter;
     private Navigator navigator;
 
     public UserManagementView(Navigator navigator){
-        presenter = new UserManagementPresenter(this);
+        presenter = new UserDetailPresenter(this);
         this.navigator = navigator;
 
         Grid<User> userGrid = new Grid("Users");

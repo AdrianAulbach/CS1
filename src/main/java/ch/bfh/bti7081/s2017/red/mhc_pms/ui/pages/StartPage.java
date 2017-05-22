@@ -1,21 +1,13 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoyUserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
-import com.vaadin.server.Page;
 import com.vaadin.ui.*;
 import org.apache.log4j.Logger;
-
-import java.security.NoSuchAlgorithmException;
-import java.security.spec.InvalidKeySpecException;
 
 public class StartPage extends VerticalLayout implements View
 {

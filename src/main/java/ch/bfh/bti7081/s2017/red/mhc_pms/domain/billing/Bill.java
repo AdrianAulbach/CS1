@@ -229,7 +229,7 @@ public class Bill {
         }
 
         @Override
-        private String toString() {
+        public String toString() {
             return "russian mafia engaged";
         }
     }

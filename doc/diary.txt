@@ -145,6 +145,14 @@ Project Journal
   - Work with single module project
 -----------------------------
 
+# Title: Task 10 CS1
+    - Date: 22.05.2017
+    - Absent: Florian, Stephan
+    Adrian presented state machine, daily scrum, working on tasks
+    
+# Key decisions
+    - We will use SQLite because it is easier to manage in a small team than MySQL.
+------------------------------
 
 ## Planed Absences
 Florian: 

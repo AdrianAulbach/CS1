@@ -13,19 +13,21 @@ import org.apache.log4j.Logger;
  * Created by Rolf on 15/05/17.
  */
 public class UserDetailPresenter extends PresenterBase<UserDetailView> {
-    /** The Constant log. */
+    /**
+     * The Constant log.
+     */
     static final Logger log = Logger.getRootLogger();
 
     private UserDetailView view = null;
     private PasswordService passwordService = new Sha1PasswordService();
     private UserService userService = new UserServiceImpl();
 
-    public UserDetailPresenter(UserDetailView view){
+    public UserDetailPresenter(UserDetailView view) {
         super(view);
     }
 
 
-    public User createNewUser(String userName, String password, boolean active) {
+    public createNewUser(String userName, String password, boolean active) {
 
         try {
             User newUser = new User();
@@ -35,7 +37,7 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
 
             byte[] salt = passwordService.createSalt();
             newUser.setSalt(salt);
-            log.debug("UserMan...Presenter set Salt: "+ salt);
+            log.debug("UserMan...Presenter set Salt: " + salt);
             // crate password hash for user using password and hash.
             byte[] passwordHash = passwordService.returnPasswordHashSalted(view.getPassword(), salt);
             String base64hash = java.util.Base64.getEncoder().encodeToString(passwordHash);
@@ -45,10 +47,26 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             String resetEmailToken = "abc";
 
             userService.saveOrUpdateUser(newUser);
-            
-            return newUser;
-        }catch (Exception e){
+
+            persistNewUser(newUser);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void persistNewUser(User newUser){
+        //ToDo safe new user into database
+    }
+
+    public void changeUserName(User user, String newName){
+        //ToDo persist new user name on database
+    }
+
+    public void changeEmail(User user, String newEmail){
+        //ToDo persist new e mail
+    }
+
+    public void changeActive(User user, boolean active){
+        //ToDo persist new user state
     }
 }

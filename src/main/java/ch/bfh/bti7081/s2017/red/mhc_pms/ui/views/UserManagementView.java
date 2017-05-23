@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
+
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
+import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.*;
@@ -16,22 +18,24 @@ import java.util.List;
  */
 public class UserManagementView extends VerticalLayout {
 
-    /** The Constant log. */
+    /**
+     * The Constant log.
+     */
     static final Logger log = Logger.getRootLogger();
 
 
     private UserService userService = new UserServiceImpl();
-    private UserDetailPresenter presenter;
+    private UserManagementPresenter presenter;
     private Navigator navigator;
 
-    public UserManagementView(Navigator navigator){
-        presenter = new UserDetailPresenter(this);
+    public UserManagementView(Navigator navigator) {
+        presenter = new UserManagementPresenter(this, userService);
         this.navigator = navigator;
 
         Grid<User> userGrid = new Grid("Users");
         Button createNewUser = new Button("Create New User");
         createNewUser.addClickListener(e -> {
-            presenter.createNewUser("test", "test", true);
+            //ToDo change panel to empty UserDetail View
         });
 
         TextField username = new TextField("Username");
@@ -40,7 +44,7 @@ public class UserManagementView extends VerticalLayout {
         search.addClickListener(e -> {
             List<User> userList = new ArrayList();
             userGrid.removeAllColumns();
-            userList = userService.findUserByFilter(username.getValue());
+            userList = presenter.findUserByFilter(username.getValue());
             userGrid.setItems(userList);
             userGrid.addColumn(User::getUsername).setCaption("User Name");
             userGrid.addColumn(User::getEmail).setCaption("E-Mail");
@@ -49,7 +53,6 @@ public class UserManagementView extends VerticalLayout {
 
 
         //ToDo implement user editing
-
 
 
         this.addComponent(createNewUser);

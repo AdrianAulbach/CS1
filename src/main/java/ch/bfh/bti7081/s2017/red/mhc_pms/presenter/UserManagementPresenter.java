@@ -25,4 +25,10 @@ public class UserManagementPresenter extends PresenterBase<UserManagementView> {
         getView().setUsers(users);
     }
 
+    public void onSearch(){
+        String filter = getView().getFilter();
+        List<User> users = userService.findUserByFilter(filter);
+        getView().setUsers(users);
+    }
+
 }

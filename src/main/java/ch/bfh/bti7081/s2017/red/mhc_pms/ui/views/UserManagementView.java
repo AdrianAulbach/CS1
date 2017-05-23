@@ -6,12 +6,10 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.*;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserDetailPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import com.vaadin.ui.VerticalLayout;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +27,7 @@ public class UserManagementView extends VerticalLayout {
     private UserManagementPresenter presenter;
     private Navigator navigator;
     private Grid<User> userGrid;
+    private TextField txtFilter;
 
     public UserManagementView(Navigator navigator) {
         presenter = new UserManagementPresenter(this, userService, navigator);
@@ -41,10 +40,11 @@ public class UserManagementView extends VerticalLayout {
             presenter.navigateTo(Strings.REF_URL_MAIN_PAGE+ "/createuser");
         });
 
-        TextField username = new TextField("Username");
+        txtFilter = new TextField("Username");
 
         Button search = new Button("Search");
         search.addClickListener(e -> {
+            presenter.onSearch();
             userGrid.removeAllColumns();
             userGrid.addColumn(User::getUsername).setCaption("User Name");
             userGrid.addColumn(User::getEmail).setCaption("E-Mail");
@@ -55,7 +55,7 @@ public class UserManagementView extends VerticalLayout {
 
 
         this.addComponent(createNewUser);
-        this.addComponent(username);
+        this.addComponent(txtFilter);
         this.addComponent(search);
         this.addComponent(userGrid);
 
@@ -64,5 +64,9 @@ public class UserManagementView extends VerticalLayout {
 
     public void setUsers(List<User> users){
         userGrid.setItems(users);
+    }
+
+    public String getFilter(){
+        return txtFilter.getValue();
     }
 }

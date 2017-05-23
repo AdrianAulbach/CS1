@@ -26,14 +26,14 @@ public class UserDetailView extends VerticalLayout {
 
     public UserDetailView(Navigator navigator){
 
-        presenter = new UserDetailPresenter(this);
+        presenter = new UserDetailPresenter(this,navigator);
         this.navigator = navigator;
 
         this.addComponent(userNameField = new TextField("User Name"));
         this.addComponent(passwordField = new PasswordField("Password"));
         this.addComponent(active = new CheckBox("Aktive"));
         this.addComponent(new Button("Create User", e -> {
-                User newUsesr = presenter.createNewUser(getUserName(),getPassword(),stateUser());
+                presenter.createNewUser(getUserName(),getPassword(),stateUser());
                 // userService.addUser(newUsesr); TODO migrate to presenter
                 Notification.show("User created");
                 log.debug("User created");

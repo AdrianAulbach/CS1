@@ -7,6 +7,7 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
 
+import com.vaadin.navigator.Navigator;
 import org.apache.log4j.Logger;
 
 /**
@@ -22,12 +23,12 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     private PasswordService passwordService = new Sha1PasswordService();
     private UserService userService = new UserServiceImpl();
 
-    public UserDetailPresenter(UserDetailView view) {
-        super(view);
+    public UserDetailPresenter(UserDetailView view, Navigator navigator) {
+        super(view,navigator);
     }
 
 
-    public createNewUser(String userName, String password, boolean active) {
+    public void createNewUser(String userName, String password, boolean active) {
 
         try {
             User newUser = new User();
@@ -53,6 +54,8 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             throw new RuntimeException(e);
         }
     }
+
+
 
     public void persistNewUser(User newUser){
         //ToDo safe new user into database

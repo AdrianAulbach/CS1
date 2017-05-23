@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.util.HibernateUtil;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.Session;
 
@@ -29,7 +31,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUserByFilter(String filter) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList<User>();
+        // ToDo throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

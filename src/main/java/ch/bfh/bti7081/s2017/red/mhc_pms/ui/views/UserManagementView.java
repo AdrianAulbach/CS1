@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
@@ -27,28 +28,26 @@ public class UserManagementView extends VerticalLayout {
     private UserService userService = new UserServiceImpl();
     private UserManagementPresenter presenter;
     private Navigator navigator;
+    private Grid<User> userGrid;
 
     public UserManagementView(Navigator navigator) {
-        presenter = new UserManagementPresenter(this, userService);
+        presenter = new UserManagementPresenter(this, userService, navigator);
         this.navigator = navigator;
 
-        Grid<User> userGrid = new Grid("Users");
+        userGrid = new Grid("Users");
         Button createNewUser = new Button("Create New User");
         createNewUser.addClickListener(e -> {
             //ToDo change panel to empty UserDetail View
+            presenter.navigateTo(Strings.REF_URL_MAIN_PAGE+ "/createuser");
         });
 
         TextField username = new TextField("Username");
 
         Button search = new Button("Search");
         search.addClickListener(e -> {
-            List<User> userList = new ArrayList();
             userGrid.removeAllColumns();
-            userList = presenter.findUserByFilter(username.getValue());
-            userGrid.setItems(userList);
             userGrid.addColumn(User::getUsername).setCaption("User Name");
             userGrid.addColumn(User::getEmail).setCaption("E-Mail");
-            userGrid.addColumn(User::isAktive).setCaption("Aktive");
         });
 
 
@@ -59,5 +58,11 @@ public class UserManagementView extends VerticalLayout {
         this.addComponent(username);
         this.addComponent(search);
         this.addComponent(userGrid);
+
+        presenter.onInitialize();
+    }
+
+    public void setUsers(List<User> users){
+        userGrid.setItems(users);
     }
 }

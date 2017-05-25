@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.billing.Bill;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.billing.BillingPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
 import com.vaadin.navigator.Navigator;
@@ -19,19 +20,14 @@ public class BillingView extends VerticalLayout {
 
     private BillingService billingService = new BillingService();
     private BillingPresenter presenter;
-    private Navigator navigator;
 
-
-    public BillingView(Navigator navigator) {
-        presenter = new BillingPresenter(this);
-        this.navigator = navigator;
+    public BillingView(IUserSession session) {
+        presenter = new BillingPresenter(this, session);
 
         Grid<Bill> billGrid = new Grid<>("Bills");
         Button addBill = new Button("Add bill");
 
         List<Bill> bills = billingService.getBills(); //billingService.findBillsByState(new Bill.ToBill(null)); //ToDo: change BillingState so null as context is no longer required
-
-
 
         billGrid.setItems(bills);
         billGrid.addColumn(Bill::getID).setCaption("ID");

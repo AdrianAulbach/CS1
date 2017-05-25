@@ -1,11 +1,10 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms;
 
-import java.io.File;
-
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoyUserService;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.SessionFactory;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
 
@@ -43,10 +42,9 @@ public class MyUI extends UI
 	@Override
 	protected void init(VaadinRequest vaadinRequest)
 	{
-		// Init log4j properties
-		PropertyConfigurator.configure(FileTools.getApplicationPath()+File.separator+"log4j.properties");
-		
 		log.info("Session started for client "+vaadinRequest.getRemoteHost());
+		
+		IUserSession lSession = SessionFactory.createUserSession(this, vaadinRequest);
 		
         getPage().setTitle("MHC-PMS Application");
 
@@ -54,8 +52,8 @@ public class MyUI extends UI
         navigator = new Navigator(this, this);
 
         // Create and register the views
-        navigator.addView("", new StartPage(navigator, new InMemoyUserService()));
-        navigator.addView(Strings.REF_URL_MAIN_PAGE, new MainPage(navigator));
+        navigator.addView("", new StartPage(lSession));
+        navigator.addView(Strings.REF_URL_MAIN_PAGE, new MainPage(lSession));
         log.debug("All views established.");
 	}
 	

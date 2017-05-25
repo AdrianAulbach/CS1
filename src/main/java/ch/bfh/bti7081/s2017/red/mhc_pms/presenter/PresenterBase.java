@@ -1,17 +1,17 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.presenter;
 
-import com.vaadin.navigator.Navigator;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 
 /**
  * Created by Rolf on 22/05/17.
  */
 public abstract class PresenterBase<TView> {
     private TView view;
-    private Navigator navigator;
+    protected IUserSession session;
 
-    public PresenterBase(TView view, Navigator navigator) {
+    public PresenterBase(TView view, IUserSession session) {
         this.view = view;
-        this.navigator = navigator;
+        this.session = session;
     }
 
     protected TView getView() {
@@ -22,7 +22,7 @@ public abstract class PresenterBase<TView> {
     }
 
     public void navigateTo(String path){
-        this.navigator.navigateTo(path);
+        this.session.getNavigator().navigateTo(path);
     }
 
 }

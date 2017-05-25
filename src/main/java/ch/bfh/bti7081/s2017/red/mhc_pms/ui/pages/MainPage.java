@@ -5,28 +5,19 @@
  */
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingView;
 import org.apache.log4j.Logger;
 
 import com.vaadin.annotations.DesignRoot;
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
-import com.vaadin.ui.Button.ClickEvent;
-import com.vaadin.ui.Button.ClickListener;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.NavigationIconButton;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PatientView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.TimetableView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.WelcomeView;
 
 /**
  * The Class MainView.
@@ -40,47 +31,6 @@ public class MainPage extends VerticalLayout implements View
 	
 	/** The Constant log. */
 	static final Logger log = Logger.getRootLogger();
-
-	/**
-	 * The listener interface for receiving buttonNavigation events.
-	 * The class that is interested in processing a buttonNavigation
-	 * event implements this interface, and the object created
-	 * with that class is registered with a component using the
-	 * component's <code>addButtonNavigationListener<code> method. When
-	 * the buttonNavigation event occurs, that object's appropriate
-	 * method is invoked.
-	 *
-	 * @see ButtonNavigationEvent
-	 */
-	// Menu navigation button listener
-	class ButtonNavigationListener implements ClickListener
-	{
-		
-		/** The Constant serialVersionUID. */
-		private static final long serialVersionUID = 1L;
-		
-		/** The m menu item. */
-		String mMenuItem;
-
-		/**
-		 * Instantiates a new button navigation listener.
-		 *
-		 * @param aMenuItem the a menu item
-		 */
-		public ButtonNavigationListener(String aMenuItem)
-		{
-			this.mMenuItem = aMenuItem;
-		}
-		
-		@Override
-		public void buttonClick(ClickEvent event)
-		{
-			log.debug("Click event received. Menu item: " + mMenuItem);
-
-			// Navigate to a specific state
-			mNavigator.navigateTo(Strings.REF_URL_MAIN_PAGE + "/" + mMenuItem);
-		}
-	}
 
 	/** The VerticalLayout main panel. */
 	private VerticalLayout vlMainPanel;
@@ -100,17 +50,16 @@ public class MainPage extends VerticalLayout implements View
 	/** The Button log off. */
 	private Button btnLogOff;
 
-	/** The member navigator. */
-	Navigator mNavigator;
+	IUserSession mUserSession;
 
 	/**
 	 * Instantiates a new main view.
 	 *
 	 * @param aNavigator the a navigator
 	 */
-	public MainPage(Navigator aNavigator)
+	public MainPage(IUserSession aUserSession)
 	{
-		mNavigator = aNavigator;
+		mUserSession = aUserSession;
 		initUI();
 	}
 	
@@ -135,22 +84,22 @@ public class MainPage extends VerticalLayout implements View
 			{
 				case "":
 				case "home":
-					getContentPanel().setContent(new WelcomeView());
+					getContentPanel().setContent(mUserSession.getWelcomeView());
 					break;
 				case "patients":
-					getContentPanel().setContent(new PatientView());
+					getContentPanel().setContent(mUserSession.getPatientView());
 					break;
 				case "timetable":
-					getContentPanel().setContent(new TimetableView());
+					getContentPanel().setContent(mUserSession.getTimetableView());
 					break;
 				case "users":
-					getContentPanel().setContent(new UserManagementView(mNavigator));
+					getContentPanel().setContent(mUserSession.getUserManagementView());
 					break;
 				case "createuser":
-					getContentPanel().setContent(new UserDetailView(mNavigator));
+					getContentPanel().setContent(mUserSession.getUserDetailView());
 					break;
 				case "bills":
-					getContentPanel().setContent(new BillingView(mNavigator));
+					getContentPanel().setContent(mUserSession.getBillingView());
 					break;
 				case "dummy":
 					getContentPanel().setContent(new Label("Hello Nävigeischön!"));
@@ -250,12 +199,12 @@ public class MainPage extends VerticalLayout implements View
 		{
 			hlNavigationPanel = new HorizontalLayout();
 			hlNavigationPanel.setMargin(true);
-			hlNavigationPanel.addComponent(new NavigationIconButton("home", "button_home.png", "Home", mNavigator));
-			hlNavigationPanel.addComponent(new NavigationIconButton("patients", "button_patients.png", "Manage Patients", mNavigator));
-			hlNavigationPanel.addComponent(new NavigationIconButton("timetable", "button_timetable.png", "Timetable", mNavigator));
-			hlNavigationPanel.addComponent(new NavigationIconButton("users", "button_manageuser.png", "Manage Users", mNavigator));
-			hlNavigationPanel.addComponent(new NavigationIconButton("createuser", "button_createuser.png", "Create new User", mNavigator));
-			hlNavigationPanel.addComponent(new NavigationIconButton("bills", "button_patients.png", "See bills", mNavigator));
+			hlNavigationPanel.addComponent(new NavigationIconButton("home", "button_home.png", "Home", mUserSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton("patients", "button_patients.png", "Manage Patients", mUserSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton("timetable", "button_timetable.png", "Timetable", mUserSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton("users", "button_manageuser.png", "Manage Users", mUserSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton("createuser", "button_createuser.png", "Create new User", mUserSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton("bills", "button_patients.png", "See bills", mUserSession.getNavigator()));
 		}
 		
 		return hlNavigationPanel;
@@ -288,7 +237,7 @@ public class MainPage extends VerticalLayout implements View
 		if(btnLogOff==null)
 		{
 			btnLogOff = new Button("Logout");
-			btnLogOff.addClickListener(event -> mNavigator.navigateTo(""));
+			btnLogOff.addClickListener(event -> mUserSession.getNavigator().navigateTo(""));
 		}
 		
 		return btnLogOff;

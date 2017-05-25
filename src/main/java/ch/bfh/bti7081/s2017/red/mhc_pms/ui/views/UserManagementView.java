@@ -1,16 +1,21 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import com.vaadin.navigator.Navigator;
-import com.vaadin.ui.*;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
-import com.vaadin.ui.VerticalLayout;
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
-import java.util.List;
+import com.vaadin.navigator.Navigator;
+import com.vaadin.ui.Button;
+import com.vaadin.ui.Grid;
+import com.vaadin.ui.TextField;
+import com.vaadin.ui.VerticalLayout;
+
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 
 /**
  * Created by Rolf on 16/05/17.
@@ -22,16 +27,12 @@ public class UserManagementView extends VerticalLayout {
      */
     static final Logger log = Logger.getRootLogger();
 
-
-    private UserService userService = new UserServiceImpl();
     private UserManagementPresenter presenter;
-    private Navigator navigator;
     private Grid<User> userGrid;
     private TextField txtFilter;
 
-    public UserManagementView(Navigator navigator) {
-        presenter = new UserManagementPresenter(this, userService, navigator);
-        this.navigator = navigator;
+    public UserManagementView(IUserSession session) {
+        presenter = new UserManagementPresenter(this, session);
 
         userGrid = new Grid("Users");
         Button createNewUser = new Button("Create New User");

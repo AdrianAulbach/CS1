@@ -1,13 +1,11 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.presenter;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.Sha1PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
 
-import com.vaadin.navigator.Navigator;
 import org.apache.log4j.Logger;
 
 /**
@@ -20,11 +18,19 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     static final Logger log = Logger.getRootLogger();
 
     private UserDetailView view = null;
-    private PasswordService passwordService = new Sha1PasswordService();
-    private UserService userService = new UserServiceImpl();
+    private PasswordService passwordService = null;
+    private UserService userService = null;
 
-    public UserDetailPresenter(UserDetailView view, Navigator navigator) {
-        super(view,navigator);
+    // @Rolf: Der Konstruktor nimmt jetzt nur noch eine User session weil die user
+    //        session alle objekte verwaltet und ggf. wiederverwenden kann
+    public UserDetailPresenter(UserDetailView view, IUserSession session) {
+        super(view,session);
+        
+        // @Rolf: die session übernimmt die erstellung dieser objekte, falls du etwas ändern willst
+        //        siehe SessionFactory.createUserSession
+        this.view = view;
+        passwordService = session.getPasswordService();
+        userService = session.getUserService();
     }
 
 

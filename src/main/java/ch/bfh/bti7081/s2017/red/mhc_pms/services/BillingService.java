@@ -1,6 +1,5 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.billing.Bill;
 
 import java.util.*;
@@ -8,6 +7,8 @@ import java.util.stream.Collectors;
 
 /**
  * Created by adrian on 21.05.17.
+ * 
+ * TODO interface abstraction (BillingService & BillingServiceImpl)
  */
 public class BillingService {
     private static List<Bill> bills = new LinkedList<Bill>();

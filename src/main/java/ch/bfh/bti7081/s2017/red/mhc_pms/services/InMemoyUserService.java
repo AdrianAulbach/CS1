@@ -30,7 +30,8 @@ public class InMemoyUserService implements UserService {
 
     @Override
     public List<User> findUserByFilter(String filter) {
-        if(filter.contains("*")) {
+    	// @Rolf: Null check fehlte -> NullPointerEx
+        if(filter==null || filter.contains("*")) {
             log.debug("List containing all users returned");
             return users;
         }

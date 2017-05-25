@@ -1,9 +1,8 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 
-import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.*;
@@ -16,26 +15,21 @@ public class StartPage extends VerticalLayout implements View
 	static final Logger log = Logger.getRootLogger();
 
 
-	private UserService mUserService;
+	private IUserSession mUserSession;
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	// TODO outsource to constants file?
-	public static final String REF_URL = "";
-	Navigator mNavigator;
-
-	public StartPage(Navigator aNavigator, UserService aUserService)
+	public StartPage(IUserSession aUserSession)
 	{
-		mNavigator = aNavigator;
-		mUserService = aUserService;
+		mUserSession = aUserSession;
 
 		setSizeFull();
 
 		// TODO member
-		Button button = new Button("Go to Main View", (event) -> mNavigator.navigateTo(Strings.REF_URL_MAIN_PAGE));
+		Button button = new Button("Go to Main View", (event) -> mUserSession.getNavigator().navigateTo(Strings.REF_URL_MAIN_PAGE));
 		addComponent(button);
 		setComponentAlignment(button, Alignment.TOP_RIGHT);
 
@@ -57,8 +51,8 @@ public class StartPage extends VerticalLayout implements View
 			log.debug("clicked login");
 			if(checkLoginCredentials(username.getValue(),passwordField.getValue()))
 			{
-
-				mNavigator.navigateTo(Strings.REF_URL_MAIN_PAGE);
+				// TODO StartPagePresenter
+				mUserSession.getNavigator().navigateTo(Strings.REF_URL_MAIN_PAGE);
 			}
 
 		});
@@ -69,10 +63,11 @@ public class StartPage extends VerticalLayout implements View
 		addComponent(layout);
 	}
 
+	// TODO outsource to StartPagePresenter
 	private boolean checkLoginCredentials(String username, String password) {
 		try {
 			log.debug("checking password");
-			return mUserService.checkPassword(username,password);
+			return mUserSession.getUserService().checkPassword(username,password);
 		} catch (Exception e) {
 			log.error("Exception while checking password.", e);
 			Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);

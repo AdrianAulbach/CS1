@@ -7,11 +7,15 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-@SuppressWarnings("serial")
 @Entity
-@Table(name="MEDICAL_RECORD")
+@Table(name="medical_record")
 public class MedicalRecord extends PersistentObject {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@OneToMany(mappedBy="clinic")
 	private List<Report> reports;
 	

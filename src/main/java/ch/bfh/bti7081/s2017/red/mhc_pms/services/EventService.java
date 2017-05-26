@@ -12,6 +12,14 @@ import java.util.List;
 public interface EventService {
 
     /**
+     * Finds the event with the given id.
+     *
+     * @param eventId the event id
+     * @return the event with the given id or null
+     */
+    Event findEventById(int eventId);
+
+    /**
      * Returns all events within the given date range of the specified user.
      *
      * @param start the range start date
@@ -20,14 +28,6 @@ public interface EventService {
      * @return a list of events
      */
     List<Event> findEventsByDateRange(Date start, Date end, int userId);
-
-    /**
-     * Finds the event with the given id.
-     *
-     * @param eventId the event id
-     * @return the event with the given id or null
-     */
-    Event findEventById(int eventId);
 
     /**
      * Save or update an event.

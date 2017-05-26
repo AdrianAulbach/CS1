@@ -15,14 +15,15 @@ import javax.persistence.Table;
  * @author Florian Rindlisbacher
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "CLINIC")
-public class Clinic {
+public class Clinic extends PersistentObject {
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "clinic_ID", unique = true, nullable = false)
-	private EntityBase clinicId;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@Column(name = "clinic_ID", unique = true, nullable = false)
+//	private EntityBase clinicId;
 	
 	@Column(name = "name")
 	private String name;
@@ -36,12 +37,12 @@ public class Clinic {
 		this.locations.add(l);
 	}
 	
-	/*
-	 * @return returns clinic ID
-	 */
-	public EntityBase getClinic_ID() {
-		return this.clinicId;
-	}
+//	/*
+//	 * @return returns clinic ID
+//	 */
+//	public EntityBase getClinic_ID() {
+//		return this.clinicId;
+//	}
 	
 	/*
 	 * @return returns clinic locations
@@ -80,6 +81,5 @@ public class Clinic {
 	public void remove(Location location) {
 		this.locations.remove(location);
 	}
-	
 	
 }

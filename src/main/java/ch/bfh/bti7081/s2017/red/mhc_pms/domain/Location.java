@@ -17,14 +17,15 @@ import javax.persistence.Table;
  * @author Florian Rindlisbacher
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="LOCATION")
-public class Location {
+public class Location extends PersistentObject {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "location_ID", unique = true, nullable = false)
-	private EntityBase locationId;
+
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@Column(name = "location_ID", unique = true, nullable = false)
+//	private EntityBase locationId;
 	
 	@Column(name = "street")
 	private String street;
@@ -71,12 +72,12 @@ public class Location {
 		return clinic;
 	}
 
-	/*
-	 * @return returns location id
-	 */ 
-	public EntityBase getLocationId() {
-		return locationId;
-	}
+//	/*
+//	 * @return returns location id
+//	 */ 
+//	public EntityBase getLocationId() {
+//		return locationId;
+//	}
 
 	/*
 	 * @return returns rooms List<Room>

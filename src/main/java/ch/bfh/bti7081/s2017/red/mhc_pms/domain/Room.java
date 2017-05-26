@@ -15,14 +15,15 @@ import javax.persistence.Table;
  * @author Florian Rindlisbacher
  */
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name="ROOM")
-public class Room {
+public class Room extends PersistentObject {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "room_ID", unique = true, nullable = false)
-	private EntityBase roomId;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.AUTO)
+//	@Column(name = "room_ID", unique = true, nullable = false)
+//	private EntityBase roomId;
 	
 	@Column(name = "floor")
 	// TODO: REAL WORLD -> Foor numbering/naming can have characters as well Example: E as in Erdgeschoss
@@ -35,9 +36,9 @@ public class Room {
 	@JoinColumn(name="location_id")
 	private Location location;
 
-	public EntityBase getRoomId() {
-		return roomId;
-	}
+//	public EntityBase getRoomId() {
+//		return roomId;
+//	}
 	/*
 	 * @return returns floor name
 	 */

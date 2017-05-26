@@ -8,7 +8,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * The Clinics class represents a real world clinic.
+ * The Clinics class represents a real world medical clinic.
  *
  * @author Florian Rindlisbacher
  */

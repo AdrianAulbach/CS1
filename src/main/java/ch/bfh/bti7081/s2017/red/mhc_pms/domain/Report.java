@@ -7,6 +7,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 
+/**
+ * The report Class represents notes taken by a doctor during a event with a patient
+ * @author Florian Rindlisbacher
+ */
+
 @Entity
 @Table(name = "report")
 public class Report extends PersistentObject {

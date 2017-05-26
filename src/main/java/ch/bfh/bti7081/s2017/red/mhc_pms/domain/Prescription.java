@@ -2,8 +2,14 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
 
 import java.util.Date;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+/**
+ * The Perscription Class represents a Real-World drug persecution
+ *
+ * @author Florian Rindlisbacher
+ */
 @Entity
 @Table(name="perscription")
 public class Prescription extends PersistentObject {
@@ -21,6 +27,10 @@ public class Prescription extends PersistentObject {
 	private String comment;
 
 	private String unit;
+	
+	@ManyToOne
+	private Patient patient;
+	
 	
 	public Date getStart() {
 		return start;

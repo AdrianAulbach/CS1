@@ -19,7 +19,7 @@ public class Room extends PersistentObject {
     private String room;
 
     @ManyToOne
-    @JoinColumn(name = "location_id")
+    @JoinColumn(name = "location.id")
     private Location location;
 
     /*

@@ -18,7 +18,6 @@ public class Clinic extends PersistentObject {
 
     private String name;
 
-    @Column(name = "locations")
     @OneToMany(mappedBy = "clinic")
     private List<Location> locations = new ArrayList<>();
 

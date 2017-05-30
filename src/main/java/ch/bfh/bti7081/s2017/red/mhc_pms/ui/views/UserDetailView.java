@@ -33,7 +33,6 @@ public class UserDetailView extends VerticalLayout {
     private boolean stateDirty = false;
     private UserDetailPresenter presenter;
     private UserService userService = null;
-    private String sUserID = ""; //ToDo validate if needed. If not needed remove getter and setter as well
     private Button save;
     private Button cancel;
 
@@ -82,14 +81,6 @@ public class UserDetailView extends VerticalLayout {
 
         ViewChangeListener.ViewChangeEvent event = null; //ToDo get proper event
         presenter.enter(event);
-    }
-
-    public String getsUserID() {
-        return sUserID;
-    }
-
-    public void setsUserID(String userID) {
-        sUserID = userID;
     }
 
     public String getUserName() {

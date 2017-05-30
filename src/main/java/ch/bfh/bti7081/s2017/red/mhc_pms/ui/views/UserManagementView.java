@@ -14,11 +14,12 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
 
 /**
  * Created by Rolf on 16/05/17.
  */
-public class UserManagementView extends VerticalLayout {
+public class UserManagementView extends MainPageContent {
 
     /**
      * The Constant log.
@@ -95,4 +96,11 @@ public class UserManagementView extends VerticalLayout {
     public void setSelectedUserID(Long userID){
         this.selectedUserID = userID;
     }
+    
+	@Override
+	public void updateParams(PathParams aParams)
+	{
+		// TODO retreive path params here
+		
+	}
 }

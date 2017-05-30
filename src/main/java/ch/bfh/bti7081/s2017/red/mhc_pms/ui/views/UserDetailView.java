@@ -3,6 +3,8 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
+import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
+
 import com.vaadin.event.dd.acceptcriteria.Not;
 import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
@@ -21,7 +23,7 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 /**
  * Created by Rolf on 15/05/17.
  */
-public class UserDetailView extends VerticalLayout {
+public class UserDetailView extends MainPageContent {
 
     private TextField userNameField;
     private boolean userNameFieldDirty = false;
@@ -78,6 +80,12 @@ public class UserDetailView extends VerticalLayout {
 
         this.addComponent(cancel = new Button("Cancel", e -> {
             presenter.cancel();
+        }));
+        
+        // @Rolf: Dieser Button zeigt das beispiel einer navigation
+        //
+        this.addComponent(new Button("Example: Navigation with parameters", e -> {
+            navigateWithParamsExample();
         }));
 
         ViewChangeListener.ViewChangeEvent event = null; //ToDo get proper event
@@ -208,9 +216,38 @@ public class UserDetailView extends VerticalLayout {
     public void userSaved() {
         Notification.show("User Saved");
     }
-
+    
     public void navigateToUserManagement(){
-        presenter.navigateTo(Strings.REF_URL_MAIN_PAGE + "/users");
+        presenter.navigateTo(Strings.REF_URL_USERS_PAGE);
     }
-
+    
+	//
+	// @Rolf: Hier ein beispiel wie die neue navigation funktioniert, ich mache es
+	//        mit einem dummy wert den du nachher löschen kannst, hier die schrittweise
+	//        Erklärung:
+	//
+    private String dummy = null;
+    public void navigateWithParamsExample()
+    {
+    	// 1. Erstelle eine instanz der pathparams klasse (leerer konstruktor)
+    	PathParams pp = new PathParams();
+    	
+    	// 2. Füge den Wert hinzu mit der methode addParam(key,value)
+    	pp.addParam(Strings.PARAM_NAME_DUMMY, "tegscht");
+    	// > NB: Ist schön wenn man die parameter namen als generelle konstante ablegt (z.B. in der Strings klasse)
+    	
+    	// 3. Konvertiere die PathParams klasse in einen pfad (in diesem Beispiel navigieren wir wieder hier her)
+    	presenter.navigateTo(Strings.REF_URL_CREATE_USER_PAGE + pp.getParamString());
+    }
+    
+	@Override
+	public void updateParams(PathParams aParams)
+	{
+		// 4. Nutze nun die updateParams methode um die parameter wieder zu holen
+		dummy = aParams.getParam(Strings.PARAM_NAME_DUMMY);
+		log.debug("Dummy value is: " + dummy);
+		// NB: Falls du in eine andere Klasse navigierst, benutzt du dort die updateParams methode um die Parameter zu laden
+		dummy = null;
+		// 5. Siehe selbst: Gehe zur UserDetailView und drücke den button "Example: Navigation with parameters"
+	}
 }

@@ -4,6 +4,9 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.domain.billing.Bill;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.billing.BillingPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MainPageContent;
+import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
+
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
@@ -15,7 +18,7 @@ import java.util.List;
 /**
  * Created by adrian on 21.05.17.
  */
-public class BillingView extends VerticalLayout {
+public class BillingView extends MainPageContent {
     private static final Logger log = Logger.getRootLogger();
 
     private BillingService billingService = new BillingService();
@@ -36,4 +39,10 @@ public class BillingView extends VerticalLayout {
 
         this.addComponent(billGrid);
     }
+
+	@Override
+	public void updateParams(PathParams aParams)
+	{
+		// TODO retreive path params here
+	}
 }

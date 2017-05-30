@@ -33,4 +33,8 @@ public class UserManagementPresenter extends PresenterBase<UserManagementView> {
         getView().setUsers(users);
     }
 
+    public void onEdit(){
+
+    }
+
 }

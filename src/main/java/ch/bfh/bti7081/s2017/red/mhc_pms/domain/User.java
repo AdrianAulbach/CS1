@@ -16,7 +16,7 @@ public class User extends PersistentObject {
     private byte[] salt = null;
     private String eMail = null;
     private String resetEmailToken = null;
-    private boolean aktive = false;
+    private boolean state = false;
 
 
     public User() {
@@ -62,11 +62,11 @@ public class User extends PersistentObject {
         this.resetEmailToken = resetEmailToken;
     }
 
-    public boolean isAktive() {
-        return aktive;
+    public boolean getState() {
+        return state;
     }
 
     public void setActive(boolean active) {
-        this.aktive = active;
+        this.state = active;
     }
 }

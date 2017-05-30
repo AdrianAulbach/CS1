@@ -5,7 +5,7 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
-
+import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
 
 /**
@@ -20,12 +20,16 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     private UserDetailView view = null;
     private PasswordService passwordService = null;
     private UserService userService = null;
+    private String userId = "";
+    private User user = null;
+    private String params;
+
 
     // @Rolf: Der Konstruktor nimmt jetzt nur noch eine User session weil die user
     //        session alle objekte verwaltet und ggf. wiederverwenden kann
     public UserDetailPresenter(UserDetailView view, IUserSession session) {
-        super(view,session);
-        
+        super(view, session);
+
         // @Rolf: die session übernimmt die erstellung dieser objekte, falls du etwas ändern willst
         //        siehe SessionFactory.createUserSession
         this.view = view;
@@ -55,27 +59,62 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
 
             userService.saveOrUpdateUser(newUser);
 
-            persistNewUser(newUser);
+            persistUser(newUser);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
 
-
-    public void persistNewUser(User newUser){
-        //ToDo safe new user into database
+    public void persistUser(User newUser) {
+        //ToDo user into database
     }
 
-    public void changeUserName(User user, String newName){
-        //ToDo persist new user name on database
+    public void enter(ViewChangeListener.ViewChangeEvent event) {
+
+        params = event.getParameters();
+        userId = ""; //ToDo get user id from params
+
+        if (!userId.equals("")) {
+            Long id = Long.parseLong(userId);
+            user = userService.findUserById(id);
+            getView().setUserName(user.getUsername());
+            getView().setUserNameFieldDirty(false);
+            getView().setPassword();
+            getView().setPasswordFieldDirty(false);
+            getView().seteMail(user.getEmail());
+            getView().seteMailFieldDiry(false);
+            getView().setActive(user.getState());
+            getView().setStateDirty(false);
+        }else{
+            user = new User();
+        }
     }
 
-    public void changeEmail(User user, String newEmail){
-        //ToDo persist new e mail
+    public void save(){
+        if (!getView().getUserNameField().isEmpty() && getView().isUserNameFieldDirty()) setUserName();
+        if (!getView().geteMailField().isEmpty() && getView().iseMailFieldDiry()) setUserEmail();
+        if (!getView().getPasswordField().isEmpty() && getView().isPasswordFieldDirty()) setUserPasssword();
+        if (getView().isStateDirty()) setUserState();
     }
 
-    public void changeActive(User user, boolean active){
-        //ToDo persist new user state
+    public void setUserName(){
+        user.setUsername(getView().getUserName());
+    }
+
+    public void setUserPasssword(){
+        byte[] salt = passwordService.createSalt();
+        user.setSalt(salt);
+        byte[] passwordHash = passwordService.returnPasswordHashSalted(getView().getPassword(), salt);
+        String base64hash = java.util.Base64.getEncoder().encodeToString(passwordHash);
+        user.setPasswordHash(base64hash);
+    }
+
+    public void setUserEmail(){
+        user.seteMail(getView().geteMail());
+    }
+
+    public void setUserState(){
+        user.setActive(getView().getActive());
     }
 }

@@ -30,7 +30,7 @@ public class NavigationIconButton extends IconButton
 		{
 			log.debug("Click event received. Navigating to: " + aPath);
 
-			// Navigate to a specific state
+			// Navigate to a specific getActiveVal
 			aNavigator.navigateTo(Strings.REF_URL_MAIN_PAGE + "/" + aPath);
 		});
 	}

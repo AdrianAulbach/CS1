@@ -38,34 +38,6 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     }
 
 
-    public void createNewUser(String userName, String password, boolean active) {
-
-        try {
-            User newUser = new User();
-
-            newUser.setUsername(view.getUserName());
-            newUser.setActive(active);
-
-            byte[] salt = passwordService.createSalt();
-            newUser.setSalt(salt);
-            log.debug("UserMan...Presenter set Salt: " + salt);
-            // crate password hash for user using password and hash.
-            byte[] passwordHash = passwordService.returnPasswordHashSalted(view.getPassword(), salt);
-            String base64hash = java.util.Base64.getEncoder().encodeToString(passwordHash);
-            newUser.setPasswordHash(base64hash);
-
-            //ToDo implement reset email token
-            String resetEmailToken = "abc";
-
-            userService.saveOrUpdateUser(newUser);
-
-            persistUser(newUser);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
     public void persistUser(User newUser) {
         //ToDo user into database
         log.debug("user persisted");

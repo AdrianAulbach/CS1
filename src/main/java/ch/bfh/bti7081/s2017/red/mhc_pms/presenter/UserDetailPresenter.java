@@ -68,11 +68,12 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
 
     public void persistUser(User newUser) {
         //ToDo user into database
+        log.debug("user persisted");
     }
 
     public void enter(ViewChangeListener.ViewChangeEvent event) {
 
-        params = event.getParameters();
+        // params = event.getParameters();
         userId = ""; //ToDo get user id from params
 
         if (!userId.equals("")) {
@@ -86,23 +87,41 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             getView().seteMailFieldDiry(false);
             getView().setActive(user.getState());
             getView().setStateDirty(false);
-        }else{
+            getView().getSave().setVisible(true);
+            getView().getSave().setEnabled(false);
+
+        } else {
             user = new User();
+            getView().getSave().setVisible(true);
+            getView().getSave().setEnabled(false);
+            getView().getSave().setCaption("Create User");
         }
     }
 
-    public void save(){
+    public void save() {
+        //check if username or password are not empty
+        if (getView().getUserNameField().isEmpty() || getView().getPasswordField().isEmpty()) getView().fieldsEmpty();
+
         if (!getView().getUserNameField().isEmpty() && getView().isUserNameFieldDirty()) setUserName();
         if (!getView().geteMailField().isEmpty() && getView().iseMailFieldDiry()) setUserEmail();
         if (!getView().getPasswordField().isEmpty() && getView().isPasswordFieldDirty()) setUserPasssword();
         if (getView().isStateDirty()) setUserState();
+        log.debug("Values saved into user object");
+
+        if (getView().getSave().getCaption().equals("Save")) {
+            getView().userSaved();
+        } else {
+            getView().userCreated();
+        }
+
+        persistUser(user);
     }
 
-    public void setUserName(){
+    public void setUserName() {
         user.setUsername(getView().getUserName());
     }
 
-    public void setUserPasssword(){
+    public void setUserPasssword() {
         byte[] salt = passwordService.createSalt();
         user.setSalt(salt);
         byte[] passwordHash = passwordService.returnPasswordHashSalted(getView().getPassword(), salt);
@@ -110,11 +129,12 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
         user.setPasswordHash(base64hash);
     }
 
-    public void setUserEmail(){
+    public void setUserEmail() {
         user.seteMail(getView().geteMail());
     }
 
-    public void setUserState(){
+    public void setUserState() {
         user.setActive(getView().getActiveVal());
     }
+
 }

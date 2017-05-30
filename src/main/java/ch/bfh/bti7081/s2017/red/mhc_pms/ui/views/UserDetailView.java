@@ -1,6 +1,10 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
+import com.vaadin.event.dd.acceptcriteria.Not;
+import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
 
 import com.vaadin.ui.Button;
@@ -29,7 +33,9 @@ public class UserDetailView extends VerticalLayout {
     private boolean stateDirty = false;
     private UserDetailPresenter presenter;
     private UserService userService = null;
-    private String sUserID = "";
+    private String sUserID = ""; //ToDo validate if needed. If not needed remove getter and setter as well
+    private Button save;
+    private Button cancel;
 
     /**
      * The Constant log.
@@ -44,36 +50,38 @@ public class UserDetailView extends VerticalLayout {
         this.addComponent(userNameField = new TextField("User Name"));
         userNameField.addValueChangeListener(e -> {
             userNameFieldDirty = true;
+            save.setEnabled(true);
         });
 
         this.addComponent(passwordField = new PasswordField("Password"));
         passwordField.addValueChangeListener(e -> {
             passwordFieldDirty = true;
+            save.setEnabled(true);
         });
 
         this.addComponent(eMailField = new TextField("E-Mail"));
         eMailField.addValueChangeListener(e -> {
             eMailFieldDiry = true;
+            save.setEnabled(true);
         });
 
         this.addComponent(active = new CheckBox("State"));
         active.addValueChangeListener(e -> {
             stateDirty = true;
+            save.setEnabled(true);
         });
 
-        this.addComponent(new Button("Create User", e -> {
-            presenter.createNewUser(getUserName(), getPassword(), getActiveVal());
-            Notification.show("User created");
-            log.debug("User created");
-        }));
 
-        this.addComponent(new Button("Save", e -> {
+        this.addComponent(save = new Button("Save", e -> {
             presenter.save();
         }));
 
-        this.addComponent(new Button("Cancel", e -> {
-            presenter.navigateTo(Strings.REF_URL_MAIN_PAGE+ "/users");
+        this.addComponent(cancel = new Button("Cancel", e -> {
+            presenter.navigateTo(Strings.REF_URL_MAIN_PAGE + "/users");
         }));
+
+        ViewChangeListener.ViewChangeEvent event = null; //ToDo get proper event
+        presenter.enter(event);
     }
 
     public String getsUserID() {
@@ -179,5 +187,33 @@ public class UserDetailView extends VerticalLayout {
 
     public void setActive(CheckBox active) {
         this.active = active;
+    }
+
+    public Button getCancel() {
+        return cancel;
+    }
+
+    public void setCancel(Button cancel) {
+        this.cancel = cancel;
+    }
+
+    public Button getSave() {
+        return save;
+    }
+
+    public void setSave(Button save) {
+        this.save = save;
+    }
+
+    public void fieldsEmpty() {
+        Notification.show("Username or Password may not be empty");
+    }
+
+    public void userCreated() {
+        Notification.show("User Created");
+    }
+
+    public void userSaved() {
+        Notification.show("User Saved");
     }
 }

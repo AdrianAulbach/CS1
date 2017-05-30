@@ -72,7 +72,10 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
 
     public void save() {
         //check if username or password are not empty
-        if (getView().getUserNameField().isEmpty() || getView().getPasswordField().isEmpty()) getView().fieldsEmpty();
+        if (getView().getUserNameField().isEmpty() || getView().getPasswordField().isEmpty()) {
+            getView().fieldsEmpty();
+            return;
+        }
 
         if (!getView().getUserNameField().isEmpty() && getView().isUserNameFieldDirty()) setUserName();
         if (!getView().geteMailField().isEmpty() && getView().iseMailFieldDiry()) setUserEmail();

@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import org.apache.log4j.Logger;
 
 import com.vaadin.ui.Button;
@@ -66,9 +67,12 @@ public class UserDetailView extends VerticalLayout {
             log.debug("User created");
         }));
 
-
         this.addComponent(new Button("Save", e -> {
+            presenter.save();
+        }));
 
+        this.addComponent(new Button("Cancel", e -> {
+            presenter.navigateTo(Strings.REF_URL_MAIN_PAGE+ "/users");
         }));
     }
 

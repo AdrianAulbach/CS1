@@ -115,6 +115,6 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     }
 
     public void setUserState(){
-        user.setActive(getView().getActive());
+        user.setActive(getView().getActiveVal());
     }
 }

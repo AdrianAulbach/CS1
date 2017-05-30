@@ -61,7 +61,7 @@ public class MainPagePresenter extends PresenterBase<MainPage>
 					lContent = mSession.getTimetableView();
 					mView.setContent(mSession.getTimetableView());
 					break;
-				case Strings.USER_PAGE:
+				case Strings.USERS_PAGE:
 					lContent = mSession.getUserManagementView();
 					mView.setContent(mSession.getUserManagementView());
 					break;

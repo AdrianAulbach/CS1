@@ -52,6 +52,7 @@ public class UserDetailView extends VerticalLayout {
             save.setEnabled(true);
         });
 
+
         this.addComponent(passwordField = new PasswordField("Password"));
         passwordField.addValueChangeListener(e -> {
             passwordFieldDirty = true;

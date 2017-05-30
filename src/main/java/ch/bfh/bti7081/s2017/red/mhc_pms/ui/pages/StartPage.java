@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.StartPagePresenter;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.*;
@@ -16,6 +17,7 @@ public class StartPage extends VerticalLayout implements View
 
 
 	private IUserSession mUserSession;
+	private StartPagePresenter presenter;
 
 	/**
 	 * 
@@ -25,6 +27,7 @@ public class StartPage extends VerticalLayout implements View
 	public StartPage(IUserSession aUserSession)
 	{
 		mUserSession = aUserSession;
+		presenter = new StartPagePresenter(this, aUserSession);
 
 		setSizeFull();
 
@@ -49,7 +52,7 @@ public class StartPage extends VerticalLayout implements View
 		loginButton.addClickListener(e  ->{
 		// Check Login credential
 			log.debug("clicked login");
-			if(checkLoginCredentials(username.getValue(),passwordField.getValue()))
+			if(presenter.checkLogin(username.getValue(),passwordField.getValue()))
 			{
 				// TODO StartPagePresenter
 				mUserSession.getNavigator().navigateTo(Strings.REF_URL_MAIN_PAGE);
@@ -63,17 +66,7 @@ public class StartPage extends VerticalLayout implements View
 		addComponent(layout);
 	}
 
-	// TODO outsource to StartPagePresenter
-	private boolean checkLoginCredentials(String username, String password) {
-		try {
-			log.debug("checking password");
-			return mUserSession.getUserService().checkPassword(username,password);
-		} catch (Exception e) {
-			log.error("Exception while checking password.", e);
-			Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);
-			return false;
-		}
-	}
+
 
 	@Override
 	public void enter(ViewChangeEvent event)

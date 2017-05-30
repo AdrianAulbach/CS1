@@ -77,7 +77,7 @@ public class UserDetailView extends VerticalLayout {
         }));
 
         this.addComponent(cancel = new Button("Cancel", e -> {
-            navigateToUserManagement();
+            presenter.cancel();
         }));
 
         ViewChangeListener.ViewChangeEvent event = null; //ToDo get proper event

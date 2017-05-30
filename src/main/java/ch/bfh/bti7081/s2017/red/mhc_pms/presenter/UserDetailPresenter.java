@@ -93,6 +93,10 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
         getView().navigateToUserManagement();
     }
 
+    public void cancel(){
+        getView().navigateToUserManagement();
+    }
+
     public void setUserName() {
         user.setUsername(getView().getUserName());
     }

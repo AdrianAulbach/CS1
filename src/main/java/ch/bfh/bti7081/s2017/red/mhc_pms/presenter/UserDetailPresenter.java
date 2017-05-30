@@ -90,6 +90,7 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
         }
 
         persistUser(user);
+        getView().navigateToUserManagement();
     }
 
     public void setUserName() {

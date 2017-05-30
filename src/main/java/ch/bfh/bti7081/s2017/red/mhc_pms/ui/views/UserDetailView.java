@@ -77,7 +77,7 @@ public class UserDetailView extends VerticalLayout {
         }));
 
         this.addComponent(cancel = new Button("Cancel", e -> {
-            presenter.navigateTo(Strings.REF_URL_MAIN_PAGE + "/users");
+            navigateToUserManagement();
         }));
 
         ViewChangeListener.ViewChangeEvent event = null; //ToDo get proper event
@@ -216,4 +216,9 @@ public class UserDetailView extends VerticalLayout {
     public void userSaved() {
         Notification.show("User Saved");
     }
+
+    public void navigateToUserManagement(){
+        presenter.navigateTo(Strings.REF_URL_MAIN_PAGE + "/users");
+    }
+
 }

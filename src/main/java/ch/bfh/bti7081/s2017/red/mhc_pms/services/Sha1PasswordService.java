@@ -18,7 +18,7 @@ public class Sha1PasswordService implements PasswordService {
     private static final int SALT_LENGTH = 32;
 
     @Override
-    public byte[] returnPasswordHashSalted(String password, byte[] salt) {
+    public String returnPasswordHashSalted(String password, byte[] salt) {
         KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, ITERATIONS, DESIRED_KEY_LENGTH);
         SecretKeyFactory f = null;
         try {
@@ -32,7 +32,8 @@ public class Sha1PasswordService implements PasswordService {
         } catch (InvalidKeySpecException e) {
             e.printStackTrace();
         }
-        return hash;
+       String base64hash = java.util.Base64.getEncoder().encodeToString(hash);
+        return base64hash;
     }
 
     @Override

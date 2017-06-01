@@ -25,7 +25,6 @@ public class StartPagePresenter extends PresenterBase<StartPage> {
             return userService.checkPassword(username,password);
         } catch (Exception e) {
             log.error("Exception while checking password.", e);
-            Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);
             return false;
         }
     }

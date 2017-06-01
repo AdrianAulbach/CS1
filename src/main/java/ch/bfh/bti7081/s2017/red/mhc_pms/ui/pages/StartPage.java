@@ -56,6 +56,8 @@ public class StartPage extends VerticalLayout implements View
 			{
 				// TODO StartPagePresenter
 				mUserSession.getNavigator().navigateTo(Strings.REF_URL_MAIN_PAGE);
+			}else{
+				Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);
 			}
 
 		});

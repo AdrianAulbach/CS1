@@ -5,6 +5,7 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.viewModel.UserEditViewModel;
 import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
 
@@ -25,13 +26,9 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     private String params;
 
 
-    // @Rolf: Der Konstruktor nimmt jetzt nur noch eine User session weil die user
-    //        session alle objekte verwaltet und ggf. wiederverwenden kann
+
     public UserDetailPresenter(UserDetailView view, IUserSession session) {
         super(view, session);
-
-        // @Rolf: die session übernimmt die erstellung dieser objekte, falls du etwas ändern willst
-        //        siehe SessionFactory.createUserSession
         this.view = view;
         passwordService = session.getPasswordService();
         userService = session.getUserService();
@@ -43,31 +40,35 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
         log.debug("user persisted");
     }
 
-    public void enter(ViewChangeListener.ViewChangeEvent event) {
+    public void enter() {
 
-        // params = event.getParameters();
         userId = ""; //ToDo get user id from params
 
-        if (!userId.equals("")) {
-            Long id = Long.parseLong(userId);
-            user = userService.findUserById(id);
-            getView().setUserName(user.getUsername());
-            getView().setUserNameFieldDirty(false);
-            getView().setPassword();
-            getView().setPasswordFieldDirty(false);
-            getView().seteMail(user.getEmail());
-            getView().seteMailFieldDiry(false);
-            getView().setActive(user.getState());
-            getView().setStateDirty(false);
-            getView().getSave().setVisible(true);
-            getView().getSave().setEnabled(false);
-
-        } else {
+        //if no user id is passed to the view, presume new user creation.
+        if(userId.equals("")){
             user = new User();
-            getView().getSave().setVisible(true);
-            getView().getSave().setEnabled(false);
-            getView().getSave().setCaption("Create User");
+        //empty values loaded into UserDetailView fields, to avoid caching problems, where fields would remain
+        //filled from last user editing.
+        getView().setUserName("");
+        getView().setPassword();
+        getView().seteMail("");
+        getView().setActive(false);
+
+        }else {
+
+        Long id = Long.parseLong(userId);
+        user = userService.findUserById(id);
+
+        //fill the user detail view, with the values of the referenced user
+        getView().setUserName(user.getUsername());
+        getView().setPassword();
+        getView().seteMail(user.getEmail());
+        getView().setActive(user.getState());
         }
+
+        getView().getSave().setVisible(true);
+        getView().getSave().setEnabled(true);
+
     }
 
     public void save() {
@@ -77,17 +78,19 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             return;
         }
 
-        if (!getView().getUserNameField().isEmpty() && getView().isUserNameFieldDirty()) setUserName();
-        if (!getView().geteMailField().isEmpty() && getView().iseMailFieldDiry()) setUserEmail();
-        if (!getView().getPasswordField().isEmpty() && getView().isPasswordFieldDirty()) setUserPasssword();
-        if (getView().isStateDirty()) setUserState();
-        log.debug("Values saved into user object");
+        UserEditViewModel viewModel = view.getViewModel();
+        user.setUsername(viewModel.getUserName());
+        user.setSalt(passwordService.createSalt());
 
-        if (getView().getSave().getCaption().equals("Save")) {
-            getView().userSaved();
-        } else {
-            getView().userCreated();
+        //The password is only to be saved, when it has been explicetly altered by the user.
+        //Persisting the password without it being altered, would cause the dummy value to be
+        //hashed, salted and persisted, we don't want that.
+        if(getView().isPasswordFieldDirty()){
+            user.setPasswordHash(passwordService.returnPasswordHashSalted(viewModel.getPassword(),user.getSalt()));
         }
+
+        user.seteMail(viewModel.getEmail());
+        user.setActive(viewModel.isActive());
 
         persistUser(user);
         getView().navigateToUserManagement();
@@ -95,26 +98,6 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
 
     public void cancel(){
         getView().navigateToUserManagement();
-    }
-
-    public void setUserName() {
-        user.setUsername(getView().getUserName());
-    }
-
-    public void setUserPasssword() {
-        byte[] salt = passwordService.createSalt();
-        user.setSalt(salt);
-        byte[] passwordHash = passwordService.returnPasswordHashSalted(getView().getPassword(), salt);
-        String base64hash = java.util.Base64.getEncoder().encodeToString(passwordHash);
-        user.setPasswordHash(base64hash);
-    }
-
-    public void setUserEmail() {
-        user.seteMail(getView().geteMail());
-    }
-
-    public void setUserState() {
-        user.setActive(getView().getActiveVal());
     }
 
 }

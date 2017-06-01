@@ -13,7 +13,7 @@ public interface PasswordService {
      * @param salt byte array containing the salt
      * @return returns the (password+slat) hash.
      */
-    byte[] returnPasswordHashSalted(String password, byte[] salt);
+    String returnPasswordHashSalted(String password, byte[] salt);
 
     byte[] createSalt();
 }

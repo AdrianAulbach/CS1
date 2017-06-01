@@ -4,8 +4,9 @@ import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
 
-public class TimetableView extends VerticalLayout
+public class TimetableView extends MainPageContent
 {
 	/**
 	 * 
@@ -15,5 +16,12 @@ public class TimetableView extends VerticalLayout
 	public TimetableView(IUserSession aUserSession)
 	{
 		this.addComponent(new Label("Timetable view."));
+	}
+	
+	@Override
+	public void updateParams(PathParams aParams)
+	{
+		// TODO retreive path params here
+		
 	}
 }

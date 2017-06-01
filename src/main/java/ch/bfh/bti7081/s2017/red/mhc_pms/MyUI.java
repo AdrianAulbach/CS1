@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms;
 
+import java.io.File;
+
 import javax.servlet.annotation.WebServlet;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
@@ -38,6 +40,13 @@ public class MyUI extends UI
 	static final Logger log = Logger.getRootLogger();
 
 	private static Navigator navigator = null;
+	
+	public MyUI()
+	{
+
+		// Init log4j properties
+		PropertyConfigurator.configure(FileTools.getApplicationPath()+File.separator+"log4j.properties");
+	}
 	
 	@Override
 	protected void init(VaadinRequest vaadinRequest)

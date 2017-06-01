@@ -11,12 +11,14 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
+import com.vaadin.ui.Component;
 import com.vaadin.ui.HorizontalLayout;
-import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.MainPagePresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.NavigationIconButton;
 
 /**
@@ -50,16 +52,19 @@ public class MainPage extends VerticalLayout implements View
 	/** The Button log off. */
 	private Button btnLogOff;
 
-	IUserSession mUserSession;
+	IUserSession mSession;
+	
+	MainPagePresenter mPresenter;
 
 	/**
 	 * Instantiates a new main view.
 	 *
 	 * @param aNavigator the a navigator
 	 */
-	public MainPage(IUserSession aUserSession)
+	public MainPage(IUserSession aSession)
 	{
-		mUserSession = aUserSession;
+		mSession = aSession;
+		mPresenter = new MainPagePresenter(this, mSession);
 		initUI();
 	}
 	
@@ -73,44 +78,12 @@ public class MainPage extends VerticalLayout implements View
 	public void enter(ViewChangeEvent event)
 	{
 		log.info("User requested page: " + event.getParameters());
-		if (event.getParameters() == null)
-		{
-			getContentPanel().setContent(new Label("Request could not be resolved."));
-			return;
-		}
-		else
-		{
-			switch (event.getParameters())
-			{
-				case "":
-				case "home":
-					getContentPanel().setContent(mUserSession.getWelcomeView());
-					break;
-				case "patients":
-					getContentPanel().setContent(mUserSession.getPatientView());
-					break;
-				case "timetable":
-					getContentPanel().setContent(mUserSession.getTimetableView());
-					break;
-				case "users":
-					getContentPanel().setContent(mUserSession.getUserManagementView());
-					break;
-				case "createuser":
-					getContentPanel().setContent(mUserSession.getUserDetailView());
-					break;
-				case "bills":
-					getContentPanel().setContent(mUserSession.getBillingView());
-					break;
-				case "dummy":
-					getContentPanel().setContent(new Label("Hello Nävigeischön!"));
-					break;
-				default:
-					log.error("Request could not be resolved.");
-					break;
-			}
-
-			// equalPanel.setContent(new ContentViewer(event.getParameters()));
-		}
+		mPresenter.navigateTo(event.getParameters());
+	}
+	
+	public void setContent(Component aView)
+	{
+		getContentPanel().setContent(aView);
 	}
 	
 	/*-------- UI Related Initializers --------*/
@@ -199,12 +172,13 @@ public class MainPage extends VerticalLayout implements View
 		{
 			hlNavigationPanel = new HorizontalLayout();
 			hlNavigationPanel.setMargin(true);
-			hlNavigationPanel.addComponent(new NavigationIconButton("home", "button_home.png", "Home", mUserSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton("patients", "button_patients.png", "Manage Patients", mUserSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton("timetable", "button_timetable.png", "Timetable", mUserSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton("users", "button_manageuser.png", "Manage Users", mUserSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton("createuser", "button_createuser.png", "Create new User", mUserSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton("bills", "button_patients.png", "See bills", mUserSession.getNavigator()));
+			// TODO constants
+			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.HOME_PAGE, "button_home.png", "Home", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.PATIENT_PAGE, "button_patients.png", "Manage Patients", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.TIMETABLE_PAGE, "button_timetable.png", "Timetable", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.USERS_PAGE, "button_manageuser.png", "Manage Users", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.CREATE_USER_PAGE, "button_createuser.png", "Create new User", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.BILLS_PAGE, "button_patients.png", "See bills", mSession.getNavigator()));
 		}
 		
 		return hlNavigationPanel;
@@ -237,7 +211,7 @@ public class MainPage extends VerticalLayout implements View
 		if(btnLogOff==null)
 		{
 			btnLogOff = new Button("Logout");
-			btnLogOff.addClickListener(event -> mUserSession.getNavigator().navigateTo(""));
+			btnLogOff.addClickListener(event -> mSession.getNavigator().navigateTo(""));
 		}
 		
 		return btnLogOff;

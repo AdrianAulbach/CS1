@@ -42,7 +42,7 @@ public class BillingView extends MainPageContent {
 
 	@Override
 	public void updateParams(PathParams aParams)
-	{
+    	{
 		// TODO retreive path params here
 	}
 }

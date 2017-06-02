@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
+import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
 import ch.bfh.bti7081.s2017.red.mhc_pms.viewModel.UserEditViewModel;
 import com.vaadin.event.dd.acceptcriteria.Not;
 import com.vaadin.navigator.ViewChangeListener;
@@ -22,7 +23,7 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 /**
  * Created by Rolf on 15/05/17.
  */
-public class UserDetailView extends VerticalLayout {
+public class UserDetailView extends MainPageContent {
 
     private TextField userNameField;
     private PasswordField passwordField;
@@ -121,4 +122,11 @@ public class UserDetailView extends VerticalLayout {
     public void setPasswordFieldDirty(boolean passwordFieldDirty) {
         this.passwordFieldDirty = passwordFieldDirty;
     }
+
+	@Override
+	public void updateParams(PathParams params)
+	{
+		// TODO Auto-generated method stub
+		
+	}
 }

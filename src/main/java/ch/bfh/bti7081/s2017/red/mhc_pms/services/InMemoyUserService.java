@@ -91,7 +91,7 @@ public class InMemoyUserService implements UserService {
         
         byte[] userSalt = userTestPassword.getSalt();
         log.debug("user salt "+ userSalt);
-        byte[] passwordHash = passwordService.returnPasswordHashSalted(password,userSalt);
+        byte[] passwordHash = passwordService.returnPasswordHashSalted(password,userSalt).getBytes();
         String enteredPasswordHashBase64 = java.util.Base64.getEncoder().encodeToString(passwordHash);
 
         System.out.println("entered password hash: "+ enteredPasswordHashBase64 + "\nuser password hash: " + userTestPassword.getPasswordHash());

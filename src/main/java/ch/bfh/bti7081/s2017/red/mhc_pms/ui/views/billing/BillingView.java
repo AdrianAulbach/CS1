@@ -1,11 +1,10 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.billing.Bill;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.billing.BillingPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Bill;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MainPageContent;
-import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.Button;

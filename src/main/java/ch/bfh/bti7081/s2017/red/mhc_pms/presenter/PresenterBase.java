@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.presenter;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
 
 /**
  * Created by Rolf on 22/05/17.

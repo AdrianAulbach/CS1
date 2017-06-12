@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.util;
+package ch.bfh.bti7081.s2017.red.mhc_pms.common.utils;
 
 import java.util.Properties;
 import org.hibernate.HibernateException;

@@ -3,23 +3,23 @@
  *
  * @author Aleistar Markóczy
  */
-package ch.bfh.bti7081.s2017.red.mhc_pms.domain.session;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PatientService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PatientView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.TimetableView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.WelcomeView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingView;
 
@@ -57,7 +57,7 @@ public class UserSession implements IUserSession
 		mStartPage = new StartPage(this);
 		mMainPage = new MainPage(this);
         mNavigator.addView("", mStartPage);
-        mNavigator.addView(Strings.REF_URL_MAIN_PAGE, mMainPage);
+        mNavigator.addView(AppConstants.REF_URL_MAIN_PAGE, mMainPage);
         
 		mVaadinRequest = aVaadinRequest;
 	}

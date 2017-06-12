@@ -4,9 +4,9 @@ import java.io.File;
 
 import javax.servlet.annotation.WebServlet;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.SessionFactory;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.SessionFactory;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
 
@@ -24,7 +24,7 @@ import com.vaadin.ui.TextField;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.util.FileTools;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.FileUtil;
 
 /**
  * This UI is the application entry point. A UI may either represent a browser window (or tab) or
@@ -45,7 +45,7 @@ public class MyUI extends UI
 	{
 
 		// Init log4j properties
-		PropertyConfigurator.configure(FileTools.getApplicationPath()+File.separator+"log4j.properties");
+		PropertyConfigurator.configure(FileUtil.getApplicationPath()+File.separator+"log4j.properties");
 	}
 	
 	@Override
@@ -62,7 +62,7 @@ public class MyUI extends UI
 
         // Create and register the views
         navigator.addView("", new StartPage(lSession));
-        navigator.addView(Strings.REF_URL_MAIN_PAGE, new MainPage(lSession));
+        navigator.addView(AppConstants.REF_URL_MAIN_PAGE, new MainPage(lSession));
         log.debug("All views established.");
 	}
 	
@@ -70,7 +70,7 @@ public class MyUI extends UI
 	protected void oldInit()
 	{
 		// Init log4j properties
-		PropertyConfigurator.configure(FileTools.getApplicationPath());
+		PropertyConfigurator.configure(FileUtil.getApplicationPath());
 		
 		Logger.getRootLogger().debug("Hello Debugger");
 		

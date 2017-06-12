@@ -1,11 +1,12 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.presenter;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.PresenterBase;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.viewModel.UserEditViewModel;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserEditViewModel;
 import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
 

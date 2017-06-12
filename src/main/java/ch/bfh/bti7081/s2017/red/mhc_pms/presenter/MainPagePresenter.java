@@ -4,11 +4,11 @@ import org.apache.log4j.Logger;
 
 import com.vaadin.ui.Label;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MainPageContent;
-import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 
 public class MainPagePresenter extends PresenterBase<MainPage>
 {
@@ -49,27 +49,27 @@ public class MainPagePresenter extends PresenterBase<MainPage>
 			
 			switch (lPath)
 			{
-				case Strings.EMPTY:
-				case Strings.HOME_PAGE:
+				case AppConstants.EMPTY:
+				case AppConstants.HOME_PAGE:
 					lContent = mSession.getWelcomeView();
 					break;
-				case Strings.PATIENT_PAGE:
+				case AppConstants.PATIENT_PAGE:
 					lContent = mSession.getPatientView();
 					mView.setContent(mSession.getPatientView());
 					break;
-				case Strings.TIMETABLE_PAGE:
+				case AppConstants.TIMETABLE_PAGE:
 					lContent = mSession.getTimetableView();
 					mView.setContent(mSession.getTimetableView());
 					break;
-				case Strings.USERS_PAGE:
+				case AppConstants.USERS_PAGE:
 					lContent = mSession.getUserManagementView();
 					mView.setContent(mSession.getUserManagementView());
 					break;
-				case Strings.CREATE_USER_PAGE:
+				case AppConstants.CREATE_USER_PAGE:
 					lContent = mSession.getUserDetailView();
 					mView.setContent(mSession.getUserDetailView());
 					break;
-				case Strings.BILLS_PAGE:
+				case AppConstants.BILLS_PAGE:
 					lContent = mSession.getBillingView();
 					mView.setContent(mSession.getBillingView());
 					break;

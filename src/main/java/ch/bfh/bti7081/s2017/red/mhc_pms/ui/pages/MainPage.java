@@ -16,8 +16,8 @@ import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.MainPagePresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.NavigationIconButton;
 
@@ -173,12 +173,12 @@ public class MainPage extends VerticalLayout implements View
 			hlNavigationPanel = new HorizontalLayout();
 			hlNavigationPanel.setMargin(true);
 			// TODO constants
-			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.HOME_PAGE, "button_home.png", "Home", mSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.PATIENT_PAGE, "button_patients.png", "Manage Patients", mSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.TIMETABLE_PAGE, "button_timetable.png", "Timetable", mSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.USERS_PAGE, "button_manageuser.png", "Manage Users", mSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.CREATE_USER_PAGE, "button_createuser.png", "Create new User", mSession.getNavigator()));
-			hlNavigationPanel.addComponent(new NavigationIconButton(Strings.BILLS_PAGE, "button_patients.png", "See bills", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.HOME_PAGE, "button_home.png", "Home", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.PATIENT_PAGE, "button_patients.png", "Manage Patients", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.TIMETABLE_PAGE, "button_timetable.png", "Timetable", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.USERS_PAGE, "button_manageuser.png", "Manage Users", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.CREATE_USER_PAGE, "button_createuser.png", "Create new User", mSession.getNavigator()));
+			hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.BILLS_PAGE, "button_patients.png", "See bills", mSession.getNavigator()));
 		}
 		
 		return hlNavigationPanel;

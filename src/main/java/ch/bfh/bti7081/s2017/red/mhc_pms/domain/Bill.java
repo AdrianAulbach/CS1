@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.domain.billing;
+package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
 
 import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
 

@@ -3,7 +3,7 @@
  *
  * @author Aleistar Markóczy
  */
-package ch.bfh.bti7081.s2017.red.mhc_pms.domain.session;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;

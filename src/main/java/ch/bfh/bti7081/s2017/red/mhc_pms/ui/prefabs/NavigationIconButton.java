@@ -3,7 +3,7 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs;
 import org.apache.log4j.Logger;
 
 import com.vaadin.navigator.Navigator;
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 
 /**
  * The Class NavigationButton.
@@ -31,7 +31,7 @@ public class NavigationIconButton extends IconButton
 			log.debug("Click event received. Navigating to: " + aPath);
 
 			// Navigate to a specific getActiveVal
-			aNavigator.navigateTo(Strings.REF_URL_MAIN_PAGE + "/" + aPath);
+			aNavigator.navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/" + aPath);
 		});
 	}
 }

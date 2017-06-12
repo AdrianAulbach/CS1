@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,11 +10,11 @@ import com.vaadin.ui.Grid;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserManagementPresenter;
-import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MainPageContent;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 
 /**
  * Created by Rolf on 16/05/17.
@@ -37,7 +37,7 @@ public class UserManagementView extends MainPageContent {
         userGrid = new Grid("Users");
         Button createNewUser = new Button("Create New User");
         createNewUser.addClickListener(e -> {
-            presenter.navigateTo(Strings.REF_URL_MAIN_PAGE+ "/createuser");
+            presenter.navigateTo(AppConstants.REF_URL_MAIN_PAGE+ "/createuser");
         });
 
         txtFilter = new TextField("Username");
@@ -57,7 +57,7 @@ public class UserManagementView extends MainPageContent {
         edit.setDisableOnClick(true); //deaktivate button set getActiveVal false
         edit.addClickListener(e -> {
            //ToDo change to UserDetailView and hand over the selected user ID
-            presenter.navigateTo(Strings.REF_URL_MAIN_PAGE+ "/createuser");
+            presenter.navigateTo(AppConstants.REF_URL_MAIN_PAGE+ "/createuser");
         });
 
         //Grid config

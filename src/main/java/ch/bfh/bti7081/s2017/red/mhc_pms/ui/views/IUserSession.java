@@ -3,7 +3,7 @@
  *
  * @author Aleistar Markóczy
  */
-package ch.bfh.bti7081.s2017.red.mhc_pms.domain.session;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
 import com.vaadin.navigator.Navigator;
 
@@ -13,10 +13,10 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.services.PatientService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PatientView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.TimetableView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserDetailView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.WelcomeView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingView;
 

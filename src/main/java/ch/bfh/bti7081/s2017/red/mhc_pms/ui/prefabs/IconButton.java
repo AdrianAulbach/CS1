@@ -9,7 +9,7 @@ import com.vaadin.server.ThemeResource;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.themes.ValoTheme;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 
 public class IconButton extends Button
 {
@@ -19,7 +19,7 @@ public class IconButton extends Button
 
 	public IconButton(String aImage, String aDescription, ClickListener aListener)
 	{
-		super(new ThemeResource(Strings.BUTTON_RESOURCE_PATH + aImage));
+		super(new ThemeResource(AppConstants.BUTTON_RESOURCE_PATH + aImage));
 		if(aDescription!=null) setDescription(aDescription);
 		
 		addStyleName(ValoTheme.BUTTON_ICON_ONLY);

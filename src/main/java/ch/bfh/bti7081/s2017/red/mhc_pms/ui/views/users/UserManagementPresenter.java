@@ -1,11 +1,12 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.presenter;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import java.util.List;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.PresenterBase;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.UserManagementView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementView;
 
 /**
  * Created by Rolf on 22/05/17.

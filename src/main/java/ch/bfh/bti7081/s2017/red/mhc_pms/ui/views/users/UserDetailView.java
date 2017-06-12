@@ -1,10 +1,10 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
-import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
-import ch.bfh.bti7081.s2017.red.mhc_pms.viewModel.UserEditViewModel;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserEditViewModel;
 import com.vaadin.event.dd.acceptcriteria.Not;
 import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
@@ -16,9 +16,9 @@ import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.UserDetailPresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MainPageContent;
 
 /**
  * Created by Rolf on 15/05/17.
@@ -112,7 +112,7 @@ public class UserDetailView extends MainPageContent {
     }
 
     public void navigateToUserManagement() {
-        presenter.navigateTo(Strings.REF_URL_MAIN_PAGE + "/users");
+        presenter.navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/users");
     }
 
     public boolean isPasswordFieldDirty() {

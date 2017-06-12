@@ -1,7 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.Strings;
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.StartPagePresenter;
 import com.vaadin.navigator.View;
@@ -32,7 +32,7 @@ public class StartPage extends VerticalLayout implements View
 		setSizeFull();
 
 		// TODO member
-		Button button = new Button("Go to Main View", (event) -> mUserSession.getNavigator().navigateTo(Strings.REF_URL_MAIN_PAGE));
+		Button button = new Button("Go to Main View", (event) -> mUserSession.getNavigator().navigateTo(AppConstants.REF_URL_MAIN_PAGE));
 		addComponent(button);
 		setComponentAlignment(button, Alignment.TOP_RIGHT);
 
@@ -55,7 +55,7 @@ public class StartPage extends VerticalLayout implements View
 			if(presenter.checkLogin(username.getValue(),passwordField.getValue()))
 			{
 				// TODO StartPagePresenter
-				mUserSession.getNavigator().navigateTo(Strings.REF_URL_MAIN_PAGE);
+				mUserSession.getNavigator().navigateTo(AppConstants.REF_URL_MAIN_PAGE);
 			}else{
 				Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);
 			}

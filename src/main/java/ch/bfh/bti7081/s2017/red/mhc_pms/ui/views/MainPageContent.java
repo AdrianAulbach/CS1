@@ -7,7 +7,7 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
 import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.util.PathParams;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 
 /**
  * The abstract class MainPageContent. Used to describe content of the Main Page of the application.

@@ -48,6 +48,15 @@ public class UserServiceImplTest {
         userRolf.setPasswordHash(passwordService.returnPasswordHashSalted("rolf.123", userRolf.getSalt()));
         session.save(userRolf);
         testUsers.add(userRolf);
+
+
+        User adrian = new User();
+        adrian.setUsername("rolf-ch");
+        adrian.seteMail("rolf@mhc-pms.ch");
+        adrian.setSalt(passwordService.createSalt());
+        adrian.setPasswordHash(passwordService.returnPasswordHashSalted("adrian.123", adrian.getSalt()));
+        session.save(adrian);
+        testUsers.add(adrian);
         
         session.getTransaction().commit();
     }
@@ -78,13 +87,11 @@ public class UserServiceImplTest {
     @Test
     public void testFindUserByFilter() {
         System.out.println("findUserByFilter");
-        String filter = "";
+        String filter = "adrian";
         UserServiceImpl instance = new UserServiceImpl();
-        List<User> expResult = null;
         List<User> result = instance.findUserByFilter(filter);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertEquals(1, result.size());
+        assertEquals("adrian.123", result.get(0).getUsername());
     }
 
     /**

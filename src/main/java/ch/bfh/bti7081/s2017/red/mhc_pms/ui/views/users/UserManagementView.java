@@ -99,4 +99,11 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
     @Override
     public void updateParams(PathParams aParams) {
     }
+
+    public void navigatWithId(String id){
+        PathParams pp = new PathParams();
+        pp.addParam("id",id);
+        getNavigator().navigateTo(AppConstants.CREATE_USER_PAGE+pp.getParamString());
+    }
 }
+

@@ -7,7 +7,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.jpa.criteria.expression.ExpressionImpl;
 
 /**
  * Default implementation of the UserService interface with Hibernate
@@ -34,12 +37,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUserByFilter(String filter) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        session.beginTransaction();
+        List<User> result = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
 
+            result = session.createCriteria(User.class)
+                    .add(Restrictions.like("username", "%"+filter+"%"))
+                    .list();
 
-        return new ArrayList<User>();
-        // ToDo throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            // TODO: Log4j
+        }
+        return result;
     }
 
     @Override

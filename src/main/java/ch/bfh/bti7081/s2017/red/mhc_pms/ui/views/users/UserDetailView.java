@@ -25,6 +25,7 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
     private CheckBox active;
     private Button save;
     private Button cancel;
+    private String id;
 
     /**
      * The Constant log.
@@ -118,6 +119,6 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
 
     @Override
     public void updateParams(PathParams params) {
-
+        id = params.getParam("id");
     }
 }

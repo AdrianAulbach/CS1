@@ -5,6 +5,8 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 
 /**
@@ -14,6 +16,7 @@ import org.hibernate.Session;
  * @author Samuel Egger
  */
 public class UserServiceImpl implements UserService {
+
 
     @Override
     public User findUserById(long userId) {
@@ -31,6 +34,10 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUserByFilter(String filter) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+
         return new ArrayList<User>();
         // ToDo throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

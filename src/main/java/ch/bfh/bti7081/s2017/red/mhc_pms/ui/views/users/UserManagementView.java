@@ -45,6 +45,7 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
             userGrid.removeAllColumns();
             userGrid.addColumn(User::getUsername).setCaption("User Name");
             userGrid.addColumn(User::getEmail).setCaption("E-Mail");
+            userGrid.addColumn(User::getState).setCaption("Active");
         });
 
         //ToDo implement user editing

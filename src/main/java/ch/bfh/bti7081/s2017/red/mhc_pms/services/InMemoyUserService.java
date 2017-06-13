@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Rolf Zurbrügg
  */
-public class InMemoyUserService implements UserService {
+public class InMemoyUserService {
 
 
     /** The Constant log. */
@@ -23,12 +23,10 @@ public class InMemoyUserService implements UserService {
     /**
      * {@inheritDoc}
      */
-    @Override
     public User findUserById(long userId) {
         throw new UnsupportedOperationException();
     }
 
-    @Override
     public List<User> findUserByFilter(String filter) {
     	// @Rolf: Null check fehlte -> NullPointerEx
         if(filter==null || filter.contains("*")) {
@@ -48,7 +46,6 @@ public class InMemoyUserService implements UserService {
         return userList;
     }
 
-    @Override
     public User getUserByUserName(String name)   {
 
         try {
@@ -65,17 +62,14 @@ public class InMemoyUserService implements UserService {
         }
     }
 
-    @Override
     public void saveOrUpdateUser(User user) {
 
     }
 
-    @Override
     public void deleteUser(long userID) {
 
     }
 
-    @Override
     public boolean checkPassword(String userName, String password) {
 
         log.debug("checking password for: " + userName);

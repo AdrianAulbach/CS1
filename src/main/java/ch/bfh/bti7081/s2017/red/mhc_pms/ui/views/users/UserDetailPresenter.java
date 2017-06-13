@@ -2,6 +2,7 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PresenterBase;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import org.apache.log4j.Logger;
@@ -88,7 +89,7 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     }
 
     private void persistUser(User newUser) {
-        //ToDo user into database
+        userService.saveOrUpdateUser(newUser);
         log.debug("user persisted");
     }
 }

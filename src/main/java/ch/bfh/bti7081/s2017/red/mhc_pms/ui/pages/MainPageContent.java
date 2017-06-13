@@ -4,6 +4,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MvpView;
+import com.vaadin.navigator.Navigator;
 
 /**
  * The abstract class MainPageContent. Used to describe content of the Main Page
@@ -17,10 +18,20 @@ public abstract class MainPageContent<TPresenter> extends VerticalLayout impleme
 
     private static final long serialVersionUID = 1L;
     protected TPresenter presenter = null;
+    
+    private final Navigator navigator;
+    
+    public MainPageContent(Navigator navigator){
+        this.navigator = navigator;
+    }
 
     @Override
     public void setPresenter(TPresenter presenter) {
         this.presenter = presenter;
+    }
+    
+    protected Navigator getNavigator(){
+        return navigator;
     }
 
     /**

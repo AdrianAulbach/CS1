@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Bill;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPageContent;
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import org.apache.log4j.Logger;
@@ -16,7 +17,8 @@ public class BillingView extends MainPageContent {
 
     private BillingPresenter presenter;
 
-    public BillingView() {
+    public BillingView(Navigator navigator) {
+        super(navigator);
         Grid<Bill> billGrid = new Grid<>("Bills");
         Button addBill = new Button("Add bill");
 

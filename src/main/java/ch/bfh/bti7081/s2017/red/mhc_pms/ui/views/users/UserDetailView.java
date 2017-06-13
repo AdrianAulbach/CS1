@@ -1,12 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserEditViewModel;
-import com.vaadin.event.dd.acceptcriteria.Not;
-import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
 
 import com.vaadin.ui.Button;
@@ -14,24 +9,22 @@ import com.vaadin.ui.CheckBox;
 import com.vaadin.ui.Notification;
 import com.vaadin.ui.PasswordField;
 import com.vaadin.ui.TextField;
-import com.vaadin.ui.VerticalLayout;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MainPageContent;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPageContent;
+import com.vaadin.navigator.Navigator;
 
 /**
  * Created by Rolf on 15/05/17.
  */
-public class UserDetailView extends MainPageContent {
+public class UserDetailView extends MainPageContent<UserDetailPresenter> {
 
+    private final Navigator navigator;
+    
     private TextField userNameField;
     private PasswordField passwordField;
-    private boolean passwordFieldDirty = false;
+    private boolean passwordFieldDirty;
     private TextField eMailField;
     private CheckBox active;
-    private UserDetailPresenter presenter;
-    private UserService userService = null;
     private Button save;
     private Button cancel;
 
@@ -40,16 +33,14 @@ public class UserDetailView extends MainPageContent {
      */
     static final Logger log = Logger.getRootLogger();
 
-    public UserDetailView(IUserSession session) {
-
-        presenter = new UserDetailPresenter(this, session);
-        userService = session.getUserService();
-
+    public UserDetailView(Navigator navigator) {
+        this.navigator = navigator;
+        
         this.addComponent(userNameField = new TextField("User Name"));
         this.addComponent(passwordField = new PasswordField("Password"));
 
         passwordField.addValueChangeListener(e -> {
-           passwordFieldDirty = true;
+            passwordFieldDirty = true;
         });
 
         this.addComponent(eMailField = new TextField("E-Mail"));
@@ -61,8 +52,12 @@ public class UserDetailView extends MainPageContent {
         this.addComponent(cancel = new Button("Cancel", e -> {
             presenter.cancel();
         }));
+    }
 
-        presenter.enter();
+    @Override
+    public void setPresenter(UserDetailPresenter presenter) {
+        this.presenter = presenter;
+        presenter.onInitialize();
     }
 
     public void setUserName(String userName) {
@@ -112,7 +107,7 @@ public class UserDetailView extends MainPageContent {
     }
 
     public void navigateToUserManagement() {
-        presenter.navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/users");
+        navigator.navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/users");
     }
 
     public boolean isPasswordFieldDirty() {
@@ -123,10 +118,8 @@ public class UserDetailView extends MainPageContent {
         this.passwordFieldDirty = passwordFieldDirty;
     }
 
-	@Override
-	public void updateParams(PathParams params)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void updateParams(PathParams params) {
+
+    }
 }

@@ -2,18 +2,15 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.presenter.PresenterBase;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.IUserSession;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PresenterBase;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserEditViewModel;
-import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
 
 /**
  * Created by Rolf on 15/05/17.
  */
 public class UserDetailPresenter extends PresenterBase<UserDetailView> {
+
     /**
      * The Constant log.
      */
@@ -24,47 +21,38 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     private UserService userService = null;
     private String userId = "";
     private User user = null;
-    private String params;
 
-
-
-    public UserDetailPresenter(UserDetailView view, IUserSession session) {
-        super(view, session);
+    public UserDetailPresenter(UserDetailView view, UserService userService, PasswordService passwordService) {
+        super(view);
         this.view = view;
-        passwordService = session.getPasswordService();
-        userService = session.getUserService();
+        this.userService = userService;
+        this.passwordService = passwordService;
     }
 
-
-    public void persistUser(User newUser) {
-        //ToDo user into database
-        log.debug("user persisted");
-    }
-
-    public void enter() {
+    public void onInitialize() {
 
         userId = ""; //ToDo get user id from params
 
         //if no user id is passed to the view, presume new user creation.
-        if(userId.equals("")){
+        if (userId.equals("")) {
             user = new User();
-        //empty values loaded into UserDetailView fields, to avoid caching problems, where fields would remain
-        //filled from last user editing.
-        getView().setUserName("");
-        getView().setPassword();
-        getView().seteMail("");
-        getView().setActive(false);
+            //empty values loaded into UserDetailView fields, to avoid caching problems, where fields would remain
+            //filled from last user editing.
+            getView().setUserName("");
+            getView().setPassword();
+            getView().seteMail("");
+            getView().setActive(false);
 
-        }else {
+        } else {
 
-        Long id = Long.parseLong(userId);
-        user = userService.findUserById(id);
+            Long id = Long.parseLong(userId);
+            user = userService.findUserById(id);
 
-        //fill the user detail view, with the values of the referenced user
-        getView().setUserName(user.getUsername());
-        getView().setPassword();
-        getView().seteMail(user.getEmail());
-        getView().setActive(user.getState());
+            //fill the user detail view, with the values of the referenced user
+            getView().setUserName(user.getUsername());
+            getView().setPassword();
+            getView().seteMail(user.getEmail());
+            getView().setActive(user.getState());
         }
 
         getView().getSave().setVisible(true);
@@ -86,8 +74,8 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
         //The password is only to be saved, when it has been explicetly altered by the user.
         //Persisting the password without it being altered, would cause the dummy value to be
         //hashed, salted and persisted, we don't want that.
-        if(getView().isPasswordFieldDirty()){
-            user.setPasswordHash(passwordService.returnPasswordHashSalted(viewModel.getPassword(),user.getSalt()));
+        if (getView().isPasswordFieldDirty()) {
+            user.setPasswordHash(passwordService.returnPasswordHashSalted(viewModel.getPassword(), user.getSalt()));
         }
 
         user.seteMail(viewModel.getEmail());
@@ -97,8 +85,12 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
         getView().navigateToUserManagement();
     }
 
-    public void cancel(){
+    public void cancel() {
         getView().navigateToUserManagement();
     }
 
+    private void persistUser(User newUser) {
+        //ToDo user into database
+        log.debug("user persisted");
+    }
 }

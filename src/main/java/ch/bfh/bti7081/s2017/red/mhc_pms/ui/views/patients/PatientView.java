@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MainPageContent;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPageContent;
 import com.vaadin.ui.Label;
 import com.vaadin.ui.VerticalLayout;
 

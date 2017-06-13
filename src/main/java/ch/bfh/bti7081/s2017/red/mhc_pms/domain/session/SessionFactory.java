@@ -5,6 +5,7 @@
  */
 package ch.bfh.bti7081.s2017.red.mhc_pms.domain.session;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
@@ -30,7 +31,7 @@ public class SessionFactory
 	public static IUserSession createUserSession(UI aUI, VaadinRequest aVaadinRequest)
 	{
 		UserSession r = new UserSession(aUI, aVaadinRequest);
-		r.setUserService(new InMemoyUserService());
+		r.setUserService(new UserServiceImpl());
 		r.setPasswordService(new Sha1PasswordService());
 		r.setBillingService(new BillingService());
 		// r.setPatientService(new PatientService()); TODO: PatientServiceImpl

@@ -37,10 +37,12 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
 
     public void persistUser(User newUser) {
         //ToDo user into database
+        userService.saveOrUpdateUser(newUser);
         log.debug("user persisted");
     }
 
     public void enter() {
+
 
         userId = ""; //ToDo get user id from params
 

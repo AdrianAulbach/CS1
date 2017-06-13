@@ -58,6 +58,12 @@ public class UserDetailView extends MainPageContent {
             presenter.save();
         }));
 
+        // @Rolf: Dieser Button zeigt das beispiel einer navigation
+        //
+        this.addComponent(new Button("Example: Navigation with parameters", e -> {
+            navigateWithParamsExample();
+        }));
+
         this.addComponent(cancel = new Button("Cancel", e -> {
             presenter.cancel();
         }));
@@ -123,10 +129,34 @@ public class UserDetailView extends MainPageContent {
         this.passwordFieldDirty = passwordFieldDirty;
     }
 
-	@Override
-	public void updateParams(PathParams params)
-	{
-		// TODO Auto-generated method stub
-		
-	}
+    //
+    // @Rolf: Hier ein beispiel wie die neue navigation funktioniert, ich mache es
+    //        mit einem dummy wert den du nachher löschen kannst, hier die schrittweise
+    //        Erklärung:
+    //
+
+    public void navigateWithParamsExample()
+    {
+        // 1. Erstelle eine instanz der pathparams klasse (leerer konstruktor)
+        PathParams pp = new PathParams();
+
+        // 2. Füge den Wert hinzu mit der methode addParam(key,value)
+        pp.addParam(Strings.PARAM_NAME_DUMMY, "tegscht");
+        // > NB: Ist schön wenn man die parameter namen als generelle konstante ablegt (z.B. in der Strings klasse)
+
+        // 3. Konvertiere die PathParams klasse in einen pfad (in diesem Beispiel navigieren wir wieder hier her)
+        presenter.navigateTo(Strings.REF_URL_CREATE_USER_PAGE + pp.getParamString());
+    }
+
+    @Override
+    public void updateParams(PathParams aParams)
+    {
+        String dummy;
+        // 4. Nutze nun die updateParams methode um die parameter wieder zu holen
+        dummy = aParams.getParam(Strings.PARAM_NAME_DUMMY);
+        log.debug("Dummy value is: " + dummy);
+        // NB: Falls du in eine andere Klasse navigierst, benutzt du dort die updateParams methode um die Parameter zu laden
+        dummy = null;
+        // 5. Siehe selbst: Gehe zur UserDetailView und drücke den button "Example: Navigation with parameters"
+    }
 }

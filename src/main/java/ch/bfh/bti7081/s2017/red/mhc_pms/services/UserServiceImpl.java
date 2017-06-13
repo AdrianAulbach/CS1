@@ -48,7 +48,7 @@ public class UserServiceImpl implements UserService {
             session.save(user);
             session.getTransaction().commit();
         } catch (Exception ex) {
-            // TODO: Log4j
+            ex.printStackTrace();
         }
     }
 

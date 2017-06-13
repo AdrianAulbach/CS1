@@ -30,6 +30,7 @@ public class UserManagementView extends MainPageContent {
     private Grid<User> userGrid;
     private TextField txtFilter;
     private Long selectedUserID;
+    private PathParams uId = new PathParams();
 
     public UserManagementView(IUserSession session) {
         presenter = new UserManagementPresenter(this, session);
@@ -37,7 +38,9 @@ public class UserManagementView extends MainPageContent {
         userGrid = new Grid("Users");
         Button createNewUser = new Button("Create New User");
         createNewUser.addClickListener(e -> {
+
             presenter.navigateTo(Strings.REF_URL_MAIN_PAGE+ "/createuser");
+
         });
 
         txtFilter = new TextField("Username");
@@ -57,7 +60,7 @@ public class UserManagementView extends MainPageContent {
         edit.setDisableOnClick(true); //deaktivate button set getActiveVal false
         edit.addClickListener(e -> {
            //ToDo change to UserDetailView and hand over the selected user ID
-            presenter.navigateTo(Strings.REF_URL_MAIN_PAGE+ "/createuser");
+            presenter.navigateTo(Strings.REF_URL_CREATE_USER_PAGE + uId.getParamString());
         });
 
         //Grid config
@@ -65,6 +68,7 @@ public class UserManagementView extends MainPageContent {
             //set selectedUserID to the id of the selected user
             Optional<User> selectedUser =e.getFirstSelectedItem();
             selectedUserID = selectedUser.get().getId();
+            uId.addParam(Strings.PARAM_NAME_DUMMY, Long.toString(selectedUserID));
             edit.setDisableOnClick(true);
 
         });

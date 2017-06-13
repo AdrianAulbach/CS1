@@ -12,3 +12,4 @@ log/*
 nbactions.xml
 /bin/
 hibernate.cfg.xml
+/nbproject/

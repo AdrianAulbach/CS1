@@ -3,6 +3,7 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -17,7 +18,7 @@ import javax.persistence.InheritanceType;
 public abstract class PersistentObject  implements Serializable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.TABLE)
     private Long id = null;
 
     public Long getId() {

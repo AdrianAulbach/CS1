@@ -18,8 +18,6 @@ import com.vaadin.navigator.Navigator;
  */
 public class UserDetailView extends MainPageContent<UserDetailPresenter> {
 
-    private final Navigator navigator;
-    
     private TextField userNameField;
     private PasswordField passwordField;
     private boolean passwordFieldDirty;
@@ -34,7 +32,7 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
     static final Logger log = Logger.getRootLogger();
 
     public UserDetailView(Navigator navigator) {
-        this.navigator = navigator;
+        super(navigator);
         
         this.addComponent(userNameField = new TextField("User Name"));
         this.addComponent(passwordField = new PasswordField("Password"));
@@ -107,7 +105,7 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
     }
 
     public void navigateToUserManagement() {
-        navigator.navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/users");
+        getNavigator().navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/users");
     }
 
     public boolean isPasswordFieldDirty() {

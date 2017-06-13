@@ -4,13 +4,9 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.welcome.WelcomeView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.timetable.TimetableView;
 import com.vaadin.navigator.Navigator;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.PatientService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientManagementView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingView;
@@ -48,7 +44,7 @@ public interface ViewInjector {
      *
      * @return the patient view
      */
-    public PatientView getPatientView();
+    public PatientManagementView getPatientView();
 
     /**
      * Gets the timetable view.

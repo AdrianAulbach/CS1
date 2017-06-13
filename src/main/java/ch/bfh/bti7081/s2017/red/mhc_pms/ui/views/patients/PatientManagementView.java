@@ -1,21 +1,21 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.welcome;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPageContent;
 import com.vaadin.ui.Label;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPageContent;
 import com.vaadin.navigator.Navigator;
 
-public class WelcomeView extends MainPageContent {
+public class PatientManagementView extends MainPageContent {
 
     /**
      *
      */
     private static final long serialVersionUID = 1L;
 
-    public WelcomeView(Navigator navigator) {
+    public PatientManagementView(Navigator navigator) {
         super(navigator);
-        this.addComponent(new Label("Welcome view."));
+        this.addComponent(new Label("Patient view."));
     }
 
     @Override

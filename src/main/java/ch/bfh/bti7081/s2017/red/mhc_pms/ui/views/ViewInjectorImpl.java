@@ -15,36 +15,38 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.services.PatientService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientManagementView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementPresenter;
 
 /**
  * Default implementation of the ViewInjector interface.
  *
  * @author Aleistar Markóczy, Samuel Egger
  */
-public class ViewInjectorImpl implements ViewInjector {
-    // Navigation and HTTP request
+public final class ViewInjectorImpl implements ViewInjector {
 
-    private Navigator mNavigator = null;
-    private VaadinRequest mVaadinRequest = null;
+    // Navigation and HTTP request
+    private final Navigator mNavigator;
+    private final VaadinRequest mVaadinRequest = null;
 
     // Pages: Init on constructor
     private StartPage mStartPage = null;
     private MainPage mMainPage = null;
 
     // Views: Lazy initialization
-    private PatientView mPatientView = null;
+    private PatientManagementView mPatientView = null;
     private TimetableView mTimetableView = null;
     private UserDetailView mUserDetailView = null;
     private UserManagementView mUserManagementView = null;
     private WelcomeView mWelcomeView = null;
     private BillingView mBillingView = null;
 
-    // Services: Must be assigned by SessionFactory
+    // Services: Must be assigned by ViewInjectorFactory
     private UserService mUserService = null;
     private PasswordService mPasswordService = null;
     private PatientService mPatientService = null;
@@ -59,6 +61,7 @@ public class ViewInjectorImpl implements ViewInjector {
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getNavigator()
      */
+    @Override
     public Navigator getNavigator() {
         return mNavigator;
     }
@@ -75,6 +78,7 @@ public class ViewInjectorImpl implements ViewInjector {
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getStartPage()
      */
+    @Override
     public StartPage getStartPage() {
         if (mStartPage == null) {
             mStartPage = new StartPage(mNavigator);
@@ -86,6 +90,7 @@ public class ViewInjectorImpl implements ViewInjector {
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getMainPage()
      */
+    @Override
     public MainPage getMainPage() {
         if (mMainPage == null) {
             mMainPage = new MainPage(mNavigator);
@@ -97,9 +102,11 @@ public class ViewInjectorImpl implements ViewInjector {
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getPatientView()
      */
-    public PatientView getPatientView() {
+    @Override
+    public PatientManagementView getPatientView() {
         if (mPatientView == null) {
-            createPatientView();
+            mPatientView = new PatientManagementView(mNavigator);
+            // TODO: Set presenter
         }
         return mPatientView;
     }
@@ -107,9 +114,11 @@ public class ViewInjectorImpl implements ViewInjector {
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getTimetableView()
      */
+    @Override
     public TimetableView getTimetableView() {
         if (mTimetableView == null) {
-            createTimetableView();
+            mTimetableView = new TimetableView(mNavigator);
+            // TODO: Set presenter
         }
         return mTimetableView;
     }
@@ -117,22 +126,23 @@ public class ViewInjectorImpl implements ViewInjector {
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getUserDetailView()
      */
+    @Override
     public UserDetailView getUserDetailView() {
         if (mUserDetailView == null) {
             mUserDetailView = new UserDetailView(mNavigator);
             mUserDetailView.setPresenter(new UserDetailPresenter(mUserDetailView, mUserService, mPasswordService));
         }
-
         return mUserDetailView;
     }
-
 
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getUserManagementView()
      */
+    @Override
     public UserManagementView getUserManagementView() {
         if (mUserManagementView == null) {
-
+            mUserManagementView = new UserManagementView(mNavigator);
+            mUserManagementView.setPresenter(new UserManagementPresenter(mUserManagementView, mUserService));
         }
         return mUserManagementView;
     }
@@ -140,9 +150,11 @@ public class ViewInjectorImpl implements ViewInjector {
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getWelcomeView()
      */
+    @Override
     public WelcomeView getWelcomeView() {
         if (mWelcomeView == null) {
-            createWelcomeView();
+            mWelcomeView = new WelcomeView(mNavigator);
+            // TODO: Set presenter
         }
         return mWelcomeView;
     }
@@ -150,45 +162,19 @@ public class ViewInjectorImpl implements ViewInjector {
     /* (non-Javadoc)
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getWelcomeView()
      */
+    @Override
     public BillingView getBillingView() {
         if (mBillingView == null) {
-            createBillingView();
+            mBillingView = new BillingView(mNavigator);
+            mBillingView.setPresenter(new BillingPresenter(mBillingView, mBillingService));
         }
         return mBillingView;
-    }
-
-    /* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getUserService()
-     */
-    public UserService getUserService() {
-        return mUserService;
-    }
-
-    /* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getPasswordService()
-     */
-    public PasswordService getPasswordService() {
-        return mPasswordService;
-    }
-
-    /* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getPatientService()
-     */
-    public PatientService getPatientService() {
-        return mPatientService;
-    }
-
-    /* (non-Javadoc)
-	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getBillingService()
-     */
-    public BillingService getBillingService() {
-        return mBillingService;
     }
 
     /**
      * Sets the user service.
      *
-     * @param aUserService the new user service
+     * @param aUserService the user service
      */
     public void setUserService(UserService aUserService) {
         mUserService = aUserService;
@@ -197,7 +183,7 @@ public class ViewInjectorImpl implements ViewInjector {
     /**
      * Sets the password service.
      *
-     * @param aPasswordService the new password service
+     * @param aPasswordService the password service
      */
     public void setPasswordService(PasswordService aPasswordService) {
         mPasswordService = aPasswordService;
@@ -206,7 +192,7 @@ public class ViewInjectorImpl implements ViewInjector {
     /**
      * Sets the patient service.
      *
-     * @param aPatientService the new patient service
+     * @param aPatientService the patient service
      */
     public void setPatientService(PatientService aPatientService) {
         mPatientService = aPatientService;
@@ -215,36 +201,9 @@ public class ViewInjectorImpl implements ViewInjector {
     /**
      * Sets the billing service.
      *
-     * @param aBillingService the new billing service
+     * @param aBillingService the billing service
      */
     public void setBillingService(BillingService aBillingService) {
         mBillingService = aBillingService;
     }
-
-    private synchronized void createPatientView() {
-        // second null check inside sync necessary to avoid double creation..
-        if (mPatientView == null) {
-            mPatientView = new PatientView();
-        }
-    }
-
-    private synchronized void createTimetableView() {
-        // second null check inside sync necessary to avoid double creation..
-        if (mTimetableView == null) {
-//            mTimetableView = new TimetableView(this);
-        }
-    }
-
-    private synchronized void createWelcomeView() {
-        if (mWelcomeView == null) {
-//            mWelcomeView = new WelcomeView(this);
-        }
-    }
-
-    private synchronized void createBillingView() {
-        if (mBillingView == null) {
-//            mBillingView = new BillingView(this);
-        }
-    }
-
 }

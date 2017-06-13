@@ -54,6 +54,7 @@ public class MainPagePresenter extends PresenterBase<MainPage> {
                     getView().setContent(viewInjector.getTimetableView());
                     break;
                 case AppConstants.USERS_PAGE:
+                    log.debug("Navigate to users management view");
                     lContent = viewInjector.getUserManagementView();
                     getView().setContent(viewInjector.getUserManagementView());
                     break;

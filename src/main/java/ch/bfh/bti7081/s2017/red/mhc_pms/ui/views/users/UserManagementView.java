@@ -24,14 +24,13 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
      * The Constant log.
      */
     static final Logger log = Logger.getRootLogger();
-    private final Navigator navigator;
 
     private Grid<User> userGrid;
     private TextField txtFilter;
     private Long selectedUserID;
 
     public UserManagementView(Navigator navigator) {
-        this.navigator = navigator;
+        super(navigator);
         userGrid = new Grid("Users");
         Button createNewUser = new Button("Create New User");
         createNewUser.addClickListener(e -> {

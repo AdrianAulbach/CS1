@@ -68,3 +68,66 @@ public class ViewInjectorFactory {
     }
 }
 ```
+## Presenter
+Der Presenter ist die Schnittstelle zwischen Views und BusinessLogik. Alle Benutzerinteraktionen bis auf die Navigation werden dem Presenter weitergegeben. Der Presenter kennt die View und kann indirekt deren Daten manipulieren. Jeder Presenter erbt von der Klasse PresenterBase<TView>.
+
+Alle Service- und sonstige Abhängigkeiten müssen im Konstruktor der Presenters deklariert werden. Würde der Presenter für jede Abhängigkeit einen Setter haben, ist die wahrscheinlichkeit gross, dass vergessen wird dieses Property beim initialieren des Presenters zu setzen. Die Variante mit dem Konstruktor garantiert, dass keine Abhängigkeit vergessen wird.
+
+```Java
+public class UserDetailPresenter extends PresenterBase<UserDetailView> {
+    private final PasswordService passwordService;
+    private final UserService userService;
+
+    public UserDetailPresenter(UserDetailView view, UserService userService, PasswordService passwordService) {
+        super(view);
+        this.userService = userService;
+        this.passwordService = passwordService;
+    }
+    
+    // ...
+}
+```
+
+Die folgende Variante via Setter führt schnell zu eine NullReferenceException (insbesondere wenn ein Presenter mit einem Service erweitert wird):
+
+```Java
+public class UserDetailPresenter extends PresenterBase<UserDetailView> {
+    private PasswordService passwordService;
+    private UserService userService;
+
+    public void setPasswordService(PasswordService passwordService){
+        this.passwordService = passwordService;
+    }
+    
+    public void setUserService(UserService userService){
+        this.userService = userService;
+    }
+    
+    public UserDetailPresenter(UserDetailView view) {
+        super(view);
+    }
+    
+    // ...
+}
+```
+Fehleranfälliges injecten der View:
+
+```Java
+public class ViewInjectorImpl implements ViewInjector {
+    // ...
+    
+    public UserDetailView getUserDetailView() {
+        if (mUserDetailView == null) {
+            mUserDetailView = new UserDetailView(mNavigator);
+            UserDetailPresenter presenter = new UserDetailPresenter(mUserDetailView);
+            presenter.setUserService(mUserService);
+
+            // Ooops, forgot to set PasswordService
+        }
+
+        return mUserDetailView;
+    }
+    
+    // ...
+}
+```

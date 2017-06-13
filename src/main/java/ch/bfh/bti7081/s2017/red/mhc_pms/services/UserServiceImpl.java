@@ -1,7 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.util.HibernateUtil;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.HibernateUtil;
 
 import java.util.ArrayList;
 import java.util.List;

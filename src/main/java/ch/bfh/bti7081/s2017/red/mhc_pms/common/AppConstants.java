@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.common;
 
-public class Strings
+public class AppConstants
 {
 	// Bare page names
 	public static final String HOME_PAGE = "home";

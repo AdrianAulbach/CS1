@@ -1,4 +1,4 @@
-package ch.bfh.bti7081.s2017.red.mhc_pms.viewModel;
+package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 /**
  * Created by Rolf on 30/05/17.

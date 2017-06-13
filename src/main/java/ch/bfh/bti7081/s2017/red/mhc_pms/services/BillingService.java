@@ -1,6 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.domain.billing.Bill;
+import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Bill;
 
 import java.util.*;
 import java.util.stream.Collectors;

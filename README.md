@@ -20,3 +20,51 @@ einen Anwendungsfall abdecken in einem gemeinsamen Package. Das hat den Vorteil,
 
 Davon ausgenommen sind aktuell die Domainobjekte und Services die sich unter ch.bfh.bti7081.s2017.red.mhc_pms.domain respektive ch.bfh.bti7081.s2017.red.mhc_pms.services befinden. 
 
+## Views
+Eine View ist dafür verantwortlich, die graphischen Benutzerelemente korrekt anzuzeigen. Die View ist selber verantwortlich für die Navigation zu anderen Views da der Presenter vom konkrete UX Design nichts wissen muss. Eine View erhält daher eine Instanz vom Navigator Konstruktor. Aufgrund der bidirektionalen Verbindung zwischen View und Presenter kann der Presenter nicht im Konstruktor der View übergeben werden. Stattdessen muss jede View das Interface ViewBase implementieren, welches eine Methode setPresenter zur Verfügung stellt. Eine Defaultimplementation ist in der Klasse MainPageContent vorhanden. Im Konstruktor der View darf also nicht auf den Presenter zugegriffen werden.
+
+```Java
+    @Override
+    public void setPresenter(UserDetailPresenter presenter) {
+        this.presenter = presenter;
+        presenter.onInitialize();
+    }
+```
+
+Eine View selber weiss nichts von den Services. Diese sind lediglich dem Presenter bekannt. Der Presenter wird mit den entsprechenden Services ausgestattet der View übergeben.
+
+### ViewInjector
+In Anlehnung an das Dependency Injection Pattern wurde die 'UserSession' nach ViewInjector umbenannt, weil dieser die Views eben 'injected' mit den notwendigen Abhängigkeiten:
+
+```Java
+public MainPage getMainPage() {
+        if (mMainPage == null) {
+            mMainPage = new MainPage(mNavigator);
+            mMainPage.setPresenter(new MainPagePresenter(mMainPage, this));
+        }
+        return mMainPage;
+    }
+```
+Die Abhängigkeiten der ViewInjector Klasse werden in der ViewInjectorFactory erfüllt:
+
+```Java
+public class ViewInjectorFactory {
+
+    /**
+     * Creates a new ViewInjector object.
+     *
+     * @param ui
+     * @param vaadinRequest
+     * @return the view injector
+     */
+    public static ViewInjector createViewInjector(UI ui, VaadinRequest vaadinRequest) {
+        ViewInjectorImpl r = new ViewInjectorImpl(ui, vaadinRequest);
+        
+        r.setUserService(new InMemoyUserService());
+        r.setPasswordService(new Sha1PasswordService());
+        r.setBillingService(new BillingService());
+        
+        return r;
+    }
+}
+```

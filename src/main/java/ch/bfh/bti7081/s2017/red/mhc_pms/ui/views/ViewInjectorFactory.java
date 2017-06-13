@@ -19,23 +19,18 @@ import com.vaadin.navigator.Navigator;
 public class ViewInjectorFactory {
 
     /**
-     * Creates a new Session object.
+     * Creates a new ViewInjector object.
      *
-     * @return the user session
+     * @param ui
+     * @param vaadinRequest
+     * @return the view injector
      */
     public static ViewInjector createViewInjector(UI ui, VaadinRequest vaadinRequest) {
-
-        
         ViewInjectorImpl r = new ViewInjectorImpl(ui, vaadinRequest);
-        
-
         
         r.setUserService(new InMemoyUserService());
         r.setPasswordService(new Sha1PasswordService());
         r.setBillingService(new BillingService());
-        // r.setPatientService(new PatientService()); TODO: PatientServiceImpl
-        
-
         
         return r;
     }

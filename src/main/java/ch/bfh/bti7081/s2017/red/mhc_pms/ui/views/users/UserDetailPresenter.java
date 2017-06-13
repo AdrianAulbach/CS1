@@ -16,15 +16,13 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
      */
     static final Logger log = Logger.getRootLogger();
 
-    private UserDetailView view = null;
-    private PasswordService passwordService = null;
-    private UserService userService = null;
+    private final PasswordService passwordService;
+    private UserService userService;
     private String userId = "";
     private User user = null;
 
     public UserDetailPresenter(UserDetailView view, UserService userService, PasswordService passwordService) {
         super(view);
-        this.view = view;
         this.userService = userService;
         this.passwordService = passwordService;
     }
@@ -67,7 +65,7 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             return;
         }
 
-        UserEditViewModel viewModel = view.getViewModel();
+        UserEditViewModel viewModel = getView().getViewModel();
         user.setUsername(viewModel.getUserName());
         user.setSalt(passwordService.createSalt());
 

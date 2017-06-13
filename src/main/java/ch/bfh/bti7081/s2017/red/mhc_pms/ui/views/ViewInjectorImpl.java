@@ -19,6 +19,7 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailPresenter;
 
 /**
  * Default implementation of the ViewInjector interface.
@@ -118,7 +119,8 @@ public class ViewInjectorImpl implements ViewInjector {
      */
     public UserDetailView getUserDetailView() {
         if (mUserDetailView == null) {
-
+            mUserDetailView = new UserDetailView(mNavigator);
+            mUserDetailView.setPresenter(new UserDetailPresenter(mUserDetailView, mUserService, mPasswordService));
         }
 
         return mUserDetailView;

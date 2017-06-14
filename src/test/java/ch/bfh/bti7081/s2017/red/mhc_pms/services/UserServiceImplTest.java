@@ -49,10 +49,9 @@ public class UserServiceImplTest {
         session.save(userRolf);
         testUsers.add(userRolf);
 
-
         User adrian = new User();
-        adrian.setUsername("rolf-ch");
-        adrian.seteMail("rolf@mhc-pms.ch");
+        adrian.setUsername("adrian");
+        adrian.seteMail("adrian@mhc-pms.ch");
         adrian.setSalt(passwordService.createSalt());
         adrian.setPasswordHash(passwordService.returnPasswordHashSalted("adrian.123", adrian.getSalt()));
         session.save(adrian);
@@ -91,7 +90,7 @@ public class UserServiceImplTest {
         UserServiceImpl instance = new UserServiceImpl();
         List<User> result = instance.findUserByFilter(filter);
         assertEquals(1, result.size());
-        assertEquals("adrian.123", result.get(0).getUsername());
+        assertEquals("adrian", result.get(0).getUsername());
     }
 
     /**

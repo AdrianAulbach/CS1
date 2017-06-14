@@ -9,17 +9,17 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.jpa.criteria.expression.ExpressionImpl;
 
 /**
- * Default implementation of the UserService interface with Hibernate
- * to persist objects in a database.
- * 
+ * Default implementation of the UserService interface with Hibernate to persist
+ * objects in a database.
+ *
  * @author Samuel Egger
  */
 public class UserServiceImpl implements UserService {
-
 
     @Override
     public User findUserById(long userId) {
@@ -42,9 +42,9 @@ public class UserServiceImpl implements UserService {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
 
-            result = session.createCriteria(User.class)
-                    .add(Restrictions.like("username", "%"+filter+"%"))
-                    .list();
+            Criteria crit = session.createCriteria(User.class);
+            crit.add(Restrictions.like("username", filter, MatchMode.ANYWHERE));
+            result = crit.list();
 
             session.getTransaction().commit();
         } catch (Exception ex) {

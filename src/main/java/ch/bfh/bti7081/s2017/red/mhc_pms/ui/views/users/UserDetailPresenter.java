@@ -30,7 +30,9 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
 
     public void onInitialize() {
 
-        userId = ""; //ToDo get user id from params
+        if(getView().getId() != null){
+             userId = getView().getId();
+        }
 
         //if no user id is passed to the view, presume new user creation.
         if (userId.equals("")) {

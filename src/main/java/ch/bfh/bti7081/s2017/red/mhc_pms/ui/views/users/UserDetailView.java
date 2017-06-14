@@ -2,6 +2,8 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
+import com.vaadin.navigator.View;
+import com.vaadin.navigator.ViewChangeListener;
 import org.apache.log4j.Logger;
 
 import com.vaadin.ui.Button;
@@ -25,7 +27,8 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
     private CheckBox active;
     private Button save;
     private Button cancel;
-    private String id;
+    private String id="";
+    private PathParams pp = new PathParams();
 
     /**
      * The Constant log.
@@ -34,7 +37,8 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
 
     public UserDetailView(Navigator navigator) {
         super(navigator);
-        
+
+        getId();
         this.addComponent(userNameField = new TextField("User Name"));
         this.addComponent(passwordField = new PasswordField("Password"));
 
@@ -121,4 +125,13 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
     public void updateParams(PathParams params) {
         id = params.getParam("id");
     }
+
+    public String getId(){
+    id = pp.getParam("id");
+    return id;
+    }
+
+    public String getParams(PathParams params){return params.getParam("id");}
+
+
 }

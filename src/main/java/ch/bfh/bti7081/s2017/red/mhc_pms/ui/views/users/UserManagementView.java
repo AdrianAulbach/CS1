@@ -29,6 +29,7 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
     private TextField txtFilter;
     private Long selectedUserID;
 
+
     public UserManagementView(Navigator navigator) {
         super(navigator);
         userGrid = new Grid("Users");
@@ -50,19 +51,16 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
 
         //ToDo implement user editing
         Button edit = new Button("Edit");
-        edit.setDisableOnClick(true); //deaktivate button set getActiveVal false
         edit.addClickListener(e -> {
-            //ToDo change to UserDetailView and hand over the selected user ID
-            navigator.navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/createuser");
+            PathParams pp = new PathParams();
+            pp.addParam("id",selectedUserID.toString());
+            getNavigator().navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/createuser"+pp.getParamString());
         });
 
         //Grid config
-        userGrid.addSelectionListener(e -> {
-            //set selectedUserID to the id of the selected user
-            Optional<User> selectedUser = e.getFirstSelectedItem();
-            selectedUserID = selectedUser.get().getId();
-            edit.setDisableOnClick(true);
-
+        userGrid.addItemClickListener(e -> {
+            User selectedUser = e.getItem();
+            selectedUserID = selectedUser.getId();
         });
 
         userGrid.setSelectionMode(Grid.SelectionMode.SINGLE); //Alow only for single select on grid

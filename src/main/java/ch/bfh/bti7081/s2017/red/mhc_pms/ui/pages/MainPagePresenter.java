@@ -60,7 +60,7 @@ public class MainPagePresenter extends PresenterBase<MainPage> {
                     break;
                 case AppConstants.CREATE_USER_PAGE:
                     lContent = viewInjector.getUserDetailView();
-                    getView().setContent(viewInjector.getUserDetailView());
+                    getView().setContent(lContent);
                     break;
                 case AppConstants.BILLS_PAGE:
                     lContent = viewInjector.getBillingView();
@@ -75,6 +75,7 @@ public class MainPagePresenter extends PresenterBase<MainPage> {
                 lContent.updateParams(lParams);
             }
             getView().setContent(lContent);
+            lContent.onEnter();
         }
     }
 }

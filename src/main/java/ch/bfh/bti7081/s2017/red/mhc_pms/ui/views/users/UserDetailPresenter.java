@@ -28,14 +28,10 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
         this.passwordService = passwordService;
     }
 
-    public void onEnter(){
-        //ToDo implement on enter
-    }
 
-    public void onInitialize() {
-
+    public void enter(){
         if(getView().getId() != null){
-             userId = getView().getId();
+            userId = getView().getId();
         }
 
         //if no user id is passed to the view, presume new user creation.
@@ -59,10 +55,9 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             getView().seteMail(user.getEmail());
             getView().setActive(user.getState());
         }
+    }
 
-        getView().getSave().setVisible(true);
-        getView().getSave().setEnabled(true);
-
+    public void onInitialize() {
     }
 
     public void save() {

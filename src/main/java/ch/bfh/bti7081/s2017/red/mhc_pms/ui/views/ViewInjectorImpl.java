@@ -31,8 +31,8 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementPresenter;
 public final class ViewInjectorImpl implements ViewInjector {
 
     // Navigation and HTTP request
-    private final Navigator mNavigator;
-    private final VaadinRequest mVaadinRequest = null;
+    private Navigator mNavigator;
+    private final VaadinRequest mVaadinRequest;
 
     // Pages: Init on constructor
     private StartPage mStartPage = null;
@@ -52,10 +52,11 @@ public final class ViewInjectorImpl implements ViewInjector {
     private PatientService mPatientService = null;
     private BillingService mBillingService = null;
 
+    private final UI mUi;
+
     public ViewInjectorImpl(UI ui, VaadinRequest vaadinRequest) {
-        mNavigator = new Navigator(ui, ui);
-        mNavigator.addView("", getStartPage());
-        mNavigator.addView(AppConstants.REF_URL_MAIN_PAGE, getMainPage());
+        mUi=ui;
+        mVaadinRequest=vaadinRequest;
     }
 
     /* (non-Javadoc)
@@ -63,6 +64,11 @@ public final class ViewInjectorImpl implements ViewInjector {
      */
     @Override
     public Navigator getNavigator() {
+        if(mNavigator == null){
+            mNavigator = new Navigator(mUi, mUi);
+            mNavigator.addView("", getStartPage());
+            mNavigator.addView(AppConstants.REF_URL_MAIN_PAGE, getMainPage());
+        }
         return mNavigator;
     }
 

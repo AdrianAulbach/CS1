@@ -74,7 +74,7 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
 
     public void setPassword() {
         this.passwordField.setValue("dummy value");
-        setPasswordFieldDirty(true); //loading the dummy value is not allowed to cause the password field, to be marked as dirty
+        setPasswordFieldDirty(false); //loading the dummy value is not allowed to cause the password field, to be marked as dirty
     }
 
     public void seteMail(String eMail) {
@@ -127,12 +127,12 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
         id = params.getParam("id");
     }
 
-    public String getId(){
-    id = pp.getParam("id");
-    return id;
-    }
+    @Override
+    public void onEnter(){presenter.enter();}
 
-    public String getParams(PathParams params){return params.getParam("id");}
+    public String  getId(){
+        return id;
+    }
 
 
 }

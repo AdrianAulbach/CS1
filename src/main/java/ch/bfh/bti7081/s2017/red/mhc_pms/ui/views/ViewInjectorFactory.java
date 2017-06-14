@@ -32,7 +32,8 @@ public class ViewInjectorFactory {
         r.setUserService(new UserServiceImpl());
         r.setPasswordService(new Sha1PasswordService());
         r.setBillingService(new BillingService());
-        
+        r.getNavigator();
+
         return r;
     }
 }

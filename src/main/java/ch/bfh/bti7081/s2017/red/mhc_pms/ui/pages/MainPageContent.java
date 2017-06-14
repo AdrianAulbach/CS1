@@ -42,4 +42,7 @@ public abstract class MainPageContent<TPresenter> extends VerticalLayout impleme
     public abstract void updateParams(PathParams params);
 
     // TODO resetParams
+    public void onEnter(){
+
+    }
 }

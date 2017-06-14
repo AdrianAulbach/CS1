@@ -70,7 +70,8 @@ public class InMemoyUserService {
 
     }
 
-    public boolean checkPassword(String userName, String password) {
+ /* moved to MemoryUserServiceImpl
+   public boolean checkPassword(String userName, String password) {
 
         log.debug("checking password for: " + userName);
 
@@ -97,7 +98,7 @@ public class InMemoyUserService {
             return true;
         }
         return false;
-    }
+    }*/
 
     // @Override
     public void addUser(User newUser) {

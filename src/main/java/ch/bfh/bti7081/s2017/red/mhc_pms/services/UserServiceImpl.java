@@ -21,6 +21,9 @@ import org.hibernate.jpa.criteria.expression.ExpressionImpl;
  */
 public class UserServiceImpl implements UserService {
 
+    static final Logger log = Logger.getRootLogger();
+    private static PasswordService passwordService = new Sha1PasswordService();
+
     @Override
     public User findUserById(long userId) {
         User result = null;
@@ -55,7 +58,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByUserName(String name) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        User result = null;
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+
+            Criteria crit = session.createCriteria(User.class);
+            crit.add(Restrictions.eq("username", name));
+            result = (User) crit.uniqueResult();
+
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            // TODO: Log4j
+        }
+        return result;
     }
 
     @Override
@@ -63,7 +79,7 @@ public class UserServiceImpl implements UserService {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             session.beginTransaction();
-            session.save(user);
+            session.saveOrUpdate(user);
             session.getTransaction().commit();
         } catch (Exception ex) {
             ex.printStackTrace();
@@ -87,6 +103,30 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkPassword(String userName, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        log.debug("checking password for: " + userName);
+
+        User userTestPassword = getUserByUserName(userName);
+        if(userTestPassword==null)
+        {
+            log.info("User '"+userName+"' was not found.");
+            return false;
+        }
+
+        log.debug("got user:" +userTestPassword.getUsername());
+
+        byte[] userSalt = userTestPassword.getSalt();
+        log.debug("user salt "+ userSalt);
+        byte[] passwordHash = passwordService.returnPasswordHashSalted(password,userSalt).getBytes();
+        String enteredPasswordHashBase64 = java.util.Base64.getEncoder().encodeToString(passwordHash);
+
+        System.out.println("entered password hash: "+ enteredPasswordHashBase64 + "\nuser password hash: " + userTestPassword.getPasswordHash());
+
+
+        //test if the password matches the specified user
+
+        if(userTestPassword.getPasswordHash().equals(enteredPasswordHashBase64)){
+            return true;
+        }
+        return false;
     }
 }

@@ -6,13 +6,16 @@ import org.apache.log4j.PropertyConfigurator;
 import org.junit.Before;
 import org.junit.Test;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.FileUtil;
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
+
 public class TestPathParams
 {
 	@Before
 	public void setUp() throws Exception 
 	{
 		// Init log4j properties
-		PropertyConfigurator.configure(FileTools.getApplicationPath()+File.separator+"log4j.properties");
+		PropertyConfigurator.configure(FileUtil.getApplicationPath()+File.separator+"log4j.properties");
 	}
 
 	@Test

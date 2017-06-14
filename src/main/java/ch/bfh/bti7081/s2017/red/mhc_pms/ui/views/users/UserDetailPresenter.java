@@ -28,6 +28,10 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
         this.passwordService = passwordService;
     }
 
+    public void onEnter(){
+        //ToDo implement on enter
+    }
+
     public void onInitialize() {
 
         if(getView().getId() != null){

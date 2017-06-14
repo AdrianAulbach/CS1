@@ -38,7 +38,8 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
     public UserDetailView(Navigator navigator) {
         super(navigator);
 
-        getId();
+        //getId();
+        //presenter.onInitialize();
         this.addComponent(userNameField = new TextField("User Name"));
         this.addComponent(passwordField = new PasswordField("Password"));
 

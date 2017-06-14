@@ -135,16 +135,16 @@ public class UserServiceImplTest {
     }
 
     /**
-     * Test of checkPassword method, of class UserServiceImpl.
+     * Test of isLoginValid method, of class UserServiceImpl.
      */
     @Test
     public void testCheckPassword() {
-        System.out.println("checkPassword");
+        System.out.println("isLoginValid");
         String userName = "";
         String password = "";
         UserServiceImpl instance = new UserServiceImpl();
         boolean expResult = false;
-        boolean result = instance.checkPassword(userName, password);
+        boolean result = instance.isLoginValid(userName, password);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");

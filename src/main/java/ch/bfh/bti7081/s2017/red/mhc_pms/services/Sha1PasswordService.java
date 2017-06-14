@@ -6,6 +6,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.KeySpec;
+import java.util.Base64;
 
 /**
  * Created by Rolf on 15/05/17.
@@ -18,8 +19,9 @@ public class Sha1PasswordService implements PasswordService {
     private static final int SALT_LENGTH = 32;
 
     @Override
-    public String returnPasswordHashSalted(String password, byte[] salt) {
-        KeySpec spec = new PBEKeySpec(password.toCharArray(), salt, ITERATIONS, DESIRED_KEY_LENGTH);
+    public String returnPasswordHashSalted(String password, String salt) {
+        KeySpec spec = new PBEKeySpec(password.toCharArray(),
+                Base64.getDecoder().decode(salt), ITERATIONS, DESIRED_KEY_LENGTH);
         SecretKeyFactory f = null;
         try {
             f = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1");
@@ -37,11 +39,11 @@ public class Sha1PasswordService implements PasswordService {
     }
 
     @Override
-    public byte[] createSalt() {
+    public String createSalt() {
         // create hasch for user  https://stackoverflow.com/questions/2860943/how-can-i-hash-a-password-in-java#2861125
         byte[] salt = new byte[SALT_LENGTH];
         random = new SecureRandom();
         random.nextBytes(salt);
-        return salt;
+        return Base64.getEncoder().encodeToString(salt);
     }
 }

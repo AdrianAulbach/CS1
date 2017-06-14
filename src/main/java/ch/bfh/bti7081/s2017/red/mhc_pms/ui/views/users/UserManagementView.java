@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.log4j.Logger;
 
@@ -46,7 +45,7 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
             userGrid.removeAllColumns();
             userGrid.addColumn(User::getUsername).setCaption("User Name");
             userGrid.addColumn(User::getEmail).setCaption("E-Mail");
-            userGrid.addColumn(User::getState).setCaption("Active");
+            userGrid.addColumn(User::getActive).setCaption("Active");
         });
 
         //ToDo implement user editing

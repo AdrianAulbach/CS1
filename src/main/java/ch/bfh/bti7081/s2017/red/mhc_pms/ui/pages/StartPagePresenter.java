@@ -2,7 +2,6 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PresenterBase;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
 import org.apache.log4j.Logger;
 
 /**
@@ -21,7 +20,7 @@ public class StartPagePresenter extends PresenterBase<StartPage> {
     public boolean checkLogin(String username, String password) {
         try {
             log.debug("Checking password");
-            return userService.checkPassword(username, password);
+            return userService.isLoginValid(username, password);
         } catch (Exception e) {
             log.error("Exception while checking password.", e);
             return false;

@@ -13,10 +13,10 @@ public class User extends PersistentObject {
 
     private String username = null;
     private String passwordHash = null;
-    private byte[] salt = null;
+    private String salt = null;
     private String eMail = null;
     private String resetEmailToken = null;
-    private boolean state = false;
+    private boolean active = false;
 
 
     public User() {
@@ -38,11 +38,11 @@ public class User extends PersistentObject {
         this.passwordHash = passwordHash;
     }
 
-    public byte[] getSalt() {
+    public String getSalt() {
         return salt;
     }
 
-    public void setSalt(byte[] salt) {
+    public void setSalt(String salt) {
         this.salt = salt;
     }
 
@@ -62,11 +62,11 @@ public class User extends PersistentObject {
         this.resetEmailToken = resetEmailToken;
     }
 
-    public boolean getState() {
-        return state;
+    public boolean getActive() {
+        return active;
     }
 
     public void setActive(boolean active) {
-        this.state = active;
+        this.active = active;
     }
 }

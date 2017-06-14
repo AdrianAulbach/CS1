@@ -54,7 +54,7 @@ public interface UserService {
      * @param password the users password
      * @return
      */
-    public boolean checkPassword(String userName, String password);
+    public boolean isLoginValid(String userName, String password);
 }
 
 

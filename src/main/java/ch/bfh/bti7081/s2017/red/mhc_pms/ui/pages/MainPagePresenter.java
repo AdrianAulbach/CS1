@@ -33,7 +33,7 @@ public class MainPagePresenter extends PresenterBase<MainPage> {
             lParams = new PathParams(aPath);
         }
 
-//        getView().setContent(viewInjector.getWelcomeView());
+        getView().setContent(viewInjector.getWelcomeView());
 
         if (lPath == null) {
             getView().setContent(new Label("Request could not be resolved."));

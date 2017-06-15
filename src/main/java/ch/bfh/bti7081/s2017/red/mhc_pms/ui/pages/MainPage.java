@@ -1,3 +1,8 @@
+/**
+ * File: ch.bfh.bti7081.s2017.red::MainPage.java
+ *
+ * @author Aleistar Markóczy
+ */
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 
 import org.apache.log4j.Logger;
@@ -6,14 +11,18 @@ import com.vaadin.annotations.DesignRoot;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
+import com.vaadin.shared.ui.MarginInfo;
+import com.vaadin.ui.Alignment;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
 import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
+import com.vaadin.ui.Label;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.IconButton;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.NavigationIconButton;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MvpView;
 
@@ -64,6 +73,7 @@ public class MainPage extends CustomComponent implements View, MvpView<MainPageP
      * The Button log off.
      */
     private Button btnLogOff;
+    
 
     MainPagePresenter presenter;
     Navigator navigator;
@@ -128,7 +138,6 @@ public class MainPage extends CustomComponent implements View, MvpView<MainPageP
             vlMainPanel.setSizeFull();
             vlMainPanel.addComponent(getMenuAndContentPanel());
             vlMainPanel.setExpandRatio(getMenuAndContentPanel(), 1.0f);
-            vlMainPanel.addComponent(getLogOffButton());
         }
 
         return vlMainPanel;
@@ -142,7 +151,7 @@ public class MainPage extends CustomComponent implements View, MvpView<MainPageP
     private VerticalLayout getMenuAndContentPanel() {
         if (vlMenuAndContentPanel == null) {
             vlMenuAndContentPanel = new VerticalLayout();
-            vlMenuAndContentPanel.setHeightUndefined();
+            vlMenuAndContentPanel.setSizeFull();
             vlMenuAndContentPanel.addComponent(getMenuPanel());
             vlMenuAndContentPanel.addComponent(getContentPanel());
             vlMenuAndContentPanel.setExpandRatio(getContentPanel(), 1.0f);
@@ -159,28 +168,37 @@ public class MainPage extends CustomComponent implements View, MvpView<MainPageP
     private Panel getMenuPanel() {
         if (pnMenuPanel == null) {
             pnMenuPanel = new Panel("Menu");
-            pnMenuPanel.setContent(getNavigationPanel());
+            pnMenuPanel.setContent(getNavigationButtonPanel());
         }
 
         return pnMenuPanel;
     }
 
+    
     /**
      * Gets the navigation panel.
      *
      * @return the navigation panel
      */
-    private HorizontalLayout getNavigationPanel() {
+    private HorizontalLayout getNavigationButtonPanel() {
         if (hlNavigationPanel == null) {
             hlNavigationPanel = new HorizontalLayout();
+
             hlNavigationPanel.setMargin(true);
-            // TODO constants
+            
             hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.HOME_PAGE, "button_home.png", "Home", navigator));
             hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.PATIENT_PAGE, "button_patients.png", "Manage Patients", navigator));
             hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.TIMETABLE_PAGE, "button_timetable.png", "Timetable", navigator));
             hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.USERS_PAGE, "button_manageuser.png", "Manage Users", navigator));
             hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.CREATE_USER_PAGE, "button_createuser.png", "Create new User", navigator));
             hlNavigationPanel.addComponent(new NavigationIconButton(AppConstants.BILLS_PAGE, "button_patients.png", "See bills", navigator));
+            
+            Label emptyLabel2 = new Label("");
+            emptyLabel2.setWidth("10px");
+            hlNavigationPanel.addComponent(emptyLabel2);
+            
+            hlNavigationPanel.addComponent(getLogOffButton());
+            hlNavigationPanel.setComponentAlignment(getLogOffButton(), Alignment.MIDDLE_RIGHT);
         }
 
         return hlNavigationPanel;
@@ -194,7 +212,7 @@ public class MainPage extends CustomComponent implements View, MvpView<MainPageP
     private Panel getContentPanel() {
         if (pnContentPanel == null) {
             pnContentPanel = new Panel("Content");
-            pnContentPanel.setHeightUndefined();
+            pnContentPanel.setSizeFull();
         }
 
         return pnContentPanel;
@@ -207,8 +225,7 @@ public class MainPage extends CustomComponent implements View, MvpView<MainPageP
      */
     private Button getLogOffButton() {
         if (btnLogOff == null) {
-            btnLogOff = new Button("Logout");
-            btnLogOff.addClickListener(event -> presenter.navigateTo(""));
+            btnLogOff = new IconButton("button_logout.png","Logout", event -> navigator.navigateTo(""));
         }
 
         return btnLogOff;

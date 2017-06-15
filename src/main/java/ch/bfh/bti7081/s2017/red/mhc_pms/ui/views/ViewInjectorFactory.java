@@ -25,8 +25,8 @@ public class ViewInjectorFactory {
         PasswordService passwordService = new Sha1PasswordService();
         r.setPasswordService(passwordService);
         r.setUserService(new UserServiceImpl(passwordService));
-        r.setBillingService(new InMemoryBillingService());/*/
-        r.setBillingService(new BillingServiceImpl());//*/
+        r.setPatientService(new PatientServiceImpl());
+        r.setBillingService(new InMemoryBillingService());
         r.getNavigator();
 
         return r;

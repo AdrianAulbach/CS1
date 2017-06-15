@@ -26,7 +26,22 @@ public class PatientEditPresenter extends PresenterBase<PatientEditView>
 		p.setPhone(model.getPhone());
 		p.setMobile(model.getMobile());
 		p.setEmail(model.getEmail());
+		if(model.getId()!=-1)p.setId(model.getId());
 		
 		mPatientService.saveOrUpdatePatient(p);
+	}
+	
+	public void loadById(long aId)
+	{
+		Patient p = mPatientService.findPatientById(aId);
+		PatientEditViewModel m = new PatientEditViewModel();
+		m.setFirstName(p.getFirstName());
+		m.setLastName(p.getLastName());
+		m.setStreet(p.getStreet());
+		m.setCity(p.getCity());
+		m.setPhone(p.getPhone());
+		m.setMobile(p.getMobile());
+		m.setEmail(p.getEmail());
+		getView().setViewModel(m);
 	}
 }

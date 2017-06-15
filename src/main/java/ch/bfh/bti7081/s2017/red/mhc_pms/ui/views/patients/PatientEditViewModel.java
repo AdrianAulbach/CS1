@@ -10,7 +10,7 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients;
  */
 public class PatientEditViewModel
 {
-	
+	private long id = -1;
 	private String firstName;
     private String lastName;
     private String street;
@@ -83,6 +83,14 @@ public class PatientEditViewModel
 	public void setEmail(String aEmail)
 	{
 		email = aEmail;
+	}
+	public long getId()
+	{
+		return id;
+	}
+	public void setId(long aId)
+	{
+		id = aId;
 	}
     
 }

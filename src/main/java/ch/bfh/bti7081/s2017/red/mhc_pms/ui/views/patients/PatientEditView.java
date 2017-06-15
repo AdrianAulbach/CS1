@@ -1,5 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients;
 
+import org.apache.log4j.Logger;
+
 import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.Accordion;
 import com.vaadin.ui.Alignment;
@@ -10,12 +12,16 @@ import com.vaadin.ui.Panel;
 import com.vaadin.ui.TextField;
 import com.vaadin.ui.VerticalLayout;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPageContent;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.IconButton;
 
 public class PatientEditView extends MainPageContent<PatientEditPresenter>
 {
+	
+	private static final Logger log = Logger.getRootLogger();
+	
 	private HorizontalLayout hlMainPanel = null;
 	private VerticalLayout vlLeftPanel = null;
 	private VerticalLayout vlRightPanel = null;
@@ -34,6 +40,8 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 	private Accordion acdStats = null;
 	
 	private Button btnSave = null;
+	
+	private long selectedPatientId = -1;
 //	private EditableField efdCountry = null;
 	
 
@@ -77,7 +85,18 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 	    acdStats.addTab(new VerticalLayout(new Label("Test")),"Records");
 		
 	    btnSave = new Button("Register / Update Patient");
-	    btnSave.addClickListener((e)->presenter.saveOrUpdate());
+	    btnSave.addClickListener((e)->
+	    {
+	    	try
+			{
+	    		presenter.saveOrUpdate();
+	    		getNavigator().navigateTo(AppConstants.REF_URL_PATIENT_SEARCH_PAGE + new PathParams().addParam("loadall", "true").getParamString());
+			}
+			catch (Exception ex)
+			{
+				log.error("Update failed",ex);
+			}
+	    });
 	    
 	    vlRightPanel.addComponent(acdStats);
 	    vlRightPanel.addComponent(new Label());
@@ -115,7 +134,12 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 	public void updateParams(PathParams aParams)
 	{
 		String lId = aParams.getParam("id");
-		if(lId!=null); // TODO load patient by id
+		if(lId!=null)
+		{
+			selectedPatientId = Long.parseLong(lId);
+			presenter.loadById(selectedPatientId);
+			return;
+		}
 		
 		String lName = aParams.getParam("name");
 		if(lName!=null) efdFirstName.updateDefault(lName);
@@ -166,6 +190,7 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 	{
 		PatientEditViewModel r = new PatientEditViewModel();
 		
+		if(selectedPatientId!=-1) r.setId(selectedPatientId);
 		r.setFirstName(efdFirstName.getValue());
 		r.setLastName(efdLastName.getValue());
 		r.setStreet(efdStreet.getValue());
@@ -176,17 +201,15 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 		return r;
 	}
 	
-//  sample = new Accordion();
-//  sample.setHeight(100.0f, Unit.PERCENTAGE);
-//
-//  for (int i = 1; i < 8; i++) {
-//      final Label label = new Label(TabSheetSample.getLoremContent(), ContentMode.HTML);
-//      label.setWidth(100.0f, Unit.PERCENTAGE);
-//
-//      final VerticalLayout layout = new VerticalLayout(label);
-//      layout.setMargin(true);
-//
-//      sample.addTab(layout, "Tab " + i);
-//  }
+	public void setViewModel(PatientEditViewModel aModel)
+	{
+		efdFirstName.updateDefault(aModel.getFirstName());
+		efdLastName.updateDefault(aModel.getLastName());
+		efdStreet.updateDefault(aModel.getStreet());
+		efdCity.updateDefault(aModel.getCity());
+		efdPhone.updateDefault(aModel.getPhone());
+		efdMobile.updateDefault(aModel.getMobile());
+		efdEmail.updateDefault(aModel.getEmail());
+	}
 	
 }

@@ -2,11 +2,8 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import java.util.List;
 
+import com.vaadin.ui.*;
 import org.apache.log4j.Logger;
-
-import com.vaadin.ui.Button;
-import com.vaadin.ui.Grid;
-import com.vaadin.ui.TextField;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
@@ -65,9 +62,15 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
 
         userGrid.setSelectionMode(Grid.SelectionMode.SINGLE); //Alow only for single select on grid
 
-        this.addComponent(createNewUser);
-        this.addComponent(txtFilter);
-        this.addComponent(search);
+        HorizontalLayout searchAndCreate = new HorizontalLayout();
+        searchAndCreate.addComponent(txtFilter);
+        searchAndCreate.addComponent(search);
+        searchAndCreate.addComponent(createNewUser);
+        searchAndCreate.setComponentAlignment(search, Alignment.BOTTOM_CENTER);
+        searchAndCreate.setComponentAlignment(txtFilter, Alignment.BOTTOM_CENTER);
+        searchAndCreate.setComponentAlignment(createNewUser, Alignment.BOTTOM_CENTER);
+
+        this.addComponent(searchAndCreate);
         this.addComponent(userGrid);
         this.addComponent(edit);
     }

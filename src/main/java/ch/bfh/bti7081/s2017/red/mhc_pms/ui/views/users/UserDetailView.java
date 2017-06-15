@@ -4,13 +4,8 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
+import com.vaadin.ui.*;
 import org.apache.log4j.Logger;
-
-import com.vaadin.ui.Button;
-import com.vaadin.ui.CheckBox;
-import com.vaadin.ui.Notification;
-import com.vaadin.ui.PasswordField;
-import com.vaadin.ui.TextField;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPageContent;
 import com.vaadin.navigator.Navigator;
@@ -50,18 +45,25 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
 
         this.addComponent(eMailField = new TextField("E-Mail"));
         this.addComponent(active = new CheckBox("Active"));
-        this.addComponent(save = new Button("Save", e -> {
+
+
+        //horizontal layout
+        HorizontalLayout hLayoutButtons = new HorizontalLayout();
+
+        hLayoutButtons.addComponent(save = new Button("Save", e -> {
             presenter.save();
         }));
 
-        this.addComponent(cancel = new Button("Cancel", e -> {
+        hLayoutButtons.addComponent(cancel = new Button("Cancel", e -> {
             presenter.cancel();
         }));
 
-        this.addComponent(delete = new Button("Delete", e->{
+        hLayoutButtons.addComponent(delete = new Button("Delete", e->{
             presenter.deleteUser();
 
         }));
+
+        this.addComponent(hLayoutButtons);
     }
 
     @Override

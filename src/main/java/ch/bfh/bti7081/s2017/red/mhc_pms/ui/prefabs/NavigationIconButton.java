@@ -1,5 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 import org.apache.log4j.Logger;
 
 import com.vaadin.navigator.Navigator;

@@ -37,7 +37,7 @@ public class StartPage extends VerticalLayout implements View, MvpView<StartPage
         layout.addComponent(username);
 
         // Sha1PasswordService field
-        PasswordField passwordField = new PasswordField("Sha1PasswordService");
+        PasswordField passwordField = new PasswordField("Password");
         layout.addComponent(passwordField);
 
         // Login Button
@@ -67,5 +67,6 @@ public class StartPage extends VerticalLayout implements View, MvpView<StartPage
     @Override
     public void enter(ViewChangeEvent event) {
         Notification.show("Welcome to MHC-PMS Application!");
+
     }
 }

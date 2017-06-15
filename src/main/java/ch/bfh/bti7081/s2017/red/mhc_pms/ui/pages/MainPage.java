@@ -142,7 +142,7 @@ public class MainPage extends CustomComponent implements View, MvpView<MainPageP
     private VerticalLayout getMenuAndContentPanel() {
         if (vlMenuAndContentPanel == null) {
             vlMenuAndContentPanel = new VerticalLayout();
-            vlMenuAndContentPanel.setSizeFull();
+            vlMenuAndContentPanel.setHeightUndefined();
             vlMenuAndContentPanel.addComponent(getMenuPanel());
             vlMenuAndContentPanel.addComponent(getContentPanel());
             vlMenuAndContentPanel.setExpandRatio(getContentPanel(), 1.0f);
@@ -194,8 +194,7 @@ public class MainPage extends CustomComponent implements View, MvpView<MainPageP
     private Panel getContentPanel() {
         if (pnContentPanel == null) {
             pnContentPanel = new Panel("Content");
-            pnContentPanel.setSizeFull();
-            pnContentPanel.setHeight("100%");
+            pnContentPanel.setHeightUndefined();
         }
 
         return pnContentPanel;

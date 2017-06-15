@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
-<!--<hibernate-configuration>
+<hibernate-configuration>
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
@@ -12,30 +12,4 @@
     <mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.User"/>
     <mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.Patient"/>
   </session-factory>
-</hibernate-configuration>-->
-<!--<hibernate-configuration>
-    <session-factory>
-        <property name="show_sql">true</property>
-        <property name="format_sql">true</property>
-        <property name="dialect">org.hibernate.dialect.SQLiteDialect</property>
-        <property name="connection.driver_class">org.sqlite.JDBC</property>
-        <property name="connection.url">jdbc:sqlite:mydb.db</property>
-        <property name="connection.username">app_mhcpms</property>
-        <property name="connection.password">rasdwatri</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
-    	<mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.User"/>
-    </session-factory>-->
-    
-<hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.archive.autodetection">class,hbm</property>  
-        <property name="hibernate.dialect">org.hibernate.dialect.HSQLDialect</property>  
-        <property name="hibernate.show_sql">true</property>    
-        <property name="hibernate.connection.driver_class">org.hsqldb.jdbcDriver</property>    
-        <property name="hibernate.connection.username">sa</property>    
-        <property name="hibernate.connection.password">1</property>    
-        <property name="hibernate.connection.url">jdbc:hsqldb:mem:howtodoinjava</property>    
-        <property name="hibernate.hbm2ddl.auto">create</property>    
-    	<mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.User"/>
-    </session-factory>
 </hibernate-configuration>

@@ -27,6 +27,7 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
     private CheckBox active;
     private Button save;
     private Button cancel;
+    private Button delete;
     private String id="";
     private PathParams pp = new PathParams();
 
@@ -55,6 +56,11 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
 
         this.addComponent(cancel = new Button("Cancel", e -> {
             presenter.cancel();
+        }));
+
+        this.addComponent(delete = new Button("Delete", e->{
+            presenter.deleteUser();
+
         }));
     }
 
@@ -132,6 +138,14 @@ public class UserDetailView extends MainPageContent<UserDetailPresenter> {
 
     public String  getId(){
         return id;
+    }
+
+    public void showUserExistsMessage(){
+        Notification.show("Username is already taken please enter a different user name");
+    }
+
+    public void showNoUserMessage(){
+        Notification.show("Please select a User", Notification.Type.ERROR_MESSAGE);
     }
 
 

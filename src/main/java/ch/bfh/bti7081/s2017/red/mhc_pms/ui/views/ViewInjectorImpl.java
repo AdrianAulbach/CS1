@@ -1,14 +1,11 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.*;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.PatientService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPagePresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;

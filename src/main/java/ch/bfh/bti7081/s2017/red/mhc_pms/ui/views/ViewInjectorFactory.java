@@ -1,17 +1,10 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPagePresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.*;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoyUserService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.Sha1PasswordService;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
-import com.vaadin.navigator.Navigator;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoryBillingService;
 
 /**
  * A factory for creating the ViewInjector class.
@@ -35,7 +28,7 @@ public class ViewInjectorFactory {
         PasswordService passwordSerivce = new Sha1PasswordService();
         r.setPasswordService(passwordSerivce);
         r.setUserService(new UserServiceImpl(passwordSerivce));
-        r.setBillingService(new BillingService());
+        r.setBillingService(new InMemoryBillingService());
         r.getNavigator();
 
         return r;

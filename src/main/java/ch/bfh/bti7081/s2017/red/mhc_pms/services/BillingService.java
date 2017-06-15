@@ -2,39 +2,22 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.services;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.Bill;
 
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by adrian on 21.05.17.
- * 
- * TODO interface abstraction (BillingService & BillingServiceImpl)
+ * Created by adrian on 15.06.17.
  */
-public class BillingService {
-    private static List<Bill> bills = new LinkedList<Bill>();
+public interface BillingService {
+    List<Bill> getBills();
 
-    static {
-        Bill bill1 = new Bill("B001", 1234, new Date());
-        bill1.setState(bill1.getBillSent());
-        bills.add(bill1);
-
-        Bill bill2 = new Bill("B002", 333, new Date());
-        bills.add(bill2);
+    default List<Bill> findBillsByState(Bill.BillingState billingState) {
+        return getBills().stream().filter(bill -> bill.isInState(billingState)).collect(Collectors.toList());
     }
 
-    public static List<Bill> getBills() {
-        return bills;
-    }
+    void addBill(Bill bill);
 
-    public static List<Bill> findBillsByState(Bill.BillingState billingState) {
-        return bills.stream().filter(bill -> bill.isInState(billingState)).collect(Collectors.toList());
-    }
-
-    public static void addBill(Bill bill) {
-        bills.add(bill);
-    }
-
-    public static Bill getBillByID(String ID) {
-        return bills.stream().filter(bill -> bill.getID().equals(ID)).findFirst().orElse(null);
+    default Bill getBillByID(String ID) {
+        return getBills().stream().filter(bill -> bill.getID().equals(ID)).findFirst().orElse(null);
     }
 }

@@ -5,6 +5,8 @@ public class AppConstants
 	// Bare page names
 	public static final String HOME_PAGE = "home";
 	public static final String PATIENT_PAGE = "patients";
+	public static final String PATIENT_EDIT_PAGE = "editpatient";
+	public static final String PATIENT_SEARCH_PAGE = "searchpatients";
 	public static final String TIMETABLE_PAGE = "timetable";
 	public static final String USERS_PAGE = "users";
 	public static final String CREATE_USER_PAGE = "createuser";
@@ -15,6 +17,8 @@ public class AppConstants
 	public static final String REF_URL_MAIN_PAGE = "main";
 	public static final String REF_URL_HOME_PAGE = REF_URL_MAIN_PAGE + "/" + HOME_PAGE;
 	public static final String REF_URL_PATIENT_PAGE = REF_URL_MAIN_PAGE + "/" + PATIENT_PAGE;
+	public static final String REF_URL_PATIENT_EDIT_PAGE = REF_URL_MAIN_PAGE + "/" + PATIENT_EDIT_PAGE;
+	public static final String REF_URL_PATIENT_SEARCH_PAGE = REF_URL_MAIN_PAGE + "/" + PATIENT_SEARCH_PAGE;
 	public static final String REF_URL_TIMETABLE_PAGE = REF_URL_MAIN_PAGE + "/" + TIMETABLE_PAGE;
 	public static final String REF_URL_USERS_PAGE = REF_URL_MAIN_PAGE + "/" + USERS_PAGE;
 	public static final String REF_URL_CREATE_USER_PAGE = REF_URL_MAIN_PAGE + "/" + CREATE_USER_PAGE;

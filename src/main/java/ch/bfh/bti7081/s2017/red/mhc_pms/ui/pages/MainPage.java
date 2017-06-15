@@ -3,14 +3,15 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages;
 import org.apache.log4j.Logger;
 
 import com.vaadin.annotations.DesignRoot;
+import com.vaadin.navigator.Navigator;
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener.ViewChangeEvent;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Component;
+import com.vaadin.ui.CustomComponent;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Panel;
 import com.vaadin.ui.VerticalLayout;
-import com.vaadin.navigator.Navigator;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.NavigationIconButton;
@@ -22,7 +23,7 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.MvpView;
  * @author Aleistar Markóczy
  */
 @DesignRoot
-public class MainPage extends VerticalLayout implements View, MvpView<MainPagePresenter> {
+public class MainPage extends CustomComponent implements View, MvpView<MainPagePresenter> {
 
     /**
      * The Constant serialVersionUID.
@@ -112,9 +113,8 @@ public class MainPage extends VerticalLayout implements View, MvpView<MainPagePr
         //
         //
         //
-        addComponent(getMainPanel());
-        setSizeFull();
-        setExpandRatio(getMainPanel(), 1.0f);
+    	setSizeFull();
+    	setCompositionRoot(getMainPanel());
     }
 
     /**
@@ -142,10 +142,10 @@ public class MainPage extends VerticalLayout implements View, MvpView<MainPagePr
     private VerticalLayout getMenuAndContentPanel() {
         if (vlMenuAndContentPanel == null) {
             vlMenuAndContentPanel = new VerticalLayout();
+            vlMenuAndContentPanel.setSizeFull();
             vlMenuAndContentPanel.addComponent(getMenuPanel());
             vlMenuAndContentPanel.addComponent(getContentPanel());
             vlMenuAndContentPanel.setExpandRatio(getContentPanel(), 1.0f);
-            vlMenuAndContentPanel.setHeight("100%");
         }
 
         return vlMenuAndContentPanel;

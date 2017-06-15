@@ -24,7 +24,8 @@ public class MainPagePresenter extends PresenterBase<MainPage> {
         this.viewInjector = viewInjector;
     }
 
-    public void navigateTo(String aPath) {
+    public void navigateTo(String aPath) 
+    {
         String lPath = aPath;
         PathParams lParams = null;
         if (aPath.contains("?")) {
@@ -32,7 +33,7 @@ public class MainPagePresenter extends PresenterBase<MainPage> {
             lParams = new PathParams(aPath);
         }
 
-        getView().setContent(viewInjector.getWelcomeView());
+//        getView().setContent(viewInjector.getWelcomeView());
 
         if (lPath == null) {
             getView().setContent(new Label("Request could not be resolved."));
@@ -46,29 +47,30 @@ public class MainPagePresenter extends PresenterBase<MainPage> {
                     lContent = viewInjector.getWelcomeView();
                     break;
                 case AppConstants.PATIENT_PAGE:
-                    lContent = viewInjector.getPatientView();
-                    getView().setContent(viewInjector.getPatientView());
+                    lContent = viewInjector.getPatientManagementView();
+                    break;
+                case AppConstants.PATIENT_EDIT_PAGE:
+                    lContent = viewInjector.getPatientEditView();
+                    break;
+                case AppConstants.PATIENT_SEARCH_PAGE:
+                    lContent = viewInjector.getPatientSearchView();
                     break;
                 case AppConstants.TIMETABLE_PAGE:
                     lContent = viewInjector.getTimetableView();
-                    getView().setContent(viewInjector.getTimetableView());
                     break;
                 case AppConstants.USERS_PAGE:
                     log.debug("Navigate to users management view");
                     lContent = viewInjector.getUserManagementView();
-                    getView().setContent(viewInjector.getUserManagementView());
                     break;
                 case AppConstants.CREATE_USER_PAGE:
                     lContent = viewInjector.getUserDetailView();
-                    getView().setContent(lContent);
                     break;
                 case AppConstants.BILLS_PAGE:
                     lContent = viewInjector.getBillingView();
-                    getView().setContent(viewInjector.getBillingView());
                     break;
                 default:
                     log.error("Request could not be resolved.");
-                    return;
+                    getView().setContent(new Label("Request could not be resolved. Page was:" +lPath));
             }
 
             if (lParams != null) {

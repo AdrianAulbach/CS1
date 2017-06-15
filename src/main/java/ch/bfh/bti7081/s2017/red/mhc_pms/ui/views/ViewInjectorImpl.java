@@ -1,27 +1,32 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.welcome.WelcomeView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.timetable.TimetableView;
 import com.vaadin.navigator.Navigator;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.AppConstants;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPagePresenter;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPagePresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PatientService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPage;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPagePresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPagePresenter;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingPresenter;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientManagementView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
-import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.billing.BillingView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientEditPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientEditView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientManagementPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientManagementView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientSearchPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.patients.PatientSearchView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.timetable.TimetableView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserDetailView;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementPresenter;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users.UserManagementView;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.welcome.WelcomeView;
 
 /**
  * Default implementation of the ViewInjector interface.
@@ -40,6 +45,8 @@ public final class ViewInjectorImpl implements ViewInjector {
 
     // Views: Lazy initialization
     private PatientManagementView mPatientView = null;
+    private PatientSearchView mPatientSearchView = null;
+    private PatientEditView mPatientEditView = null;
     private TimetableView mTimetableView = null;
     private UserDetailView mUserDetailView = null;
     private UserManagementView mUserManagementView = null;
@@ -109,12 +116,33 @@ public final class ViewInjectorImpl implements ViewInjector {
 	 * @see ch.bfh.bti7081.s2017.red.mhc_pms.domain.session.IUserSession#getPatientView()
      */
     @Override
-    public PatientManagementView getPatientView() {
+    public PatientManagementView getPatientManagementView() {
         if (mPatientView == null) {
             mPatientView = new PatientManagementView(mNavigator);
-            // TODO: Set presenter
+            mPatientView.setPresenter(new PatientManagementPresenter(mPatientView, mPatientService));
         }
         return mPatientView;
+    }
+    
+
+    @Override
+    public PatientEditView getPatientEditView() {
+        if (mPatientEditView == null) {
+        	mPatientEditView = new PatientEditView(mNavigator);
+        	mPatientEditView.setPresenter(new PatientEditPresenter(mPatientEditView, mPatientService));
+            // TODO: Set presenter
+        }
+        return mPatientEditView;
+    }
+    
+
+    @Override
+    public PatientSearchView getPatientSearchView() {
+        if (mPatientSearchView == null) {
+        	mPatientSearchView = new PatientSearchView(mNavigator);
+        	mPatientSearchView.setPresenter(new PatientSearchPresenter(mPatientSearchView, mPatientService));
+        }
+        return mPatientSearchView;
     }
 
     /* (non-Javadoc)
@@ -176,7 +204,6 @@ public final class ViewInjectorImpl implements ViewInjector {
         }
         return mBillingView;
     }
-
     /**
      * Sets the user service.
      *

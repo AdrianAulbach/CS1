@@ -17,52 +17,52 @@ import javax.persistence.Table;
 @Table(name = "patient")
 public class Patient extends Person {
 
-    @ManyToMany
-    private List<Doctor> doctors;
+//    @ManyToMany
+//    private List<Doctor> doctors;
+//
+//    @OneToMany(mappedBy = "patient")
+//    private List<Prescription> perscriptions;
 
-    @OneToMany(mappedBy = "patient")
-    private List<Prescription> perscriptions;
+//    @OneToOne
+//    private MedicalRecord medicalRecord;
 
-    @OneToOne
-    private MedicalRecord medicalRecord;
+//    public MedicalRecord getMedicalRecord() {
+//        return medicalRecord;
+//    }
+//
+//    /*
+//	 * @param medicalRecord sets medicalRecord 
+//     */
+//    public void setMedicalRecord(MedicalRecord medicalRecord) {
+//        this.medicalRecord = medicalRecord;
+//    }
 
-    public MedicalRecord getMedicalRecord() {
-        return medicalRecord;
-    }
+//    /*
+//	 * @return returns List of doctors
+//     */
+//    public List<Doctor> getDoctors() {
+//        return doctors;
+//    }
+//
+//    /*
+//	 * @return returns List of Prescriptions
+//     */
+//    public List<Prescription> getPerscriptions() {
+//        return perscriptions;
+//    }
 
-    /*
-	 * @param medicalRecord sets medicalRecord 
-     */
-    public void setMedicalRecord(MedicalRecord medicalRecord) {
-        this.medicalRecord = medicalRecord;
-    }
-
-    /*
-	 * @return returns List of doctors
-     */
-    public List<Doctor> getDoctors() {
-        return doctors;
-    }
-
-    /*
-	 * @return returns List of Prescriptions
-     */
-    public List<Prescription> getPerscriptions() {
-        return perscriptions;
-    }
-
-    /*
-     * @param doctor adds doctor to patient 
-     */
-    public void add(Doctor doctor) {
-        this.doctors.add(doctor);
-    }
-
-    /*
-     * @param doctor removes doctor from patient
-     * 
-     */
-    public void remove(Doctor doctor) {
-        this.doctors.remove(doctor);
-    }
+//    /*
+//     * @param doctor adds doctor to patient 
+//     */
+//    public void add(Doctor doctor) {
+//        this.doctors.add(doctor);
+//    }
+//
+//    /*
+//     * @param doctor removes doctor from patient
+//     * 
+//     */
+//    public void remove(Doctor doctor) {
+//        this.doctors.remove(doctor);
+//    }
 }

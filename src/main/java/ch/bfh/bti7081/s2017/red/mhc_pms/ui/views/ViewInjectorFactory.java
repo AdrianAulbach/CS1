@@ -22,12 +22,11 @@ public class ViewInjectorFactory {
         ViewInjectorImpl r = new ViewInjectorImpl(ui, vaadinRequest);
 
         // Manual dependency injection
-        
-        PasswordService passwordSerivce = new Sha1PasswordService();
-        r.setPasswordService(passwordSerivce);
-        r.setUserService(new UserServiceImpl(passwordSerivce));
-        r.setPatientService(new PatientServiceImpl());
-        r.setBillingService(new InMemoryBillingService());
+        PasswordService passwordService = new Sha1PasswordService();
+        r.setPasswordService(passwordService);
+        r.setUserService(new UserServiceImpl(passwordService));
+        r.setBillingService(new InMemoryBillingService());/*/
+        r.setBillingService(new BillingServiceImpl());//*/
         r.getNavigator();
 
         return r;

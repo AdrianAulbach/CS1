@@ -74,7 +74,7 @@ public class UserServiceImplTest {
     public void testFindUserById() {
         System.out.println("findUserById");
         long userId = testUsers.get(0).getId();
-        UserServiceImpl instance = new UserServiceImpl();
+        UserServiceImpl instance = new UserServiceImpl(passwordService);
         User expResult = testUsers.get(0);
         User result = instance.findUserById(userId);
         assertEquals(expResult.getEmail(), result.getEmail());
@@ -87,7 +87,7 @@ public class UserServiceImplTest {
     public void testFindUserByFilter() {
         System.out.println("findUserByFilter");
         String filter = "adrian";
-        UserServiceImpl instance = new UserServiceImpl();
+        UserServiceImpl instance = new UserServiceImpl(passwordService);
         List<User> result = instance.findUserByFilter(filter);
         assertEquals(1, result.size());
         assertEquals("adrian", result.get(0).getUsername());
@@ -100,7 +100,7 @@ public class UserServiceImplTest {
     public void testGetUserByUserName() {
         System.out.println("getUserByUserName");
         String name = "";
-        UserServiceImpl instance = new UserServiceImpl();
+        UserServiceImpl instance = new UserServiceImpl(passwordService);
         User expResult = null;
         User result = instance.getUserByUserName(name);
         assertEquals(expResult, result);
@@ -115,7 +115,7 @@ public class UserServiceImplTest {
     public void testSaveOrUpdateUser() {
         System.out.println("saveOrUpdateUser");
         User user = null;
-        UserServiceImpl instance = new UserServiceImpl();
+        UserServiceImpl instance = new UserServiceImpl(passwordService);
         instance.saveOrUpdateUser(user);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -128,7 +128,7 @@ public class UserServiceImplTest {
     public void testDeleteUser() {
         System.out.println("deleteUser");
         long userId = 0L;
-        UserServiceImpl instance = new UserServiceImpl();
+        UserServiceImpl instance = new UserServiceImpl(passwordService);
         instance.deleteUser(userId);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -142,7 +142,7 @@ public class UserServiceImplTest {
         System.out.println("checkPassword");
         String userName = "";
         String password = "";
-        UserServiceImpl instance = new UserServiceImpl();
+        UserServiceImpl instance = new UserServiceImpl(passwordService);
         boolean expResult = false;
         boolean result = instance.checkPassword(userName, password);
         assertEquals(expResult, result);

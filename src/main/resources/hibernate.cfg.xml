@@ -10,5 +10,10 @@
     <property name="show_sql">true</property>
     <property name="hibernate.hbm2ddl.auto">create</property>
     <mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.User"/>
+    <mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.Patient"/>
+    <mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.Bill"/>
+    <mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.Prescription"/>
+    <mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.Report"/>
+    <mapping class="ch.bfh.bti7081.s2017.red.mhc_pms.domain.MedicalRecord"/>
   </session-factory>
 </hibernate-configuration>

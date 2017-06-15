@@ -8,13 +8,14 @@ import com.vaadin.ui.UI;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.BillingService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoyUserService;
+import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.Sha1PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.StartPage;
 import com.vaadin.navigator.Navigator;
 
 /**
  * A factory for creating the ViewInjector class.
- * 
+ *
  * @author Aleistar Markóczy, Samuel Egger
  */
 public class ViewInjectorFactory {
@@ -28,9 +29,12 @@ public class ViewInjectorFactory {
      */
     public static ViewInjector createViewInjector(UI ui, VaadinRequest vaadinRequest) {
         ViewInjectorImpl r = new ViewInjectorImpl(ui, vaadinRequest);
+
+        // Manual dependency injection
         
-        r.setUserService(new UserServiceImpl());
-        r.setPasswordService(new Sha1PasswordService());
+        PasswordService passwordSerivce = new Sha1PasswordService();
+        r.setPasswordService(passwordSerivce);
+        r.setUserService(new UserServiceImpl(passwordSerivce));
         r.setBillingService(new BillingService());
         r.getNavigator();
 

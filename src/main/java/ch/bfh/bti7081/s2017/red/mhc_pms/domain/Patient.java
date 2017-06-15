@@ -10,47 +10,47 @@ import javax.persistence.Table;
 
 /**
  * The Patient class represents a real world patient.
- * 
+ *
  * @author Samuel Egger
  */
 @Entity
-@Table(name="patient")
+@Table(name = "patient")
 public class Patient extends Person {
-	
-	@ManyToMany
-	private List<Doctor> doctors;
-	
-	@OneToMany (mappedBy = "patient")
+
+    @ManyToMany
+    private List<Doctor> doctors;
+
+    @OneToMany(mappedBy = "patient")
     private List<Prescription> perscriptions;
-    
-	@OneToOne
+
+    @OneToOne
     private MedicalRecord medicalRecord;
 
-	public MedicalRecord getMedicalRecord() {
-		return medicalRecord;
-	}
+    public MedicalRecord getMedicalRecord() {
+        return medicalRecord;
+    }
 
-	/*
+    /*
 	 * @param medicalRecord sets medicalRecord 
-	 */
-	public void setMedicalRecord(MedicalRecord medicalRecord) {
-		this.medicalRecord = medicalRecord;
-	}
+     */
+    public void setMedicalRecord(MedicalRecord medicalRecord) {
+        this.medicalRecord = medicalRecord;
+    }
 
-	/*
+    /*
 	 * @return returns List of doctors
-	 */
-	public List<Doctor> getDoctors() {
-		return doctors;
-	}
+     */
+    public List<Doctor> getDoctors() {
+        return doctors;
+    }
 
-	/*
+    /*
 	 * @return returns List of Prescriptions
-	 */
-	public List<Prescription> getPerscriptions() {
-		return perscriptions;
-	}
-    
+     */
+    public List<Prescription> getPerscriptions() {
+        return perscriptions;
+    }
+
     /*
      * @param doctor adds doctor to patient 
      */

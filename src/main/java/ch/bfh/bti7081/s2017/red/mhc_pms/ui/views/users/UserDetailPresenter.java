@@ -2,10 +2,11 @@ package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.PasswordService;
 import ch.bfh.bti7081.s2017.red.mhc_pms.domain.User;
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserServiceImpl;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.PresenterBase;
 import ch.bfh.bti7081.s2017.red.mhc_pms.services.UserService;
 import org.apache.log4j.Logger;
+
+import java.util.concurrent.ExecutorService;
 
 /**
  * Created by Rolf on 15/05/17.
@@ -53,17 +54,24 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             getView().setUserName(user.getUsername());
             getView().setPassword();
             getView().seteMail(user.getEmail());
-            getView().setActive(user.getState());
+            getView().setActive(user.getActive());
         }
     }
 
     public void onInitialize() {
+        enter();
     }
 
     public void save() {
         //check if username or password are not empty
         if (getView().getUserNameField().isEmpty() || getView().getPasswordField().isEmpty()) {
             getView().fieldsEmpty();
+            return;
+        }
+
+        //check if user already exists
+        if(userService.getUserByUserName(getView().getUserNameField().getValue())!=null){
+            getView().showUserExistsMessage();
             return;
         }
 
@@ -92,5 +100,17 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     private void persistUser(User newUser) {
         userService.saveOrUpdateUser(newUser);
         log.debug("user persisted");
+    }
+
+    public void deleteUser(){
+        try {
+            userService.deleteUser(user.getId());
+        } catch (NullPointerException e){
+            getView().showNoUserMessage();
+        }
+        finally {
+            getView().navigateToUserManagement();
+        }
+
     }
 }

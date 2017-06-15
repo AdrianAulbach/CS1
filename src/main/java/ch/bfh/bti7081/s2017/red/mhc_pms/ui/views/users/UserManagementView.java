@@ -1,7 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.ui.views.users;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.apache.log4j.Logger;
 
@@ -28,6 +27,7 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
     private Grid<User> userGrid;
     private TextField txtFilter;
     private Long selectedUserID;
+    private PathParams pp = new PathParams();
 
 
     public UserManagementView(Navigator navigator) {
@@ -35,7 +35,8 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
         userGrid = new Grid("Users");
         Button createNewUser = new Button("Create New User");
         createNewUser.addClickListener(e -> {
-            navigator.navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/createuser");
+            pp.addParam("id","");
+            navigator.navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/createuser"+pp.getParamString());
         });
 
         txtFilter = new TextField("Username");
@@ -46,13 +47,12 @@ public class UserManagementView extends MainPageContent<UserManagementPresenter>
             userGrid.removeAllColumns();
             userGrid.addColumn(User::getUsername).setCaption("User Name");
             userGrid.addColumn(User::getEmail).setCaption("E-Mail");
-            userGrid.addColumn(User::getState).setCaption("Active");
+            userGrid.addColumn(User::getActive).setCaption("Active");
         });
 
         //ToDo implement user editing
         Button edit = new Button("Edit");
         edit.addClickListener(e -> {
-            PathParams pp = new PathParams();
             pp.addParam("id",selectedUserID.toString());
             getNavigator().navigateTo(AppConstants.REF_URL_MAIN_PAGE + "/createuser"+pp.getParamString());
         });

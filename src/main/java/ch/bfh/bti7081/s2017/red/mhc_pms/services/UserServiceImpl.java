@@ -121,25 +121,21 @@ public class UserServiceImpl extends ServiceBase implements UserService {
      * {@inheritDoc}
      */
     @Override
-    public boolean checkPassword(String userName, String password) {
+    public boolean isLoginValid(String userName, String password) {
         getLogger().debug("checking password for: " + userName);
-        
         User userTestPassword = getUserByUserName(userName);
-        if (userTestPassword == null) {
-            getLogger().info("User '" + userName + "' was not found.");
-            return false;
-        }
-        
-        getLogger().debug("got user:" + userTestPassword.getUsername());
-        
-        byte[] userSalt = userTestPassword.getSalt();
-        getLogger().debug("user salt " + userSalt);
-        byte[] passwordHash = passwordService.returnPasswordHashSalted(password, userSalt).getBytes();
-        String enteredPasswordHashBase64 = java.util.Base64.getEncoder().encodeToString(passwordHash);
 
-        //test if the password matches the specified user
-        if (userTestPassword.getPasswordHash().equals(enteredPasswordHashBase64)) {
-            return true;
+        if (userTestPassword != null && userTestPassword.getActive()) {
+            getLogger().debug("got user:" + userTestPassword.getUsername());
+
+            String userSalt = userTestPassword.getSalt();
+            getLogger().debug("user salt " + userSalt);
+            String passwordHash = passwordService.returnPasswordHashSalted(password, userSalt);
+
+            System.out.println("entered password hash: " + passwordHash + "\nuser password hash: " + userTestPassword.getPasswordHash());
+
+            // test if the password matches the specified user
+            return userTestPassword.getPasswordHash().equals(passwordHash) && userTestPassword.getActive();
         }
         return false;
     }

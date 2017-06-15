@@ -46,7 +46,6 @@ public class StartPage extends VerticalLayout implements View, MvpView<StartPage
             // Check Login credential
             log.debug("clicked login");
             if (presenter.checkLogin(username.getValue(), passwordField.getValue())) {
-                // TODO StartPagePresenter
                 navigator.navigateTo(AppConstants.REF_URL_MAIN_PAGE);
             } else {
                 Notification.show("Wrong Username or Password", Notification.Type.ERROR_MESSAGE);

@@ -71,7 +71,7 @@ public class InMemoyUserService {
     }
 
  /* moved to MemoryUserServiceImpl
-   public boolean checkPassword(String userName, String password) {
+   public boolean isLoginValid(String userName, String password) {
 
         log.debug("checking password for: " + userName);
 

@@ -12,6 +12,7 @@ import com.vaadin.ui.VerticalLayout;
 
 import ch.bfh.bti7081.s2017.red.mhc_pms.common.utils.PathParams;
 import ch.bfh.bti7081.s2017.red.mhc_pms.ui.pages.MainPageContent;
+import ch.bfh.bti7081.s2017.red.mhc_pms.ui.prefabs.IconButton;
 
 public class PatientEditView extends MainPageContent<PatientEditPresenter>
 {
@@ -22,11 +23,17 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 	private Panel pnPicture = null;
 	private Button btnChangePicture = null;
 	
-	private EditableField efdName = null;
+	private EditableField efdFirstName = null;
+	private EditableField efdLastName = null;
+	private EditableField efdPhone = null;
+	private EditableField efdMobile = null;
+	private EditableField efdEmail = null;
 	private EditableField efdStreet = null;
 	private EditableField efdCity = null;
 	
 	private Accordion acdStats = null;
+	
+	private Button btnSave = null;
 //	private EditableField efdCountry = null;
 	
 
@@ -43,23 +50,21 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 		hlMainPanel.setSizeFull();
 		
 		vlLeftPanel = new VerticalLayout();
-		vlLeftPanel.setSizeFull();
-//		vlLeftPanel.setHeight("100%");
-//		vlLeftPanel.setWidth("50%");
 		
 		vlRightPanel = new VerticalLayout();
 		vlRightPanel.setSizeFull();
-//		vlRightPanel.setHeight("100%");
-//		vlRightPanel.setWidth("50%");
 		
 		pnPicture = new Panel();
 		pnPicture.setHeight("90px");
 		pnPicture.setWidth("90px");
-//		pnPicture.setContent(content);
 		
-		efdName = new EditableField("Name:","");
-		efdStreet = new EditableField("Strasse","");
-		efdCity = new EditableField("Stadt:","");
+		efdFirstName = new EditableField("First Name:","");
+		efdLastName = new EditableField("Last Name:","");
+		efdStreet = new EditableField("Street:","");
+		efdCity = new EditableField("Zip / City:","");
+		efdPhone = new EditableField("Phone:","");
+		efdMobile= new EditableField("Mobile Phone:","");
+		efdEmail = new EditableField("E-Mail:","");
 		
 
 		acdStats = new Accordion();
@@ -71,18 +76,33 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 	    acdStats.addTab(new VerticalLayout(new Label("Test")),"Prescriptions");
 	    acdStats.addTab(new VerticalLayout(new Label("Test")),"Records");
 		
+	    btnSave = new Button("Register / Update Patient");
+	    btnSave.addClickListener((e)->presenter.saveOrUpdate());
+	    
 	    vlRightPanel.addComponent(acdStats);
+	    vlRightPanel.addComponent(new Label());
+	    vlRightPanel.addComponent(btnSave);
+	    vlRightPanel.setComponentAlignment(btnSave, Alignment.MIDDLE_RIGHT);
+	    vlRightPanel.setMargin(true);
 	    
 		vlLeftPanel.addComponent(pnPicture);
-		vlLeftPanel.addComponent(efdName);
+		vlLeftPanel.addComponent(new Label());
+		
+		vlLeftPanel.addComponent(efdFirstName);
+		vlLeftPanel.addComponent(efdLastName);
 		vlLeftPanel.addComponent(efdStreet);
 		vlLeftPanel.addComponent(efdCity);
+		vlLeftPanel.addComponent(efdPhone);
+		vlLeftPanel.addComponent(efdMobile);
+		vlLeftPanel.addComponent(efdEmail);
+		
 		
 		
 		hlMainPanel.addComponent(vlLeftPanel);
 		hlMainPanel.addComponent(vlRightPanel);
 //		
 		addComponent(hlMainPanel);
+		
 //		addComponent(new Label("Edit View"));
 //		addComponent(new EditableField("Name:",""));
 //		addComponent(new EditableField("Strasse:","bla 2"));
@@ -98,7 +118,7 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 		if(lId!=null); // TODO load patient by id
 		
 		String lName = aParams.getParam("name");
-		if(lName!=null) efdName.updateDefault(lName);
+		if(lName!=null) efdFirstName.updateDefault(lName);
 
 		String lStreet = aParams.getParam("street");
 		if(lName!=null) efdStreet.updateDefault(lStreet);
@@ -136,6 +156,24 @@ public class PatientEditView extends MainPageContent<PatientEditPresenter>
 			mText.setValue(mDefault);
 		}
 		
+		public String getValue()
+		{
+			return mText.getValue();
+		}
+	}
+	
+	public PatientEditViewModel getViewModel()
+	{
+		PatientEditViewModel r = new PatientEditViewModel();
+		
+		r.setFirstName(efdFirstName.getValue());
+		r.setLastName(efdLastName.getValue());
+		r.setStreet(efdStreet.getValue());
+		r.setCity(efdCity.getValue());
+		r.setPhone(efdPhone.getValue());
+		r.setMobile(efdMobile.getValue());
+		r.setEmail(efdEmail.getValue());
+		return r;
 	}
 	
 //  sample = new Accordion();

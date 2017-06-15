@@ -127,7 +127,6 @@ public final class ViewInjectorImpl implements ViewInjector {
         if (mPatientEditView == null) {
         	mPatientEditView = new PatientEditView(mNavigator);
         	mPatientEditView.setPresenter(new PatientEditPresenter(mPatientEditView, mPatientService));
-            // TODO: Set presenter
         }
         return mPatientEditView;
     }

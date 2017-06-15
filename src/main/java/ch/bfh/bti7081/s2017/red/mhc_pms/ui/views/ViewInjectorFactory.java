@@ -4,8 +4,6 @@ import ch.bfh.bti7081.s2017.red.mhc_pms.services.*;
 import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.UI;
 
-import ch.bfh.bti7081.s2017.red.mhc_pms.services.InMemoryBillingService;
-
 /**
  * A factory for creating the ViewInjector class.
  *
@@ -28,6 +26,7 @@ public class ViewInjectorFactory {
         PasswordService passwordSerivce = new Sha1PasswordService();
         r.setPasswordService(passwordSerivce);
         r.setUserService(new UserServiceImpl(passwordSerivce));
+        r.setPatientService(new PatientServiceImpl());
         r.setBillingService(new InMemoryBillingService());
         r.getNavigator();
 

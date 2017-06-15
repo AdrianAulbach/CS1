@@ -1,11 +1,6 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
 
-import java.util.List;
-
 import javax.persistence.Entity;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 /**
@@ -17,6 +12,12 @@ import javax.persistence.Table;
 @Table(name = "patient")
 public class Patient extends Person {
 
+	
+    private User doctor = null;
+    
+    
+    // TODO doctor, prescriptions, records
+    
 //    @ManyToMany
 //    private List<Doctor> doctors;
 //

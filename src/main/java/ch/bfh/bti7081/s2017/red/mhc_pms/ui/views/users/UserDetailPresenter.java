@@ -22,6 +22,7 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
     private UserService userService;
     private String userId = "";
     private User user = null;
+    private boolean newUser = false;
 
     public UserDetailPresenter(UserDetailView view, UserService userService, PasswordService passwordService) {
         super(view);
@@ -44,6 +45,7 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             getView().setPassword();
             getView().seteMail("");
             getView().setActive(false);
+            newUser = true;
 
         } else {
 
@@ -55,6 +57,7 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             getView().setPassword();
             getView().seteMail(user.getEmail());
             getView().setActive(user.getActive());
+            newUser = false;
         }
     }
 
@@ -69,11 +72,14 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
             return;
         }
 
-        //check if user already exists
-        if(userService.getUserByUserName(getView().getUserNameField().getValue())!=null){
-            getView().showUserExistsMessage();
-            return;
+        //check if user already exists ToDo disabled, because check causes user mutations to not work
+        if(newUser){
+            if(userService.getUserByUserName(getView().getUserNameField().getValue())!=null) {
+                getView().showUserExistsMessage();
+                return;
+            }
         }
+
 
         UserEditViewModel viewModel = getView().getViewModel();
         user.setUsername(viewModel.getUserName());

@@ -1,6 +1,7 @@
 package ch.bfh.bti7081.s2017.red.mhc_pms.domain;
 
-import org.atmosphere.interceptor.AtmosphereResourceStateRecovery;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -8,14 +9,16 @@ import java.util.Date;
 /**
  * Created by adrian on 18.05.17.
  */
-public class Bill {
+@Entity
+@Table(name = "bills")
+public class Bill extends PersistentObject{
     private int amount = 0;
     private int billNumber = 0;
     private Date facturationDate;
     private Date dueDate = null;
-    private String billID;
+    private String billID = null;
 
-    private BillingState currentState;
+    private BillingState currentState = null;
     private BillingState toBill = new ToBill(this);
     private BillingState billSent = new BillSent(this);
     private BillingState billPaid = new BillPaid(this);

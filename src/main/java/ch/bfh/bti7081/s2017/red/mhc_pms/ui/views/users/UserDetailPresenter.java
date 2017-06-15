@@ -31,7 +31,7 @@ public class UserDetailPresenter extends PresenterBase<UserDetailView> {
 
 
     public void enter(){
-        if(getView().getId() != null){
+    if(getView().getId() != null){
             userId = getView().getId();
         }
 

@@ -7,6 +7,7 @@ import com.vaadin.navigator.Navigator;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Grid;
 import org.apache.log4j.Logger;
+import java.util.List;
 
 /**
  * Created by adrian on 21.05.17.
@@ -14,17 +15,15 @@ import org.apache.log4j.Logger;
 public class BillingView extends MainPageContent {
 
     private static final Logger log = Logger.getRootLogger();
+    private Grid<Bill> billGrid;
 
     private BillingPresenter presenter;
 
     public BillingView(Navigator navigator) {
         super(navigator);
-        Grid<Bill> billGrid = new Grid<>("Bills");
+        billGrid = new Grid<>("Bills");
         Button addBill = new Button("Add bill");
 
-        // List<Bill> bills = billingService.getBills(); //billingService.findBillsByState(new Bill.ToBill(null)); //ToDo: change BillingState so null as context is no longer required
-
-//        billGrid.setItems(bills);
         billGrid.addColumn(Bill::getID).setCaption("ID");
         billGrid.addColumn(Bill::getAmount).setCaption("amount");
         billGrid.addColumn(Bill::getState).setCaption("status");
@@ -39,5 +38,9 @@ public class BillingView extends MainPageContent {
     @Override
     public void updateParams(PathParams aParams) {
         // TODO retreive path params here
+    }
+
+    public void setBills(List<Bill> bills) {
+        billGrid.setItems(bills);
     }
 }

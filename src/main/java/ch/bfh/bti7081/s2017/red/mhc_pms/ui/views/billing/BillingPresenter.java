@@ -16,5 +16,7 @@ public class BillingPresenter {
     public BillingPresenter(BillingView billingView, BillingService billingService) {
         this.billingView = billingView;
         this.billingService = billingService;
+
+        billingView.setBills(billingService.getBills());
     }
 }

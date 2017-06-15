@@ -13,3 +13,4 @@ nbactions.xml
 /bin/
 hibernate.cfg.xml
 /nbproject/
+src/main/resources/hibernate.cfg.xml

@@ -1,3 +1,13 @@
+# Projekt ausführen
+## Datenbank
+Zum Ausführen des Projekts ist eine lokale MySQL Datenbank notwendig. Das Schema wird beim ersten Verbinden automatisch erstellt. Dazu muss auf der MySQL Datenbank ein Adminbenutzer "root" konfiguriert sein mit dem entsprechenden Passwort "root". Der Connectionstring ist in der Datei hibernate.cfg.xml hinterlegt:
+
+```xml
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/mhcpms?zeroDateTimeBehavior=convertToNull&amp;createDatabaseIfNotExist=true</property>
+    <property name="hibernate.connection.username">root</property>
+    <property name="hibernate.connection.password">root</property>
+```
+
 # Team Projekt Software Engineering FS 2017 (Gruppe Rot)
 
 ## Used File Formats and Programs
